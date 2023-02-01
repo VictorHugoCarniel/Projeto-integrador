@@ -16,7 +16,7 @@
 
   <link rel="stylesheet" href="/public/css/footer.css" />
 
-  <link rel="stylesheet" href="/public/css/admQtd.css">
+  <link rel="stylesheet" href="/public/css/admCadAlimentos.css">
 
   <!-- favicon -->
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
@@ -48,8 +48,8 @@
           <div class="link active">Quantidade<span class="link--linha"></span></div>
         </a>
       </div>
-      <div class="navbar--login">
-        <a href="/home">
+      <div>
+        <a class="sairTexto" href="/home">
           <div class="sair">Sair</div>
         </a>
       </div>
@@ -63,15 +63,13 @@
   </div>
   {{/if}} --}}
 
-{{!-- <h3></h3>
-  <%= --}}
-
-  <section class="cardapio" id="cardapio">
+  {{!-- <h3></h3>
+  <%= --}} <section class="cardapio" id="cardapio">
     <div class="cards">
       {{#each rows}}
       <div class="card">
         <div class="cardImg">
-          <img {{ imagem }} >
+          <img {{ imagem }}>
         </div>
         <div class="cardBody">
           <div class="titulo">
@@ -79,7 +77,8 @@
               {{ nome }}
             </h2>
             <form method="post" action="/deleteProd/{{ idProduto }}">
-              <button type="submit" onclick="certezaExcluir()"><img class="delete" src="/public/images/delete.svg" alt="deletar produto"></button>
+              <button type="submit" onclick="certezaExcluir()"><img class="delete" src="/public/images/delete.svg"
+                  alt="deletar produto"></button>
             </form>
           </div>
 
@@ -91,7 +90,7 @@
 
           <form method="post" action="/add-quantidade/{{ idProduto }}">
             <div class="quantidade">
-              <input placeholder="Quantidade" min= '0' id="total" type="number" name="quantidade">
+              <input placeholder="Quantidade" min='0' id="total" type="number" name="quantidade">
             </div>
             <button type="submit" class="btnComprar">Enviar</button>
           </form>
@@ -100,7 +99,7 @@
       </div>
       {{/each}}
     </div>
-  </section>
+    </section>
 </body>
 
 <!-- <footer id="contato">
