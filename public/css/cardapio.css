@@ -1,0 +1,207 @@
+.cardapio {
+    height: auto;
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 50px 8%;
+}
+
+.diasSemana {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 80px;
+}
+
+.dia {
+    width: 120px;
+    margin: 20px;
+    padding: 7px 10px;
+    border: 2px solid #00000041;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform .2s ease;
+}
+
+.dia:hover {
+    transform: scale(1.05);
+}
+
+.dia.activeSemana {
+    border: none;
+    background: linear-gradient(45deg, var(--cor02), var(--cor03));
+    color: var(--cor05);
+    box-shadow:  4px 4px 8px #c5c5c5bd,
+    -4px -4px 8px #ffffff;
+    animation: dia-anim .2s ease forwards;
+}
+
+@keyframes dia-anim {
+    from {
+       transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.cards {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.card {
+    box-shadow:  4px 4px 8px #c5c5c5bd,
+    -4px -4px 8px #ffffff;
+    width: 300px;
+    border-radius: 10px;
+    opacity: .3;
+    animation: card-anim .5s ease forwards;
+}
+
+@keyframes card-anim {
+    from {
+        opacity: .3;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cardImg img {
+    width: 100%;
+    height: 150px;
+    object-fit:cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.cardBody {
+    padding: 10px 5px;
+}
+
+.cardBody h3 {
+    font-size: 1.5rem;
+    color: var(--cor04);
+}
+
+.precoQuantidade {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.precoQuantidade > p {
+    color: var(--cor03);
+    font-weight: 500;
+}
+
+.quantidade {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.quantidade button {
+    padding: 0px 9px;
+    border-radius: 20%;
+}
+
+.quantidade p {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.cardBody > p {
+    color: var(--cor04);
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
+
+.precoQuantidade > p > i {
+    color: var(--cor03);
+}
+
+.btnComprar {
+    background: var(--cor02);
+    color: var(--cor05);
+    margin-top: 15px;
+    padding: 7px 15px;
+    box-shadow:  4px 4px 8px #c5c5c5bd,
+    -4px -4px 8px #ffffff;
+    width: 100%;
+    border-radius: 10px;
+    transition: all .3s;
+}
+
+.btnComprar:hover {
+    box-shadow:  6px 6px 10px #c5c5c5bd,
+    -6px -6px 10px #ffffff;
+    background: var(--cor03);
+}
+
+.btnComprar:active {
+    box-shadow: none;
+}
+
+.displayNone{
+    display: none;
+}
+
+.num-contador{
+    margin: 0;
+}
+
+@media (max-width: 770px) {
+    .dia {
+        margin: 10px;
+    }
+    .card {
+        flex-direction:row;
+        width: 400px;
+    }
+    .cardImg img {
+        width: 100%;
+        height: 20vh;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+    }
+    .cardBody {
+        padding: 10px 5px;
+        width: 100%;
+    }
+    .precoQuantidade {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .quantidade {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+    .diasSemana {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin-top: 80px;
+    }
+    .cardImg{
+        width: 50%;
+    }
+    .cardImg img {
+        height: 170px;
+        object-fit:cover;
+        border-radius: 10px 10px 10px 10px;
+    }
+}

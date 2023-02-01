@@ -1,0 +1,180 @@
+.home {
+    padding: 0px 8%;
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    min-height: calc(100vh - 84px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.home--img {
+    opacity: 0;
+    animation: img-anim .8s .6s forwards ease-in-out;
+}
+
+.home--img img {
+    width: 100%;
+}
+
+.home--text {
+    opacity: 0;
+    animation: text-anim .8s .6s forwards ease-in-out;
+}
+
+.home--text span {
+    color: var(--cor04);
+    margin-left: 5px;
+}
+
+.home--text span i {
+    color: var(--cor02);
+    margin-right: 5px;
+}
+
+.home--text h1 {
+    font-size: 4rem;
+    font-weight: bolder;
+    color: var(--cor04);
+}
+
+.home--text p {
+    width: 70%;
+    margin: 7px;
+    color: #00000088;
+}
+
+.btnComprarAgora {
+    display: inline-block;;
+    background: var(--cor02);
+    color: #fff;
+    padding: 13px 30px;
+    margin: 25px 30px 0 0;
+    border-radius: 30px 30px 0 30px;
+}
+
+.btnComprarAgora:hover {
+    transition: all .3s ease;
+    color: #fff;
+    transform: translateY(10px);
+}
+
+.btnComprarAgora:not(:hover) {
+    transition: all .3s ease;
+    color: #fff;
+    transform: translateY(0);
+}
+
+.btnVerCardapio {
+    display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--cor02);
+    color: var(--cor02);
+    font-weight: bold;
+}
+
+.btnVerCardapio:hover {
+    transition: all .3s ease;
+    color: var(--cor02);
+    padding-bottom: 10px;
+}
+
+.btnVerCardapio:not(:hover) {
+    transition: all .3s ease;
+    color: var(--cor02);
+    padding-bottom: 4px;
+}
+
+@media (max-width: 921px) {
+    .home--text h1 {
+        font-size: 3rem;
+    }
+
+    .home--text h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .home {
+        padding: 50px 6%;
+    }
+}
+
+@media (max-width: 715px) {
+    .home {
+        grid-template-columns: 1fr;
+    }
+    .home--text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .home--text h1 {
+        font-size: 4rem;
+    }
+
+    .home--text h2 {
+        font-size: 2.24rem;
+    }
+
+    .home--img {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .home--img img {
+        width: 75%;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .home--text h1 {
+        font-size: 3rem;
+    }
+
+    .home--text h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 355px) {
+
+    .btnComprarAgora {
+        color: #fff;
+        padding: 10px 20px;
+    }
+    
+    .btnVerCardapio {
+        padding-bottom: 4px;
+    }
+}
+
+@keyframes text-anim {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes img-anim {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

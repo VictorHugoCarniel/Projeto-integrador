@@ -1,0 +1,143 @@
+.login--container {
+    width: 100%;
+    height: calc(100vh - 94px);
+    background: var(--cor05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login--box {
+    width: 1200px;
+    height: 512px;
+    margin: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.login--img {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: img-anim .8s .6s forwards ease-in-out;
+}
+
+.login--img img {
+    width: 100%;
+}
+
+.login--inputs {
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 50px;
+    color: #494949;
+    position: relative;
+    animation: login-anim .8s .6s forwards ease-in-out;
+}
+
+.login--inputs a {
+    color: var(--cor02);
+}
+
+.login--inputs a:hover {
+    text-decoration: underline;
+}
+
+.login--inputs h1 {
+    font-weight: 400;
+    font-size: 1.8rem;
+    padding-bottom: 15px;
+}
+
+.login--inputs label, .text--senha a{
+    padding: 5px 0 10px 0;
+}
+
+.input--box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.text--senha {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.linkCadastro {
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+    font-size: .95rem;
+}
+
+/* MODAL */
+
+.modal-anim {
+    opacity: 0;
+    color: var(--cor04);
+    animation: modal-anim .8s forwards ease;
+}
+
+.modal--msg {
+    margin-bottom: 20px;
+}
+
+@keyframes img-anim {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes login-anim {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+@media (max-width: 1500px) {
+    .login--box {
+        width: 910px;
+    }
+}
+
+@media (max-width: 800px) {
+    .login--box {
+        grid-template-columns: 1fr;
+    }
+    .login--img {
+        display: none;
+    }
+    .login--inputs {
+        margin: auto;
+        width: 90vw;
+    }
+}
+
+@media (max-width: 375px) {
+    .login--inputs {
+        margin: auto;
+        width: 100vw;
+    }
+
+    .linkCadastro {
+        font-size: .9rem;
+    }
+}

@@ -1,0 +1,87 @@
+.form--title h1 {
+    font-weight: 400;
+    font-size: 2.5rem;
+}
+
+.form-control {
+    padding: 10px 12px;
+    border: 1px solid #c5c5c5bd;
+    border-radius: 0;
+    position: relative;
+}
+
+.form-control::placeholder {
+    color: #c5c5c5bd;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.form-control:focus{
+    transition: border .3s ease;
+    border: 1px solid var(--cor02);
+}
+
+.input--box {
+    position: relative;
+}
+
+.btnForm {
+    background: var(--cor04);
+    width: 100%;
+    color: #fff;
+    padding: 13px;
+    border: none;
+}
+
+.btnForm:hover {
+    transition: background .3s;
+    color: #fff;
+    background: #15212c;
+}
+
+.form-control.inputErro {
+    border: 2px solid #ff0000;
+}
+
+.form-control.inputOk {
+    border: 2px solid #008000;
+}
+
+.login--inputs i {
+    position: absolute;
+    top: 57px;
+    right: 10px;
+    display: none;
+
+    animation: inputErro-anim .3s linear;
+}
+
+.erro {
+    color: #ff0000;
+}
+
+.ok {
+    color: #008000;
+} 
+
+.msgErro {
+   color: #ff0000;
+   font-size: .9rem;
+   padding-top: 5px;
+   display: none;
+}
+
+@keyframes inputErro-anim {
+    0% {
+        transform: translateY(0);
+    }
+    33% {
+        transform: translateY(5px);
+    }
+    66% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
