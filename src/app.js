@@ -152,31 +152,20 @@ app.get('/administrador', async (req, res) => {
 const UploadImg =  require('../config/multer')
 
 //Cadastro Alimentos
-app.post('/add-alimentos', UploadImg.single('image'), async (req, res) => {
-    console.log(req.file);
-    if (req.file) {
-        console.log(req.file);
-        return res.json({
-            erro: false,
-            mensagem: "Upload realizado com sucesso!"
-        });
-    }
-
-    return res.status(400).json({
-        erro: true,
-        mensagem: "Erro: Upload não realizado com sucesso, necessário enviar uma imagem PNG ou JPG!"
-    });
-
-
+app.post('/add-alimentos', async (req, res) => {
+    
     await Produtos.create({
         nome: req.body.nome,
         preco: req.body.preco,
         peso: req.body.peso,
-        tipo: req.body.tipo
+        tipo: req.body.tipo,
+        imagem: req.body.imagem
     })
 
     console.log("deu certo")
     res.redirect('/administrador')
+
+
 })
 
 app.get('/admQtd', async (req, res) => {
