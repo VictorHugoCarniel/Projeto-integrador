@@ -26,6 +26,8 @@
 
   <link rel="stylesheet" href="public/css/cadastro.css" />
 
+  <link rel="stylesheet" href="public/css/admCadAlimentos.css" />
+
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
 
   <meta name="description" content="A confeitaria do Senac proporciona o melhor para o seu bem-estar e alimentação" />
@@ -70,7 +72,7 @@
         <form class="row g-3" action="/cad-alim" method="post">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Lanche</label>   
-            <input type="text" id="alimento" class="form-control" id="inputNome" placeholder="Lanche/Bebida"
+            <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida"
               maxlength="200" name="nome" />
           </div>
           <div class="col-md-6 input--box">
@@ -94,7 +96,7 @@
           
 
           <div class="col-12">
-            <input type="submit" class="btn btnForm" onclick="enviarCadastro()"></input>
+            <input type="submit" class="btn btnForm"></input>
           </div>
 
         </form>
@@ -124,6 +126,8 @@
       inputPeso.value = v;
     }
   </script>
+
+  <script src="../public/js/adm.js"></script>
 
   <script src="../public/js/btn-mobile.js"></script>
 

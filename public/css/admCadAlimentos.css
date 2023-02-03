@@ -62,11 +62,15 @@
 
 .sair {
     background: linear-gradient(45deg, #494949, #000000);
+    text-decoration: none;
     color: #fff;
     padding: 10px 27px;
     border-radius: 5px;
     box-shadow: 4px 4px 8px #c5c5c5bd,
-    -4px -4px 8px #ffffff;
+}
+
+.sairTexto{
+    text-decoration: none;
 }
 
 @media (max-width: 767px) {
