@@ -13,7 +13,6 @@ btn.addEventListener("click", function(e) {
     var Peso = inputPeso.value 
 
     if(lanche.length  == 0 || Preco.length == 0 || Peso.length == 0) {
-        alert('aaaaaaaaaaaaaaaaaaaaaamdeu deus')
+        alert('Todos os campos do formulário devem estar preenchidos!!')
     }
-
 })
