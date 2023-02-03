@@ -68,7 +68,7 @@
       <div class="cadastro--title">
         <h1>Cadastrar alimento:</h1>
       </div>
-      <form class="row g-3" action="/add-alimentos"  novalidate method="post">
+      <form class="row g-3" action="/add-alimentos" id="image-form" novalidate method="post">
         <form class="row g-3" action="/cad-alim" method="post">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Lanche</label>   
@@ -93,10 +93,7 @@
               <option name="" value="2">comida</option>
             </select>
           </div>
-          <div>
-            <label for="formFileLg" class="form-label">Imagem do alimento</label>
-            <input class="form-control form-control-lg" name="imagem" id="formFileLg" type="file">
-          </div>
+          
 
           <div class="col-12">
             <input type="submit" class="btn btnForm"></input>
@@ -105,6 +102,12 @@
         </form>
     </section>
   </main>
+  <form class="row g-3" action="/add-imagem" id="image-form" novalidate method="post">
+    <div>
+            <label for="formFileLg" class="form-label">Imagem do alimento</label>
+            <input class="form-control form-control-lg" name="imagem" id="image-file" type="file">
+          </div>
+</form>
   <!-- <footer id="contato">
         <p>Telefone: (46) 3272-3700<br /></p>
         <p>Instagram: @senacparana</p>
