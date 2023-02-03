@@ -1,4 +1,9 @@
-
+  const form = document.getElementById("image-form");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const file = document.getElementById("image-file").files[0];
+  });
+  
 let comidas = [
   {
     _id: "6245cd054c41f3195ff0f637",

@@ -149,10 +149,9 @@ app.get('/administrador', async (req, res) => {
     res.render('admCadAlimentos', { rows });
 })
 
-const UploadImg =  require('../config/multer')
-
+const upload = multer({dest:"../public/upload/"})
 //Cadastro Alimentos
-app.post('/add-alimentos', async (req, res) => {
+app.post('/add-alimentos', upload.single("image"), async (req, res) => {
     
     await Produtos.create({
         nome: req.body.nome,
@@ -165,8 +164,12 @@ app.post('/add-alimentos', async (req, res) => {
     console.log("deu certo")
     res.redirect('/administrador')
 
-
 })
+app.post('/add-imagem', upload.single("image"), async (req, res) => {
+    res.send("Image uploaded");  
+ 
+})
+
 
 app.get('/admQtd', async (req, res) => {
     rows = await Produtos.findAll({})
