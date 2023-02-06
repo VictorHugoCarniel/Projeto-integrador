@@ -54,14 +54,14 @@
    padding-top: 5px;
    display: none;
 }
-.termos h1{
+
+.termos{
     color:black;
     font-size: 0.9rem;
-    font-weight: 100;
 }
 
-#bosta {
-    color:rgb(255, 0, 0);
+.termos strong{
+    color: rgb(0, 110, 255);
 }
 
 @media (max-width: 767px) {

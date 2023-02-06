@@ -135,12 +135,8 @@ function enviarCadastro() {
     }
   });
 
-  if (camposEmBranco == false) {
-    alert("Não deixe campos em branco!");
-  } else if (validacao.senha == false || validacao.email == false) {
+   if (validacao.senha == false || validacao.email == false) {
     alert("Há campos inválidos");
-  } else if (!chkTermos.checked) {
-    alert("Aceite os termos de uso!");
   } else {
     alert("Cadastrado com sucesso!");
 

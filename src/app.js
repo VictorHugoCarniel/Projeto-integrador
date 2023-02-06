@@ -9,7 +9,8 @@ const crypto = require('crypto')
 const ejs = require('ejs');
 const session = require('express-session');
 const morgan = require('morgan');
-
+const Busboy = require('busboy');
+const fs = require('fs');
 const User = require('../models/User');
 const Produtos = require('../models/Produtos');
 const Estoque = require('../models/Estoque');
@@ -66,7 +67,7 @@ app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 
 app.get('/', (req, res) => {
-        res.redirect('/home')
+    res.redirect('/home')
 })
 app.get('/home', (req, res) => {
     if (req.session.loggedIn == true) {
@@ -149,10 +150,10 @@ app.get('/administrador', async (req, res) => {
     res.render('admCadAlimentos', { rows });
 })
 
-const upload = multer({dest:"../public/upload/"})
+const upload = multer({ dest: "../public/upload/" })
 //Cadastro Alimentos
-app.post('/add-alimentos', upload.single("image"), async (req, res) => {
-    
+app.post('/add-alimentos', async (req, res) => {
+
     await Produtos.create({
         nome: req.body.nome,
         preco: req.body.preco,
@@ -165,10 +166,31 @@ app.post('/add-alimentos', upload.single("image"), async (req, res) => {
     res.redirect('/administrador')
 
 })
-app.post('/add-imagem', upload.single("image"), async (req, res) => {
-    res.send("Image uploaded");  
- 
+app.get('/add-imagem', async (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+    return res.end();
 })
+app.post('/fileupload', function (req, res) {
+    var busboy = new Busboy({ headers: req.headers });
+    busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+
+        var saveTo = path.join(__dirname + 'upload' + filename);
+        file.pipe(fs.createWriteStream(saveTo));
+    });
+
+    busboy.on('finish', function () {
+        res.writeHead(200, { 'Connection': 'close' });
+        res.end("That's all folks!");
+    });
+
+    return req.pipe(busboy);
+});
+
+
 
 
 app.get('/admQtd', async (req, res) => {
