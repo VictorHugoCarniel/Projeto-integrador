@@ -150,7 +150,17 @@ app.get('/administrador', async (req, res) => {
     res.render('admCadAlimentos', { rows });
 })
 
-const upload = multer({ dest: "../public/upload/" })
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'C:/Users/douglas.8998/Documents/GitHub/Projeto-integrador/public/upload')},
+
+        filename:(req, file, cb) => {
+            cb(null, Date.now() + '-' + file.originalname)
+        }
+})
+
+ const upload = multer({ storage });
 //Cadastro Alimentos
 app.post('/add-alimentos', async (req, res) => {
 
@@ -164,34 +174,15 @@ app.post('/add-alimentos', async (req, res) => {
 
     console.log("deu certo")
     res.redirect('/administrador')
-
 })
-app.get('/add-imagem', async (req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
-    res.write('<input type="file" name="filetoupload"><br>');
-    res.write('<input type="submit">');
-    res.write('</form>');
-    return res.end();
+
+app.get('/a', async (req, res) => {
+    res.render('admCadAlimentos');
 })
-app.post('/fileupload', function (req, res) {
-    var busboy = new Busboy({ headers: req.headers });
-    busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-
-        var saveTo = path.join(__dirname + 'upload' + filename);
-        file.pipe(fs.createWriteStream(saveTo));
-    });
-
-    busboy.on('finish', function () {
-        res.writeHead(200, { 'Connection': 'close' });
-        res.end("That's all folks!");
-    });
-
-    return req.pipe(busboy);
-});
-
-
-
+app.post('/a',upload.single('img'), async (req, res) => {
+    console.log(req.body, req.file)
+    res.send('ok')
+})
 
 app.get('/admQtd', async (req, res) => {
     rows = await Produtos.findAll({})

@@ -102,10 +102,11 @@
         </form>
     </section>
   </main>
-  <form class="row g-3" action="/add-imagem" id="image-form" novalidate method="post">
+  <form enctype="multipart/form-data" method="post">
     <div>
             <label for="formFileLg" class="form-label">Imagem do alimento</label>
-            <input class="form-control form-control-lg" name="imagem" id="image-file" type="file">
+            <input  name="img"  type="file">
+            <button type="submit">enviar</button>
           </div>
 </form>
   <!-- <footer id="contato">
