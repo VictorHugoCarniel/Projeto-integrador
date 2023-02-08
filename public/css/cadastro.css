@@ -55,6 +55,7 @@
 
 .termos strong{
     color: rgb(0, 110, 255);
+    cursor: pointer;
 }
 
 @media (max-width: 767px) {
@@ -72,4 +73,8 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .olhaa {
+    width: 200px;
   }

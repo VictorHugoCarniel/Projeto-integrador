@@ -153,7 +153,7 @@ app.get('/administrador', async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'C:/Users/douglas.8998/Documents/GitHub/Projeto-integrador/public/upload')},
+        cb(null, '')},
 
         filename:(req, file, cb) => {
             cb(null, Date.now() + '-' + file.originalname)
