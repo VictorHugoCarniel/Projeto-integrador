@@ -55,6 +55,7 @@
 
 .termos strong{
     color: rgb(0, 110, 255);
+    text-decoration: underline;
     cursor: pointer;
 }
 
