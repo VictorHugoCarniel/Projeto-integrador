@@ -8,31 +8,7 @@ username: sexo_user
 
 password: 59oXtbFgSezKj7cmeWyLzoRVV9eR41jL
 
-
 ## Projeto Integrador Cantina
-
-### Grupos:
-
-- Front-End:
-    - Oliver
-    - Giovanna
-    - Bryam
-    - Arthur
-
-- Back-End:
-    - Jean
-    - Marvin
-
-- Análise:
-    - Heloísa
-    - Alan
-    - Kethylin
-
-- Database:
-    - João P.
-    - João V.
-    - Oliver
-    - Giovanna
 
 ### Sistema de versionamento:
 
