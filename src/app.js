@@ -129,6 +129,7 @@ app.get('/logout', (req, res) => {
 
 // cadastro
 app.post('/add-usuario', async (req, res) => {
+    console.log('teste')
     await User.create({
         nome: req.body.nome,
         sobrenome: req.body.sobrenome,
@@ -137,6 +138,7 @@ app.post('/add-usuario', async (req, res) => {
         cidade: req.body.cidade,
         senha: criptografar(req.body.senha)
     })
+    console.log('teste2')
     res.redirect('/login')
 })
 
