@@ -59,8 +59,6 @@ function criptografar(password) {
 app.use('/public', express.static(path.join('public')))
 app.set('/views', (path.join('views')))
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'ejs')
 
 const handlebars = require("express3-handlebars").create();
 app.engine("handlebars", handlebars.engine);
@@ -176,13 +174,14 @@ app.post('/add-alimentos', async (req, res) => {
     res.redirect('/administrador')
 })
 
-app.get('/a', async (req, res) => {
-    res.render('admCadAlimentos');
-})
-app.post('/a',upload.single('img'), async (req, res) => {
-    console.log(req.body, req.file)
-    res.send('ok')
-})
+// app.get('/a', async (req, res) => {
+//     res.render('admCadAlimentos');
+// })
+// app.post('/a',upload.single('img'), async (req, res) => {
+//     console.log(req.body, req.file)
+//     res.send('ok')
+// })
+
 
 app.get('/admQtd', async (req, res) => {
     rows = await Produtos.findAll({})
