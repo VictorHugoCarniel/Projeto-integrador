@@ -1,7 +1,7 @@
 var btn = document.querySelector('.btnForm')
 
 btn.addEventListener("click", function(e) {
-    e.preventDefault();
+    
     
     var inputLanche = document.querySelector("#inputLanche")
     var lanche = inputLanche.value

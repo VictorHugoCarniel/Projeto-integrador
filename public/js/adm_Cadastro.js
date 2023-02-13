@@ -1,7 +1,7 @@
 var btn = document.querySelector('.btnForm')
 
 btn.addEventListener("click", function (e) {
-    e.preventDefault();
+    
 
     var inputNome = document.querySelector("#inputNome")
     var Nome = inputNome.value
