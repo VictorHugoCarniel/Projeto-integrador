@@ -83,7 +83,7 @@ function validaSenha(tagSenha) {
     validacao.senha = true;
   }
 
-  if (window.location.pathname != "/login")
+  if (window.location.pathname != "/login.html")
     validaSenhaIgual(tagConfirmaSenha, "inputSenha");
 }
 
@@ -140,7 +140,7 @@ function enviarCadastro() {
   } else {
     alert("Cadastrado com sucesso!");
 
-    window.location.href = window.location.origin + "/login";
+    window.location.href = window.location.origin + "/login.html";
   }
 }
 
