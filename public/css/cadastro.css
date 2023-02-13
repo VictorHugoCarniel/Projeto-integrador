@@ -48,6 +48,13 @@
     color: #008000;
 } 
 
+.cadastro--container form span {
+   color: #ff0000;
+   font-size: .9rem;
+   padding-top: 5px;
+   display: none;
+}
+
 .termos{
     color:black;
     font-size: 0.9rem;
@@ -55,8 +62,6 @@
 
 .termos strong{
     color: rgb(0, 110, 255);
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 @media (max-width: 767px) {
@@ -74,8 +79,4 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  .olhaa {
-    width: 200px;
   }
