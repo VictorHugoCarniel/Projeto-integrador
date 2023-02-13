@@ -126,8 +126,7 @@ app.get('/logout', (req, res) => {
 })
 
 // cadastro
-app.post('/add-user', async (req, res) => {
-    console.log('teste')
+app.post('/add-usuario', async (req, res) => {
     await User.create({
         nome: req.body.nome,
         sobrenome: req.body.sobrenome,
@@ -136,7 +135,6 @@ app.post('/add-user', async (req, res) => {
         cidade: req.body.cidade,
         senha: criptografar(req.body.senha)
     })
-    console.log('teste2')
     res.redirect('/login')
 })
 
@@ -153,7 +151,7 @@ app.get('/administrador', async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '')},
+        cb(null, 'C:/Users/douglas.8998/Documents/GitHub/Projeto-integrador/public/upload')},
 
         filename:(req, file, cb) => {
             cb(null, Date.now() + '-' + file.originalname)
