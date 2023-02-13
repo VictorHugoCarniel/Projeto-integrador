@@ -68,7 +68,8 @@
       <div class="cadastro--title">
         <h1>Cadastrar alimento:</h1>
       </div>
-        <form class="row g-3" action="/add-alimentos" method="post">
+      <form class="row g-3" action="/add-alimentos" id="image-form" novalidate method="post">
+        <form class="row g-3" action="/cad-alim" method="post">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Lanche</label>   
             <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida"
@@ -94,15 +95,14 @@
           </div>
           
 
-          
-            <button type="submit" class="btnComprar">Enviar</button>
-          
+          <div class="col-12">
+            <input type="submit" class="btn btnForm"></input>
+          </div>
 
         </form>
     </section>
   </main>
-
- <form enctype="multipart/form-data" method="post">
+  <form enctype="multipart/form-data" method="post">
     <div>
             <label for="formFileLg" class="form-label">Imagem do alimento</label>
             <input  name="img"  type="file">
