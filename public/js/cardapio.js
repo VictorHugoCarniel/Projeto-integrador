@@ -1,6 +1,6 @@
   const form = document.getElementById("image-form");
   form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     const file = document.getElementById("image-file").files[0];
   });
   
