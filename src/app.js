@@ -128,7 +128,7 @@ app.get('/logout', (req, res) => {
 })
 
 // cadastro
-app.post('/add-usuario', async (req, res) => {
+app.post('/add-user', async (req, res) => {
     console.log('teste')
     await User.create({
         nome: req.body.nome,
