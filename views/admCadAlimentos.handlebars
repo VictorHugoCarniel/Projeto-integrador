@@ -68,32 +68,39 @@
       <div class="cadastro--title">
         <h1>Cadastrar alimento:</h1>
       </div>
-      <form class="row g-3" action="/add-alimentos" id="image-form" novalidate method="post">
+      <form class="row g-3" action="/add-alimentos" id="image-form" method="post">
         <form class="row g-3" action="/cad-alim" method="post">
           <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Lanche</label>   
-            <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida"
-              maxlength="200" name="nome" />
+            <label for="inputEmail4" class="form-label">Lanche</label>
+            <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"
+              name="nome" />
           </div>
+
           <div class="col-md-6 input--box">
             <label for="inputPassword4" class="form-label">Preço</label>
             <input type="text" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
               name="preco" />
           </div>
-          <div class="col-md-4">
+
+          <div class="col-md-6">
             <label for="inputAddress" class="form-label">Peso</label>
             <input type="text" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
               placeholder="kg/ml" id="peso" maxlength="15" name="peso" />
           </div>
-          <div class="col-md-4">
+
+          <div class="col-md-6">
             <label for="inputState" class="form-label">Tipo</label>
             <select id="inputState" name="tipo" class="form-control">
-              <option disabled selected>selecione</option>
-              <option name="" value="1">bebida</option>
-              <option name="" value="2">comida</option>
+              <option disabled selected class="placeholderOption">Selecione</option>
+              <option name="" value="1">Bebida</option>
+              <option name="" value="2">Comida</option>
             </select>
           </div>
-          
+
+          <div>
+            <label for="inputState" class="form-label">Imagem do alimento</label>
+            <input type="file" class="form-control" id="inputPeso">
+          </div>
 
           <div class="col-12">
             <input type="submit" class="btn btnForm"></input>
@@ -104,22 +111,15 @@
   </main>
   <form enctype="multipart/form-data" method="post">
     <div>
-            <label for="formFileLg" class="form-label">Imagem do alimento</label>
-            <input  name="img"  type="file">
-            <button type="submit">enviar</button>
-          </div>
-</form>
-  <!-- <footer id="contato">
-        <p>Telefone: (46) 3272-3700<br /></p>
-        <p>Instagram: @senacparana</p>
-        <p>Endereço: Av. Tupi, 385 - Bortot, Pato Branco - PR, 85504-000</p>
-      </footer>  -->
+      <label for="formFileLg" class="form-label">Imagem do alimento</label>
+      <input name="img" type="file">
+      <button type="submit">enviar</button>
+    </div>
+  </form>
 
   <script>
     function mascararTel(v) {
       v = v.replace(/\D/g, "");
-      // v = v.replace(/^(\d[0-9]{0,10})({1,1}[0-9]{0,4})$/, "$1 - $2");
-
       var patt1 = /[0-9]{0,10}[,]{1,1}[0-9]{0,4}/;
       var result = v.match(patt1);
       console.log(result)

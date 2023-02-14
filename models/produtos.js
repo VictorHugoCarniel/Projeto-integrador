@@ -11,13 +11,12 @@ const Produtos = db.sequelize.define('produtos', {
     preco: db.Sequelize.DOUBLE,
     peso: db.Sequelize.DOUBLE,
     quantidade: db.Sequelize.INTEGER,
-    tipo: db.Sequelize.STRING,
-    imagem: db.Sequelize.BLOB
+    tipo: db.Sequelize.STRING
 })
 
 
 //force: criacao e exclusao de tabela
 //alter: alteração de tabela
 //Produtos.sync({ alter: true })
-//Produtos.sync({ force: true })
+// Produtos.sync({ force: true })
 module.exports = Produtos;

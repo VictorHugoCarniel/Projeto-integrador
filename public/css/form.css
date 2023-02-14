@@ -4,9 +4,9 @@
 }
 
 .form-control {
-    padding: 10px 12px;
+    /* padding: 10px 12px; */
     border: 1px solid #c5c5c5bd;
-    border-radius: 0;
+    border-radius: 8px;
     position: relative;
 }
 
@@ -33,6 +33,10 @@
     border: none;
 }
 
+.btn {
+    border-radius: 8px;
+}
+
 .btnForm:hover {
     transition: background .3s;
     color: #fff;
@@ -52,7 +56,6 @@
     top: 57px;
     right: 10px;
     display: none;
-
     animation: inputErro-anim .3s linear;
 }
 
