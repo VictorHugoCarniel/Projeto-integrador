@@ -78,13 +78,13 @@
 
           <div class="col-md-6 input--box">
             <label for="inputPassword4" class="form-label">Preço</label>
-            <input type="number" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
+            <input type="text" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
               name="preco" />
           </div>
 
           <div class="col-md-6">
             <label for="inputAddress" class="form-label">Peso</label>
-            <input type="number" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
+            <input type="text" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
               placeholder="kg/ml" id="peso" maxlength="15" name="peso" />
           </div>
 
@@ -115,6 +115,17 @@
       <button type="submit">enviar</button>
     </div>
   </form>
+
+  <script>
+    function mascararTel(v) {
+      v = v.replace(/\D/g, "");
+      var patt1 = /[0-9]{0,10}[,]{1,1}[0-9]{0,4}/;
+      var result = v.match(patt1);
+      console.log(result)
+      let inputPeso = document.querySelector("#inputPeso");
+      inputPeso.value = v;
+    }
+  </script>
 
   <script src="../public/js/adm_Produtos.js"></script>
 
