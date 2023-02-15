@@ -32,7 +32,7 @@
     padding: 10px;
 }
 
-#chkTermos:focus{
+#chkTermos:focus {
     border: none;
 }
 
@@ -51,13 +51,13 @@
 
 .cadastro--container form .ok {
     color: #008000;
-} 
+}
 
 .cadastro--container form span {
-   color: #ff0000;
-   font-size: .9rem;
-   padding-top: 5px;
-   display: none;
+    color: #ff0000;
+    font-size: .9rem;
+    padding-top: 5px;
+    display: none;
 }
 
 .sair {
@@ -69,8 +69,12 @@
     box-shadow: 4px 4px 8px #c5c5c5bd,
 }
 
-.sairTexto{
+.sairTexto {
     text-decoration: none;
+}
+
+.placeholderOption {
+    color: rgb(212, 212, 212);
 }
 
 @media (max-width: 767px) {
@@ -81,11 +85,12 @@
 
 @keyframes cadastro-anim {
     0% {
-      opacity: 0;
-      transform: translateY(50px);
+        opacity: 0;
+        transform: translateY(50px);
     }
+
     100% {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
+}

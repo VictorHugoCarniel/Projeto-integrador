@@ -21,6 +21,9 @@
 
   <link rel="stylesheet" href="/public/css/cadastro.css" />
 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
   <title>| Cadastro</title>
 </head>
 
@@ -73,64 +76,62 @@
       <div class="cadastro--title">
         <h1>Cadastre-se</h1>
       </div>
-<<<<<<< HEAD
       <form class="row g-3" action="/add-usuario" novalidate method="post">
-=======
-      <form class="row g-3" action="/add-usuario" method="post">
->>>>>>> parent of cdb00ad (tirando o erro do banco)
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="inputNome" placeholder="Nome" maxlength="200" name="nome" />
-        </div>
-        <div class="col-md-6 input--box">
-          <label for="inputPassword4" class="form-label">Sobrenome</label>
-          <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome" maxlength="200"
-            name="sobrenome" />
-        </div>
-        <div class="col-md-4 input--box">
-          <label for="inputAddress" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email"
-            onchange="validaEmail(this, false)" maxlength="200" name="email" />
-          <i class="fas fa-check-circle ok" id="okEmail"></i>
-          <i class="fas fa-exclamation-circle erro" id="erroEmail"></i>
-          <span id="msgErroEmail" class="msgErro">Mensagem de erro</span>
-        </div>
-        <div class="col-md-4">
-          <label for="inputAddress" class="form-label">Telefone</label>
-          <input type="text" class="form-control" id="inputTel" placeholder="Telefone" oninput="mascararTel(this.value)"
-            maxlength="15" name="telefone" />
-        </div>
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Cidade</label>
-          <input type="text" class="form-control" id="inputCidade" placeholder="Cidade" maxlength="200" name="cidade" />
-        </div>
-        <div class="col-md-6 input--box">
-          <label for="inputCity" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="inputSenha" placeholder="Senha" onchange="validaSenha(this)"
-            maxlength="200" name="senha" />
-          <i class="fas fa-check-circle ok" id="okSenha"></i>
-          <i class="fas fa-exclamation-circle erro" id="erroSenha"></i>
-          <span id="msgErroSenha" class="msgErro">Mensagem de erro</span>
-        </div>
-        <div class="col-md-6 input--box">
-          <label for="inputCity" class="form-label">Confirme sua senha</label>
-          <input type="password" class="form-control" id="inputConfirmSenha" placeholder="Confirmar Senha"
-            onchange="validaSenhaIgual(this, 'inputSenha')" maxlength="200" />
-          <i class="fas fa-check-circle ok" id="okConfirmSenha"></i>
-          <i class="fas fa-exclamation-circle erro" id="erroConfirmSenha"></i>
-          <span id="msgErroConfirmSenha" class="msgErro">Mensagem de erro</span>
-        </div>
-        <div class="col-12">
-          <div class="termos">
-            <p>Ao clicar em enviar você automaticamente concorda com os <strong> termos de uso!</strong>  </p>
+        <form class="row g-3" action="/add-usuario" method="post">
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="inputNome" placeholder="Nome" maxlength="200" name="nome" />
           </div>
-
-        </div>
-        <div class="col-12">
-          <input type="submit" class="btn btnForm" onclick="enviarCadastro()">
-          </input>
-        </div>
-      </form>
+          <div class="col-md-6 input--box">
+            <label for="inputPassword4" class="form-label">Sobrenome</label>
+            <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome" maxlength="200"
+              name="sobrenome" />
+          </div>
+          <div class="col-md-4 input--box">
+            <label for="inputAddress" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email"
+              onchange="validaEmail(this, false)" maxlength="200" name="email" />
+            <i class="fas fa-check-circle ok" id="okEmail"></i>
+            <i class="fas fa-exclamation-circle erro" id="erroEmail"></i>
+            <span id="msgErroEmail" class="msgErro">Mensagem de erro</span>
+          </div>
+          <div class="col-md-4">
+            <label for="inputAddress" class="form-label">Telefone</label>
+            <input type="text" class="form-control" id="inputTel" placeholder="Telefone"
+              oninput="mascararTel(this.value)" maxlength="15" name="telefone" />
+          </div>
+          <div class="col-md-4">
+            <label for="inputCity" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="inputCidade" placeholder="Cidade" maxlength="200"
+              name="cidade" />
+          </div>
+          <div class="col-md-6 input--box">
+            <label for="inputCity" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="inputSenha" placeholder="Senha" onchange="validaSenha(this)"
+              maxlength="200" name="senha" />
+            <i class="fas fa-check-circle ok" id="okSenha"></i>
+            <i class="fas fa-exclamation-circle erro" id="erroSenha"></i>
+            <span id="msgErroSenha" class="msgErro">Mensagem de erro</span>
+          </div>
+          <div class="col-md-6 input--box">
+            <label for="inputCity" class="form-label">Confirme sua senha</label>
+            <input type="password" class="form-control" id="inputConfirmSenha" placeholder="Confirmar Senha"
+              onchange="validaSenhaIgual(this, 'inputSenha')" maxlength="200" />
+            <i class="fas fa-check-circle ok" id="okConfirmSenha"></i>
+            <i class="fas fa-exclamation-circle erro" id="erroConfirmSenha"></i>
+            <span id="msgErroConfirmSenha" class="msgErro">Mensagem de erro</span>
+          </div>
+          <div class="col-12">
+            <div class="termos">
+              <span data-target="#ModalLongoExemplo" data-toggle="modal">Ao clicar em enviar você irá concordar com os
+                <strong>termos de uso.</strong></span>
+            </div>
+          </div>
+          <div class="col-12">
+            <input type="submit" class="btn btnForm" onclick="enviarCadastro()">
+            </input>
+          </div>
+        </form>
     </section>
   </main>
 
@@ -153,7 +154,84 @@
     }
   </script>
 
+  <!-- Modal -->
+  <div class="modal fade" id="ModalLongoExemplo" tabindex="999999" role="dialog"
+    aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-body p-5">
+          <h2 class="fw-bold mb-0">Termos de Uso</h2> <br> <br>
+          <ol>
+            <li>
+              <p>Aceitação dos termos de uso: Ao acessar ou usar o site de venda de lanches do Senac, você concorda em
+                cumprir e estar vinculado aos presentes termos de uso e às leis de proteção de dados,
+                incluindo a LGPD. Caso você não concorde com os Termos ou com a proteção de seus dados, por favor não
+                use o Site.</p>
+            </li>
+            <br>
+            <li>
+              <p>Modificações dos termos de uso: Nós nos reservamos o direito de, a nosso critério, modificar ou alterar
+                os Termos a qualquer momento sem aviso prévio. Seu uso contínuo do Site após tais alterações significa
+                sua aceitação dos novos Termos e compromisso de seguir a LGPD.</p>
+            </li>
+            <br>
+            <li>
+              <p>Coleta de dados: Nós coletamos somente os dados pessoais necessários para fornecer nossos serviços de
+                venda de lanches e para fins legais. Nós informaremos o uso específico dos dados coletados e obteremos o
+                consentimento explícito antes de compartilhar seus dados com terceiros.</p>
+            </li>
+            <br>
+            <li>
+              <p>Armazenamento de dados: Nós armazenamos seus dados pessoais de forma segura e protegida, e somente por
+                tempo necessário para cumprir as finalidades informadas.</p>
+            </li>
+            <br>
+            <li>
+              <p>Direito à privacidade: Você tem o direito de acessar, corrigir e excluir seus dados pessoais a qualquer
+                momento, bem como de solicitar a limitação do tratamento de seus dados. Para exercê-los, entre em
+                contato com nosso departamento de privacidade.</p>
+            </li>
+            <br>
+            <li>
+              <p>Responsabilidade por conteúdo do usuário: Você é o único responsável por quaisquer comentários,
+                feedbacks ou outros materiais que você publique ou envie ao Site. Nós nos reservamos o direito, mas não
+                temos a obrigação, de monitorar ou revisar tais materiais, sempre garantindo a proteção de seus dados
+                pessoais.</p>
+            </li>
+            <br>
+            <li>
+              <p>Uso não autorizado: Você concorda em não acessar ou usar o Site de forma não autorizada ou em violação
+                aos Termos ou a lei. Nós nos reservamos o direito de tomar medidas legais contra qualquer uso não
+                autorizado ou ilegal.</p>
+            </li>
+            <br>
+            <li>
+              <p>Isenção de responsabilidade: Nós fornecemos o Site "tal como está", sem garantias expressas ou
+                implícitas. Nós não nos responsabilizamos por danos decorrentes do uso do Site, incluindo a perda de
+                dados ou outros danos diretos ou indiretos.</p>
+            </li>
+            <br>
+            <li>
+              <p>Indenização: Você concorda em indenizar e isentar a nós, nossos funcionários e afiliadas, de quaisquer
+                reivindicações, danos e despesas, incluindo honorários advocatícios, decorrentes do seu uso não
+                autorizado ou ilegal do Site ou da violação dos Termos ou da lei, incluindo a LGPD.</p>
+            </li>
+            <br>
+            <li>
+              <p>Legislação aplicável: Os Termos serão regidos e interpretados de acordo com as leis brasileiras, e
+                qualquer litígio relacionado aos Termos ou ao Site será resolvido exclusivamente pelos tribunais
+                brasileiros.</p>
+            </li>
+          </ol>
 
+          </p>
+          <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-dismiss="modal">
+            <p>Ok</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

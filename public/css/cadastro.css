@@ -46,13 +46,6 @@
 
 .cadastro--container form .ok {
     color: #008000;
-} 
-
-.cadastro--container form span {
-   color: #ff0000;
-   font-size: .9rem;
-   padding-top: 5px;
-   display: none;
 }
 
 .termos{
@@ -62,6 +55,7 @@
 
 .termos strong{
     color: rgb(0, 110, 255);
+    cursor: pointer;
 }
 
 @media (max-width: 767px) {

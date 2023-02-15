@@ -1,7 +1,6 @@
 const db = require('./db')
 const Produtos = require('./Produtos')
 
-
 const Estoque = db.sequelize.define('estoque', {
     idEstoque: {
         type: db.Sequelize.INTEGER,
