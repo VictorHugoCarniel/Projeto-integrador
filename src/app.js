@@ -25,6 +25,9 @@ const Improds = require('../models/imgProd')
 
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
+
+require('dotenv').config();
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
