@@ -2,10 +2,10 @@ const Sequelize = require('sequelize');
 const db = require('./db');
 
 
-const ImgProd = db.sequelize.define('improd', {
+const ImgProd = db.sequelize.define('imgprod', {
+    
     name:{
         type: db.Sequelize.STRING,
-        primaryKey: true,
         allowNUll: true
     },
     size: db.Sequelize.FLOAT,
@@ -13,5 +13,6 @@ const ImgProd = db.sequelize.define('improd', {
     url: db.Sequelize.STRING
 });
 
-ImgProd.sync({ force: true })
+// ImgProd.sync({ force: true })
+
 module.exports = ImgProd;

@@ -1,24 +1,25 @@
-const express = require("express");
-const morgan = require ("morgan");
+// const express = require("express");
+// const morgan = require ("morgan");
 
-const app = express();
+// const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(morgan("dev"));
 
-app.use(require("./routes"));
+// app.use(require("./routes"));
 
-app.listen(3000); 
+// app.listen(3000); 
 
 
-const Sequelize = require('sequelize');
-const configDB = require('../config/config');
+// const Sequelize = require('sequelize');
 
-const User = require('../models/User')
+// const configDB = require('../config/config');
 
-const connection = new Sequelize(configDB)
+// const User = require('../models/User')
 
-User.init(connection)
+// const connection = new Sequelize(configDB)
 
-module.exports = connection
+// User.init(connection)
+
+// module.exports = connection

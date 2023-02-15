@@ -1,55 +1,43 @@
 const { config } = require('dotenv');
-const express = require('express');
-const { connection } = require('mongoose');
-const { reset } = require('nodemon');
-const app = express();
-const path = require('path');
-const bodyParser = require('body-parser');
-const crypto = require('crypto')
-const ejs = require('ejs');
-const session = require('express-session');
-const morgan = require('morgan');
-const Busboy = require('busboy');
-const fs = require('fs');
-const User = require('../models/User');
-const Produtos = require('../models/Produtos');
-const Estoque = require('../models/Estoque');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'));
-
 const { userInfo } = require('os');
 const { equal } = require('assert');
 const { where } = require('sequelize');
+const { reset } = require('nodemon');[]
+// const ejs = require('ejs');
+
+const express = require('express');
+const session = require('express-session');
+const morgan = require('morgan');
 const multer = require('multer');
+const multerConfig = require("./config/multer");
 
-// app.post('/cadastrar', async (req, res) => {
-//     const {name, sobrenome, email, telefone, senha} = req.body
+const app = express();
+const path = require('path');
+const handlebars = require("express3-handlebars").create(); // engine
+const crypto = require('crypto');
 
-//     const usuario = await Usuario.create;
+const fs = require('fs');
 
-//     res.json({Usuario})
-// })
+const User = require('../models/User');
+const Produtos = require('../models/Produtos');
+const Estoque = require('../models/Estoque');
+const Improds = require('../models/imgProd')
 
-// app.use(express.static(__dirname + '/public'));
+const bodyParser = require('body-parser');
+const { json } = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 
-app.use(
-    session({
-        secret: "secret",
-        resave: true,
-        saveUninitialized: true,
-    })
-);
-
+app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
 
 const DADOS_CRIPTOGRAFAR = {
     algoritmo: 'aes256',
     segredo: 'chaves',
     tipo: 'hex'
 };
+
 function criptografar(password) {
     const cipher = crypto.createCipher(DADOS_CRIPTOGRAFAR.algoritmo, DADOS_CRIPTOGRAFAR.segredo);
     cipher.update(password);
@@ -59,8 +47,6 @@ function criptografar(password) {
 app.use('/public', express.static(path.join('public')))
 app.set('/views', (path.join('views')))
 
-
-const handlebars = require("express3-handlebars").create();
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 
@@ -79,7 +65,6 @@ app.get('/testee', async (req, res) => {
     rows = await User.findAll({})
     res.render('teste', { rows })
 })
-
 
 // Login
 app.get('/login', (req, res) => {
@@ -104,16 +89,6 @@ app.post('/auth', async (req, res) => {
         if (usuario) {
             req.session.loggedIn = true;
             res.redirect('/home')
-            // const rows = await User.findAll();
-            // var result = '';
-            // for (item of rows) {
-            //     var login = document.querySelector("#login") -
-
-            //         function alteraCampoLogado() {
-            //             login.innerHTML = item.nome
-            //         }
-            // }
-            // res.send(result)f
         } else {
             res.redirect('/login')
         }
@@ -149,17 +124,20 @@ app.get('/administrador', async (req, res) => {
     res.render('admCadAlimentos', { rows });
 })
 
+app.post("/posts", multer(multerConfig).single('file'), async(req, res) => {
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'C:/Users/douglas.8998/Documents/GitHub/Projeto-integrador/public/upload')},
+    const {originalname: name, size, filename: key} = req.file;
 
-        filename:(req, file, cb) => {
-            cb(null, Date.now() + '-' + file.originalname)
-        }
-})
+    const post = await Improds.create ({
+        name,
+        size,
+        key,
+        url: '',
+    });
 
- const upload = multer({ storage });
+    return res.json(post)
+});
+
 //Cadastro Alimentos
 app.post('/add-alimentos', async (req, res) => {
 
@@ -174,15 +152,6 @@ app.post('/add-alimentos', async (req, res) => {
     console.log("deu certo")
     res.redirect('/administrador')
 })
-
-// app.get('/a', async (req, res) => {
-//     res.render('admCadAlimentos');
-// })
-// app.post('/a',upload.single('img'), async (req, res) => {
-//     console.log(req.body, req.file)
-//     res.send('ok')
-// })
-
 
 app.get('/admQtd', async (req, res) => {
     rows = await Produtos.findAll({})
@@ -214,6 +183,5 @@ app.post('/deleteProd/:id', async (req, res) => {
     });
     res.redirect('/admQtd')
 })
-
 
 module.exports = app;
