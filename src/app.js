@@ -151,7 +151,7 @@ app.post('/add-alimentos', async (req, res) => {
         peso: req.body.peso,
         tipo: req.body.tipo,
         imagem: req.body.imagem,
-        idTipo: req.body.idTipo
+        TipoProduto: req.body.TipoProduto
     })
 
     console.log("deu certo")
