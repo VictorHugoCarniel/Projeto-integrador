@@ -69,7 +69,6 @@
         <h1>Cadastrar alimento:</h1>
       </div>
       <form class="row g-3" action="/add-alimentos" id="image-form" novalidate method="post">
-        <form class="row g-3" action="/cad-alim" method="post">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Lanche</label>
             <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"
@@ -90,11 +89,10 @@
 
           <div class="col-md-6">
             <label for="inputState" class="form-label">Tipo</label>
-            <select id="inputState" name="tipo" class="form-control">
-              <option disabled selected class="placeholderOption">Selecione</option>
-              <option name="TipoProduto" value="1">Bebida</option>
-              <option name="TipoProduto" value="2">Comida</option>
-            </select>
+            <select name="idTipoProduto">
+              {{#each rows}} <option value=" {{ idTipoProduto }} "> {{ descricao }} </option>
+              {{/each}}
+              </select>
           </div>
 
           <div>

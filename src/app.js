@@ -21,7 +21,8 @@ const fs = require('fs');
 const User = require('../models/User');
 const Produtos = require('../models/Produtos');
 const Estoque = require('../models/Estoque');
-const Improds = require('../models/imgProd')
+const Improds = require('../models/imgProd');
+const Tipo = require('../models/TipoProduto.js');
 
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
@@ -124,9 +125,8 @@ app.get('/cadastro', (req, res) => {
 
 // adm
 app.get('/administrador', async (req, res) => {
-    const rows = await Produtos.findAll({})
-    res.render('admCadAlimentos', { rows });
-})
+    const rows = await Tipo.findAll({})
+    res.render('admCadAlimentos', { rows }) });
 
 app.post("/posts", multer(multerConfig).single('file'), async(req, res) => {
 
@@ -149,9 +149,8 @@ app.post('/add-alimentos', async (req, res) => {
         nome: req.body.nome,
         preco: req.body.preco,
         peso: req.body.peso,
-        tipo: req.body.tipo,
         imagem: req.body.imagem,
-        TipoProduto: req.body.TipoProduto
+        idTipoProduto: req.body.idTipoProduto
     })
 
     console.log("deu certo")
