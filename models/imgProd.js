@@ -3,7 +3,12 @@ const db = require('./db');
 
 
 const ImgProd = db.sequelize.define('imgprod', {
-    
+    idImgProd:{
+        type: db.Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNUll: true
+    },
     name:{
         type: db.Sequelize.STRING,
         allowNUll: true
