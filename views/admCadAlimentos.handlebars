@@ -78,13 +78,13 @@
 
           <div class="col-md-6 input--box">
             <label for="inputPassword4" class="form-label">Preço</label>
-            <input type="text" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
+            <input type="number" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
               name="preco" />
           </div>
 
           <div class="col-md-6">
             <label for="inputAddress" class="form-label">Peso</label>
-            <input type="text" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
+            <input type="number" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
               placeholder="kg/ml" id="peso" maxlength="15" name="peso" />
           </div>
 
@@ -92,8 +92,8 @@
             <label for="inputState" class="form-label">Tipo</label>
             <select id="inputState" name="tipo" class="form-control">
               <option disabled selected class="placeholderOption">Selecione</option>
-              <option name="" value="1">Bebida</option>
-              <option name="" value="2">Comida</option>
+              <option name="idTIpo" value="1">Bebida</option>
+              <option name="idTipo" value="2">Comida</option>
             </select>
           </div>
 
