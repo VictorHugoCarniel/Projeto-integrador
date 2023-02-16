@@ -69,6 +69,7 @@
         <h1>Cadastrar alimento:</h1>
       </div>
       <form class="row g-3" action="/add-alimentos" id="image-form" novalidate method="post">
+        <form class="row g-3" action="/cad-alim" method="post">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Lanche</label>
             <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"
@@ -77,22 +78,23 @@
 
           <div class="col-md-6 input--box">
             <label for="inputPassword4" class="form-label">Preço</label>
-            <input type="number" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
+            <input type="text" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
               name="preco" />
           </div>
 
           <div class="col-md-6">
             <label for="inputAddress" class="form-label">Peso</label>
-            <input type="number" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
+            <input type="text" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
               placeholder="kg/ml" id="peso" maxlength="15" name="peso" />
           </div>
 
           <div class="col-md-6">
             <label for="inputState" class="form-label">Tipo</label>
-            <select name="idTipoProduto">
-              {{#each rows}} <option value=" {{ idTipoProduto }} "> {{ descricao }} </option>
-              {{/each}}
-              </select>
+            <select id="inputState" name="tipo" class="form-control">
+              <option disabled selected class="placeholderOption">Selecione</option>
+              <option name="" value="1">Bebida</option>
+              <option name="" value="2">Comida</option>
+            </select>
           </div>
 
           <div>
