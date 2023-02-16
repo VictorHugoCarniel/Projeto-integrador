@@ -22,7 +22,7 @@ const Produtos = db.sequelize.define('produto', {
 //force: criacao e exclusao de tabela
 //alter: alteração de tabela
 //Produtos.sync({ alter: true })
-Produtos.sync({ force: true })
+//Produtos.sync({ force: true })
 module.exports = Produtos;
 
 Produtos.belongsTo(TipoProduto, {
