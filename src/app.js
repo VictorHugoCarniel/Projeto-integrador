@@ -56,9 +56,10 @@ app.set("view engine", "handlebars");
 app.get('/', (req, res) => {
     res.redirect('/home')
 })
-app.get('/home', (req, res) => {
+app.get('/home', async (req, res) => {
     if (req.session.loggedIn == true) {
-        res.render('index')
+      var rows = await Produtos.findAll({})
+        res.render('index', { rows })
     } else {
         res.redirect('/login')
     }
