@@ -1,6 +1,8 @@
 const db = require('./db')
+const TipoProduto = require ('./TipoProduto')
 
-const Produtos = db.sequelize.define('produtos', {
+
+const Produtos = db.sequelize.define('produto', {
     idProduto: {
         type: db.Sequelize.INTEGER,
         autoIncrement: true,
@@ -10,13 +12,17 @@ const Produtos = db.sequelize.define('produtos', {
     nome: db.Sequelize.STRING,
     preco: db.Sequelize.DOUBLE,
     peso: db.Sequelize.DOUBLE,
-    quantidade: db.Sequelize.INTEGER,
-    tipo: db.Sequelize.STRING
+    quantidade: db.Sequelize.INTEGER
 })
 
+Produtos.belongsTo(TipoProduto, {
+    constraint: true,
+    foreignKey: 'idTipoProduto'
+})
 
 //force: criacao e exclusao de tabela
 //alter: alteração de tabela
 //Produtos.sync({ alter: true })
 // Produtos.sync({ force: true })
 module.exports = Produtos;
+
