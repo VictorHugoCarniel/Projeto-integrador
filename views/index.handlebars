@@ -107,7 +107,7 @@
       <h1 class="title">Cardápio</h1>
       <span></span>
     </div>
-
+  <h3>Comida</h3> 
    <section class="cardapio" id="cardapio">
     <div class="cards">
       {{#each rows}}
@@ -125,18 +125,8 @@
               {{ nome }}
             </h2>
           </div>
-
-          <div class="text">
-            <p>
-              Quantidade atual: {{ quantidade }}
-            </p>
-          </div>
-
-          <form method="post" action="/add-quantidade/{{ idProduto }}">
-            <div class="quantidade">
-              <input placeholder="Quantidade" min='0' id="total" type="number" name="quantidade">
-            </div>
-            <button type="submit" class="btnComprar">Enviar</button>
+    
+            <button type="submit" class="btnComprar">Comprar</button>
           </form>
 
         </div>

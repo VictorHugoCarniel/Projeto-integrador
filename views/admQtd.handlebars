@@ -56,15 +56,8 @@
     </nav>
   </header>
 
-  {{!-- {{#if message}}
-  <div style="text-align: center" class="alert alert-{{message.type}}">
-    <button type="button" id="id-alert" class="close" data-dismiss="alert">&times;</button>
-    <strong>{{message.intro}}</strong> {{message.message}}
-  </div>
-  {{/if}} --}}
 
-  {{!-- <h3></h3>
-  <%= --}} <section class="cardapio" id="cardapio">
+ <section class="cardapio" id="cardapio">
     <div class="cards">
       {{#each rows}}
       <div class="card">
@@ -85,6 +78,19 @@
                   alt="deletar produto"></button>
             </form>
           </div>
+
+          <div class="text">
+            <p>
+              Quantidade atual: {{ quantidade }}
+            </p>
+          </div>
+
+          <form method="post" action="/add-quantidade/{{ idProduto }}">
+            <div class="quantidade">
+              <input placeholder="Quantidade" min='0' id="total" type="number" name="quantidade">
+            </div>
+            <button type="submit" class="btnComprar">Enviar</button>
+          </form>
 
         </div>
       </div>
