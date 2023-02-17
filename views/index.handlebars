@@ -111,7 +111,7 @@
  
    <section class="cardapio" id="cardapio">
     <div class="cards">
-      {{#each rows}}
+      {{#each rowsC}}
       <div class="card">
         <div class="cardImg">
 
@@ -135,10 +135,35 @@
       {{/each}}
     </div>
     </section>
-      
+<h3>Bebida</h3>
+<section class="cardapio" id="cardapio">
+     <div class="cards">
+      {{#each rowsB}}
+      <div class="card">
+        <div class="cardImg">
 
-    <div class="cards" id="cards"></div>
-  </section>
+          {{ imagem }}
+
+          <img {{ imagem }}>
+
+        </div>
+        <div class="cardBody">
+          <div class="titulo">
+            <h2>
+              {{ nome }}
+            </h2>
+          </div>
+    
+            <button type="submit" class="btnComprar">Comprar</button>
+          </form>
+
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    </section>
+
+ 
 
 
   <footer id="contato">

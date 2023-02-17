@@ -59,8 +59,17 @@ app.get('/', (req, res) => {
 })
 app.get('/home', async (req, res) => {
     if (req.session.loggedIn == true) {
-        var rows = await Produtos.findAll({})
-        res.render('index', { rows })
+        var rowsC = await Produtos.findAll({
+            where: {
+                idTipoProduto: 1
+              }
+        })
+        var rowsB = await Produtos.findAll({
+            where: {
+                idTipoProduto: 2
+              }
+        })
+        res.render('index', { rowsC, rowsB })
     } else {
         res.redirect('/login')
     }
@@ -159,8 +168,17 @@ app.post('/add-alimentos', async (req, res) => {
 })
 
 app.get('/admQtd', async (req, res) => {
-    rows = await Produtos.findAll({})
-    res.render('admQtd', { rows })
+    var rowsC = await Produtos.findAll({
+        where: {
+            idTipoProduto: 1
+          }
+    })
+    var rowsB = await Produtos.findAll({
+        where: {
+            idTipoProduto: 2
+          }
+    })
+    res.render('admQtd', { rowsC, rowsB })
 })
 
 app.post('/add-quantidade/:id', async (req, res) => {
