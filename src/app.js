@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
 })
 app.get('/home', async (req, res) => {
     if (req.session.loggedIn == true) {
-      var rows = await Produtos.findAll({})
+        var rows = await Produtos.findAll({})
         res.render('index', { rows })
     } else {
         res.redirect('/login')
@@ -126,13 +126,14 @@ app.get('/cadastro', (req, res) => {
 // adm
 app.get('/administrador', async (req, res) => {
     const rows = await Tipo.findAll({})
-    res.render('admCadAlimentos', { rows }) });
+    res.render('admCadAlimentos', { rows })
+});
 
-app.post("/posts", multer(multerConfig).single('file'), async(req, res) => {
+app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
 
-    const {originalname: name, size, key, url = "" } = req.file;
+    const { originalname: name, size, key, url = "" } = req.file;
 
-    const post = await Improds.create ({
+    const post = await Improds.create({
         name,
         size,
         key,
@@ -188,4 +189,26 @@ app.post('/deleteProd/:id', async (req, res) => {
     res.redirect('/admQtd')
 })
 
+app.post('/zera-quantidade/:id', async (req, res) => {
+    let quantidade = req.body.quantidade;
+    const id_parametro = req.params.id;
+    
+    if (quantidade <= quantidade <= 1) {
+        console.log("zera");
+        let quantidade = 0;
+        Produtos.update(
+            { quantidade: quantidade },
+            {
+                where: {
+                    idProduto: id_parametro,
+                },
+            }
+        );
+        res.redirect('/admQtd')
+    }else if (quantidade = 0)
+    {
+        console.log("quantidade eh igual a 0")
+    }
+
+})
 module.exports = app;
