@@ -88,8 +88,9 @@
           </div>
 
           <div class="col-md-6">
-            <label for="inputState" class="form-label">Tipo</label>
-            <select name="idTipoProduto">
+            <label for="inputState"  class="form-label">Tipo</label>
+            <select name="idTipoProduto" class="form-control">
+               <option selected disabled>Escolha</option>
               {{#each rows}} <option value=" {{ idTipoProduto }} "> {{ descricao }} </option>
               {{/each}}
               </select>
@@ -113,17 +114,6 @@
       <button type="submit">enviar</button>
     </div>
   </form>
-
-  <script>
-    function mascararTel(v) {
-      v = v.replace(/\D/g, "");
-      var patt1 = /[0-9]{0,10}[,]{1,1}[0-9]{0,4}/;
-      var result = v.match(patt1);
-      console.log(result)
-      let inputPeso = document.querySelector("#inputPeso");
-      inputPeso.value = v;
-    }
-  </script>
 
   <script src="../public/js/adm_Produtos.js"></script>
 
