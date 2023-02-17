@@ -16,13 +16,4 @@ const TipoProduto = db.sequelize.define('tipoproduto', {
 //alter: alteração de tabela
 //Produtos.sync({ alter: true })
 //TipoProduto.sync({ force: true })
-<<<<<<< Updated upstream
 module.exports = TipoProduto;
-
-// TipoProduto.hasMany(Produtos, {
-//     contraint: true,
-//     foreignKey: idTipoProduto
-// })
-=======
-module.exports = TipoProduto;
->>>>>>> Stashed changes
