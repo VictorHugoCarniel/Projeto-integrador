@@ -61,25 +61,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/home', async (req, res) => {
-<<<<<<< Updated upstream
-    let quantidade = req.body.quantidade;
-    if (quantidade => 1) {
-        if (req.session.loggedIn == true) {
-            var rowsC = await Produtos.findAll({
-                where: {
-                    idTipoProduto: 1
-                }
-            })
-            var rowsB = await Produtos.findAll({
-                where: {
-                    idTipoProduto: 2
-                }
-            })
-            res.render('index', { rowsC, rowsB })
-        } else {
-            res.redirect('/login')
-        }
-=======
     const { Op } = require("sequelize");
     if (req.session.loggedIn == true) {
         var rowsC = await Produtos.findAll({
@@ -101,7 +82,6 @@ app.get('/home', async (req, res) => {
         res.render('index', { rowsC, rowsB })
     } else {
         res.redirect('/login')
->>>>>>> Stashed changes
     }
 })
 
