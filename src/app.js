@@ -1,23 +1,22 @@
+//Framework
 const { config } = require('dotenv');
 const { userInfo } = require('os');
 const { equal } = require('assert');
 const { where } = require('sequelize');
 const { reset } = require('nodemon');[]
 // const ejs = require('ejs');
-
 const express = require('express');
 const session = require('express-session');
 const morgan = require('morgan');
 const multer = require('multer');
 const multerConfig = require("./config/multer");
-
 const app = express();
 const path = require('path');
 const handlebars = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
-
 const fs = require('fs');
 
+//Tabelas
 const User = require('../models/User');
 const Produtos = require('../models/Produtos');
 const Estoque = require('../models/Estoque');
@@ -26,6 +25,7 @@ const Tipo = require('../models/TipoProduto.js');
 
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
+const { framework } = require('passport');
 
 require("dotenv").config();
 
@@ -33,6 +33,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+app.engine("handlebars", handlebars.engine);
+app.set("view engine", "handlebars");
 
 app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
 
@@ -48,30 +50,34 @@ function criptografar(password) {
     return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
 };
 
-app.use('/public', express.static(path.join('public')))
-app.set('/views', (path.join('views')))
 
-app.engine("handlebars", handlebars.engine);
-app.set("view engine", "handlebars");
+//Rotas
+app.use('/public', express.static(path.join('public')))
+
+app.set('/views', (path.join('views')))
 
 app.get('/', (req, res) => {
     res.redirect('/home')
 })
+
 app.get('/home', async (req, res) => {
-    if (req.session.loggedIn == true) {
-        var rowsC = await Produtos.findAll({
-            where: {
-                idTipoProduto: 1
-              }
-        })
-        var rowsB = await Produtos.findAll({
-            where: {
-                idTipoProduto: 2
-              }
-        })
-        res.render('index', { rowsC, rowsB })
-    } else {
-        res.redirect('/login')
+    let quantidade = req.body.quantidade;
+    if (quantidade => 1) {
+        if (req.session.loggedIn == true) {
+            var rowsC = await Produtos.findAll({
+                where: {
+                    idTipoProduto: 1
+                }
+            })
+            var rowsB = await Produtos.findAll({
+                where: {
+                    idTipoProduto: 2
+                }
+            })
+            res.render('index', { rowsC, rowsB })
+        } else {
+            res.redirect('/login')
+        }
     }
 })
 
@@ -171,12 +177,12 @@ app.get('/admQtd', async (req, res) => {
     var rowsC = await Produtos.findAll({
         where: {
             idTipoProduto: 1
-          }
+        }
     })
     var rowsB = await Produtos.findAll({
         where: {
             idTipoProduto: 2
-          }
+        }
     })
     res.render('admQtd', { rowsC, rowsB })
 })
@@ -210,7 +216,7 @@ app.post('/deleteProd/:id', async (req, res) => {
 app.post('/zera-quantidade/:id', async (req, res) => {
     let quantidade = req.body.quantidade;
     const id_parametro = req.params.id;
-    
+
     if (quantidade <= quantidade <= 1) {
         console.log("zera");
         let quantidade = 0;
@@ -223,8 +229,7 @@ app.post('/zera-quantidade/:id', async (req, res) => {
             }
         );
         res.redirect('/admQtd')
-    }else if (quantidade = 0)
-    {
+    } else if (quantidade = 0) {
         console.log("quantidade eh igual a 0")
     }
 

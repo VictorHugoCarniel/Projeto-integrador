@@ -1,4 +1,5 @@
 const db = require('./db');
+const TipoUsuario = require('./TipoProduto');
 
 const User = db.sequelize.define('user', {
     id: {
@@ -6,6 +7,7 @@ const User = db.sequelize.define('user', {
         autoIncrement: true,
         primaryKey: true
     },
+    idTipoUsuario: db.Sequelize.INTEGER,
     nome: db.Sequelize.STRING,
     sobrenome: db.Sequelize.STRING,
     email: {
@@ -20,8 +22,14 @@ const User = db.sequelize.define('user', {
     senha: db.Sequelize.STRING
 })
 
+
 //force: criacao e exclusao de tabela
 //alter: alteração de tabela
 //User.sync({ alter: true })
-//User.sync({ force: true })
+// User.sync({ force: true })
 module.exports = User;
+
+User.belongsTo(TipoUsuario, {
+    constraint: true,
+    foreignKey: 'idTipoUsuario'
+})
