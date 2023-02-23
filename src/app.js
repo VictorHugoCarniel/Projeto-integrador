@@ -112,6 +112,9 @@ app.post('/auth', async (req, res) => {
         });
         if (usuario) {
             req.session.loggedIn = true;
+
+        } else if (usuario) {
+            req.session.loggedIn = true;
             res.redirect('/home')
         } else {
             res.redirect('/login')
@@ -238,4 +241,10 @@ app.post('/zera-quantidade/:id', async (req, res) => {
     }
 
 })
-module.exports = app;
+
+// User
+app.get('/user', async (req, res) => {
+    const rows = await Tipo.findAll({})
+    res.render('user', { rows })
+});
+module.exports = app;'  '
