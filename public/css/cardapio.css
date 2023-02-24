@@ -35,8 +35,8 @@ body{
 
 .dia.activeSemana {
     border: none;
-    background: linear-gradient(45deg, var(--cor02), var(--cor03));
-    color: var(--cor05);
+    background: linear-gradient(45deg, var(--cor1), var(--cor2));
+    color: var(--background);
     box-shadow:  4px 4px 8px #c5c5c5bd,
     -4px -4px 8px #ffffff;
     animation: dia-anim .2s ease forwards;
@@ -93,7 +93,7 @@ body{
 
 .cardBody h3 {
     font-size: 1.5rem;
-    color: var(--cor04);
+    color: var(--fonte1);
 }
 
 .precoQuantidade {
@@ -103,7 +103,7 @@ body{
 }
 
 .precoQuantidade > p {
-    color: var(--cor03);
+    color: var(--cor2);
     font-weight: 500;
 }
 
@@ -124,18 +124,18 @@ body{
 }
 
 .cardBody > p {
-    color: var(--cor04);
+    color: var(--fonte1);
     font-size: 0.9rem;
     margin-top: 15px;
 }
 
 .precoQuantidade > p > i {
-    color: var(--cor03);
+    color: var(--cor2);
 }
 
 .btnComprar {
-    background: var(--cor02);
-    color: var(--cor05);
+    background: var(--cor1);
+    color: var(--background);
     margin-top: 15px;
     padding: 7px 15px;
     box-shadow:  4px 4px 8px #c5c5c5bd,
@@ -148,7 +148,7 @@ body{
 .btnComprar:hover {
     box-shadow:  6px 6px 10px #c5c5c5bd,
     -6px -6px 10px #ffffff;
-    background: var(--cor03);
+    background: var(--cor2);
 }
 
 .btnComprar:active {

@@ -5,20 +5,24 @@
 
 .form-control {
     /* padding: 10px 12px; */
-    border: 1px solid #c5c5c5bd;
+    color: var(--fonte1);
+    border: 1px solid var(--placeholder);
     border-radius: 8px;
     position: relative;
+    background-color: var(--background);
 }
 
 .form-control::placeholder {
-    color: #c5c5c5bd;
+    color: var(--placeholder);
     font-weight: 400;
     font-size: 1rem;
 }
 
 .form-control:focus{
+    color: var(--fonte1);
     transition: border .3s ease;
-    border: 1px solid var(--cor02);
+    border: 1px solid var(--cor1);
+    background-color: var(--background);
 }
 
 .input--box {
@@ -26,9 +30,9 @@
 }
 
 .btnForm {
-    background: var(--cor04);
+    background: var(--background2);
     width: 100%;
-    color: #fff;
+    color: var(--hover);
     padding: 13px;
     border: none;
 }
@@ -38,9 +42,10 @@
 }
 
 .btnForm:hover {
-    transition: background .3s;
-    color: #fff;
-    background: #15212c;
+    color: var(--hover);  
+    padding: 12px;
+    border: 1px solid var(--cor1);
+    background-color: var(--background2);
 }
 
 .form-control.inputErro {
@@ -48,7 +53,7 @@
 }
 
 .form-control.inputOk {
-    border: 2px solid #008000;
+    border: 2px solid #0ccc0c;
 }
 
 .login--inputs i {

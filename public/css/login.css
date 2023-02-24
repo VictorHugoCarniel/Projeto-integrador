@@ -1,7 +1,7 @@
 .login--container {
     width: 100%;
     height: calc(100vh - 94px);
-    background: var(--cor05);
+    background: var(--background);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,7 +42,7 @@
 }
 
 .login--inputs a {
-    color: var(--cor02);
+    color: var(--cor1);
 }
 
 .login--inputs a:hover {
@@ -82,7 +82,7 @@
 
 .modal-anim {
     opacity: 0;
-    color: var(--cor04);
+    color: var(--fonte1);
     animation: modal-anim .8s forwards ease;
 }
 

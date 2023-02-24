@@ -7,7 +7,7 @@
     top: 0;
     bottom: 0;
     z-index: 999;
-    background: var(--cor05);
+    background: var(--background);
     width: 300px;
     height: 100%;
     box-shadow: 6px 6px 12px #c5c5c5;
@@ -51,8 +51,8 @@
 .btnPedido {
     position: absolute;
     bottom: 30px;
-    background: var(--cor02);
-    color: var(--cor05);
+    background: var(--cor1);
+    color: var(--background);
     margin-top: 15px;
     padding: 7px 15px;
     box-shadow:  4px 4px 8px #c5c5c5bd,
@@ -116,7 +116,7 @@
 }
 
 .pedido--texto p {
-    color: var(--cor02);
+    color: var(--cor1);
     font-size: .9rem;
 }
 

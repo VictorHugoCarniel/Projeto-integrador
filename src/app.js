@@ -1,23 +1,22 @@
+//Framework
 const { config } = require('dotenv');
 const { userInfo } = require('os');
 const { equal } = require('assert');
 const { where } = require('sequelize');
 const { reset } = require('nodemon');[]
 // const ejs = require('ejs');
-
 const express = require('express');
 const session = require('express-session');
 const morgan = require('morgan');
 const multer = require('multer');
 const multerConfig = require("./config/multer");
-
 const app = express();
 const path = require('path');
 const handlebars = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
-
 const fs = require('fs');
 
+//Tabelas
 const User = require('../models/User');
 const Produtos = require('../models/Produtos');
 const Estoque = require('../models/Estoque');
@@ -26,6 +25,7 @@ const Tipo = require('../models/TipoProduto.js');
 
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
+const { framework } = require('passport');
 
 require("dotenv").config();
 
@@ -33,6 +33,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+app.engine("handlebars", handlebars.engine);
+app.set("view engine", "handlebars");
 
 app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
 
@@ -48,19 +50,36 @@ function criptografar(password) {
     return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
 };
 
-app.use('/public', express.static(path.join('public')))
-app.set('/views', (path.join('views')))
 
-app.engine("handlebars", handlebars.engine);
-app.set("view engine", "handlebars");
+//Rotas
+app.use('/public', express.static(path.join('public')))
+
+app.set('/views', (path.join('views')))
 
 app.get('/', (req, res) => {
     res.redirect('/home')
 })
+
 app.get('/home', async (req, res) => {
+    const { Op } = require("sequelize");
     if (req.session.loggedIn == true) {
-      var rows = await Produtos.findAll({})
-        res.render('index', { rows })
+        var rowsC = await Produtos.findAll({
+            where: {
+                idTipoProduto: 1,
+                quantidade: {
+                    [Op.ne]: 0
+                }
+              }
+        })
+        var rowsB = await Produtos.findAll({
+            where: {
+                idTipoProduto: 2,
+                quantidade: {
+                    [Op.ne]: 0
+                }
+              }
+        })
+        res.render('index', { rowsC, rowsB })
     } else {
         res.redirect('/login')
     }
@@ -92,6 +111,9 @@ app.post('/auth', async (req, res) => {
             }
         });
         if (usuario) {
+            req.session.loggedIn = true;
+
+        } else if (usuario) {
             req.session.loggedIn = true;
             res.redirect('/home')
         } else {
@@ -126,13 +148,14 @@ app.get('/cadastro', (req, res) => {
 // adm
 app.get('/administrador', async (req, res) => {
     const rows = await Tipo.findAll({})
-    res.render('admCadAlimentos', { rows }) });
+    res.render('admCadAlimentos', { rows })
+});
 
-app.post("/posts", multer(multerConfig).single('file'), async(req, res) => {
+app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
 
-    const {originalname: name, size, key, url = "" } = req.file;
+    const { originalname: name, size, key, url = "" } = req.file;
 
-    const post = await Improds.create ({
+    const post = await Improds.create({
         name,
         size,
         key,
@@ -158,8 +181,17 @@ app.post('/add-alimentos', async (req, res) => {
 })
 
 app.get('/admQtd', async (req, res) => {
-    rows = await Produtos.findAll({})
-    res.render('admQtd', { rows })
+    var rowsC = await Produtos.findAll({
+        where: {
+            idTipoProduto: 1
+        }
+    })
+    var rowsB = await Produtos.findAll({
+        where: {
+            idTipoProduto: 2
+        }
+    })
+    res.render('admQtd', { rowsC, rowsB })
 })
 
 app.post('/add-quantidade/:id', async (req, res) => {
@@ -188,4 +220,31 @@ app.post('/deleteProd/:id', async (req, res) => {
     res.redirect('/admQtd')
 })
 
-module.exports = app;
+app.post('/zera-quantidade/:id', async (req, res) => {
+    let quantidade = req.body.quantidade;
+    const id_parametro = req.params.id;
+
+    if (quantidade <= quantidade <= 1) {
+        console.log("zera");
+        let quantidade = 0;
+        Produtos.update(
+            { quantidade: quantidade },
+            {
+                where: {
+                    idProduto: id_parametro,
+                },
+            }
+        );
+        res.redirect('/admQtd')
+    } else if (quantidade = 0) {
+        console.log("quantidade eh igual a 0")
+    }
+
+})
+
+// User
+app.get('/user', async (req, res) => {
+    const rows = await Tipo.findAll({})
+    res.render('user', { rows })
+});
+module.exports = app;'  '

@@ -2,26 +2,65 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&display=swap');
 
+/*
 :root {
-    --cor02: #FF6D21;
-    --cor03: #FA9529;
-    --cor04: #233545;
-    --cor05: #FAFAFA;
+  --cor1: #FF6D21;
+  --cor2: #FA9529;
+  --fonte1: #233545;
+  --background: #FAFAFA;
+}*/
+
+:root {
+  --cor1: #FF6D21;
+  --cor2: #FA9529;
+  --fonte1: #282a36;
+  --fonte2: #f8f8f2;
+  --hover: #f8f8f2;
+  --placeholder: #d4d4d4;
+  --background: #FAFAFA;
+  --background2: #282a36;
+}
+
+.dark-mode:root {
+  --cor1: #bd93f9;
+  --cor2: #956bcf;
+  --fonte2: #282a36;
+  --fonte1: #f8f8f2;
+  --hover: #f8f8f2;
+  --placeholder: #c5c5c5bd;
+  --background: #282a36;
+  --background2: #44475a;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    box-sizing: border-box;
-    border: none;
-    outline: none;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+label {
+  color: var(--fonte1);
+}
+
+.form-control::-webkit-file-upload-button,
+.form-control[readonly],
+.form-control::file-selector-button,
+.form-control::-webkit-file-upload-button,
+.form-select:disabled {
+  background: var(--background);
+  color: var(--fonte1);
 }
 
 a {
-    color: var(--cor04);
-    text-decoration: none;
+  color: var(--fonte1);
+  text-decoration: none;
 }
 
 p {
@@ -30,8 +69,9 @@ p {
 }
 
 .title {
+  color: var(--fonte1);
   text-align: center;
-  color: var(--cor04);
+  color: var(--fonte1);
 }
 
 .headerTitle {
@@ -40,6 +80,7 @@ p {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: var(--fonte1);
 }
 
 .headerTitle span {
@@ -47,24 +88,107 @@ p {
   width: 100px;
   height: 2px;
   margin-top: 10px;
-  background: #FA9529;
+  background: var(--cor2);
 }
 
-body, html {
-    background: var(--cor05);
-    scroll-behavior: smooth;
+body,
+html {
+  background: var(--background);
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
-    width: 7px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: var(--cor05);
-    border-radius: 20px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #c9c9c9;
-    border-radius: 20px;
-  }
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--background2);
+  border-radius: 20px;
+}
+
+/* Dark Mode */
+
+.toggle-btn {
+  position: relative;
+  width: 145px;
+  height: 74px;
+  margin: 0 auto;
+  border-radius: 40px;
+  transform: scale(.4);
+}
+
+input[type="checkbox"] {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: 0px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+}
+
+/* First toggle btn */
+
+#_1st-toggle-btn span {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: hidden;
+  opacity: 1;
+  background-color: #fff;
+  box-shadow: 0px 2px 25px #d9d9d9;
+  border-radius: 40px;
+  transition: 0.2s ease background-color, 0.2s ease opacity;
+}
+
+#_1st-toggle-btn span:before,
+#_1st-toggle-btn span:after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  transition: 0.3s ease transform, 0.2s ease background-color;
+}
+
+#_1st-toggle-btn span:before {
+  background-color: #fff;
+  transform: translate(-58px, 0px);
+  z-index: 1;
+}
+
+#_1st-toggle-btn span:after {
+  background-color: var(--background2);
+  transform: translate(8px, 0px);
+  z-index: 0;
+}
+
+#_1st-toggle-btn input[type="checkbox"]:checked+span {
+  background-color: var(--background2);
+}
+
+#_1st-toggle-btn input[type="checkbox"]:active+span {
+  opacity: 0.5;
+}
+
+#_1st-toggle-btn input[type="checkbox"]:checked+span:before {
+  background-color: var(--background2);
+  transform: translate(56px, -19px);
+}
+
+#_1st-toggle-btn input[type="checkbox"]:checked+span:after {
+  background-color: #fff;
+  transform: translate(79px, 0px);
+}

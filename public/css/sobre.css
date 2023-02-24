@@ -3,7 +3,7 @@
 }
 
 .info-2 {
-  background-color: var(--cor04);
+  background-color: var(--fonte1);
   padding-bottom: 50px;
   height: 100%;
 }
@@ -13,7 +13,7 @@
 }
 
 .titulo-info-2 {
-  color: var(--cor05);
+  color: var(--background);
   text-align: center;
 }
 
@@ -28,7 +28,7 @@
 
 .cardSobre {
   margin: 10px;
-  background-color: var(--cor05);
+  background-color: var(--background);
   border-radius: 10px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
