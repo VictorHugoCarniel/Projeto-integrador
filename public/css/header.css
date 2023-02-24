@@ -47,6 +47,7 @@ header {
     color: var(--fonte1);
     /* transition: .5s ease-in-out; */
     cursor: pointer;
+    text-decoration: none;
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -82,10 +83,11 @@ header {
 }
 
 .login {
-    background: var(--background2);
+    background: #282a36;
     color: #fff;
     padding: 10px 27px;
     border-radius: 5px;
+    text-decoration: none;
 }
 
 .login:hover {

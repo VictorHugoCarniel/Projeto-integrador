@@ -12,7 +12,7 @@
 
   <link rel="stylesheet" href="/public/css/header.css" />
 
-  <link rel="stylesheet" href="/public/css/cardapio.css" />
+  <link rel="stylesheet" href="/public/css/admQtd.css">
 
   <link rel="stylesheet" href="/public/css/footer.css" />
 
@@ -50,120 +50,96 @@
       </div>
       <div>
         <a class="sairTexto" href="/home">
-          <div class="sair">Sair</div>
+          <div class="login">Sair</div>
         </a>
       </div>
     </nav>
   </header>
 
-<h3>Comida</h3> 
- <section class="cardapio" id="cardapio">
-    <div class="cards">
-      {{#each rowsC}}
-      <div class="card">
-        <div class="cardImg">
 
-          {{ imagem }}
-
-          <img {{ imagem }}>
-
-        </div>
-        <div class="cardBody">
-          <div class="titulo">
-            <h2>
-              {{ nome }}
-            </h2>
-            <form method="post" action="/deleteProd/{{ idProduto }}">
-              <button type="submit" onclick="certezaExcluir()"><img class="delete" src="/public/images/delete.svg"
-                  alt="deletar produto"></button>
+  <section class="cardapio" id="cardapio">
+    <div class="cardapio-comidas">
+      <h3 class="h3-cardapio">Comida</h3>
+   
+      <div class="cards">
+        {{#each rowsC}}
+        <div class="card">
+          <div class="cardImg">
+            {{ imagem }}
+            <img {{ imagem }}>
+          </div>
+          <div class="cardBody">
+            <div class="titulo">
+              <h2>
+                {{ nome }}
+              </h2>
+              <form method="post" action="/deleteProd/{{ idProduto }}">
+                <button type="submit" onclick="certezaExcluir()"><img class="delete" src="/public/images/delete.svg"
+                    alt="deletar produto"></button>
+              </form>
+            </div>
+            <div class="text">
+              <p>
+                Quantidade atual: {{ quantidade }}
+              </p>
+            </div>
+            <form method="post" action="/add-quantidade/{{ idProduto }}">
+              <div class="quantidade">
+                <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
+              </div>
+              <button type="submit" class="btnComprar">Enviar</button>
+            </form>
+            <form method="post" action="/zera-quantidade/{{ idProduto }}">
+              <button type="submit" class="btnComprar">Zerar</button>
             </form>
           </div>
-
-          <div class="text">
-            <p>
-              Quantidade atual: {{ quantidade }}
-            </p>
-          </div>
-          <div class="text">
-            <p>
-              Quantidade atual: {{ quantidade }}
-            </p>
-          </div>
-
-          <form method="post" action="/add-quantidade/{{ idProduto }}">
-            <div class="quantidade">
-              <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
-            </div>
-            <button type="submit" class="btnComprar">Enviar</button>
-          </form>
-          
-          <form method="post" action="/zera-quantidade/{{ idProduto }}">
-            <button type="submit" class="btnComprar">Zera</button>
-          </form>
-
         </div>
+        {{/each}}
       </div>
-      {{/each}}
     </div>
-    </section>
-    <h3>Bebida</h3>
-     <section class="cardapio" id="cardapio">
-    <div class="cards">
-      {{#each rowsB}}
-      <div class="card">
-        <div class="cardImg">
 
-          {{ imagem }}
+    <div class="cardapio-bebidas">
+      <h3 class="h3-cardapio">Bebidas</h3>
 
-          <img {{ imagem }}>
+      <div class="cards">
+        {{#each rowsB}}
+        <div class="card">
+          <div class="cardImg">
+            {{ imagem }}
+            <img {{ imagem }}>
+          </div>
+          <div class="cardBody">
+            <div class="titulo">
+              <h2>
+                {{ nome }}
+              </h2>
+              <form method="post" action="/deleteProd/{{ idProduto }}">
+                <button type="submit" onclick="certezaExcluir()"><img class="delete" src="/public/images/delete.svg"
+                    alt="deletar produto"></button>
+              </form>
+            </div>
+            <div class="text">
+              <p>
+                Quantidade atual: {{ quantidade }}
+              </p>
+            </div>
+            <form method="post" action="/add-quantidade/{{ idProduto }}">
+              <div class="quantidade">
+                <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
+              </div>
+              <button type="submit" class="btnComprar">Enviar</button>
+            </form>
 
-        </div>
-        <div class="cardBody">
-          <div class="titulo">
-            <h2>
-              {{ nome }}
-            </h2>
-            <form method="post" action="/deleteProd/{{ idProduto }}">
-              <button type="submit" onclick="certezaExcluir()"><img class="delete" src="/public/images/delete.svg"
-                  alt="deletar produto"></button>
+            <form method="post" action="/zera-quantidade/{{ idProduto }}">
+              <button type="submit" class="btnComprar">Zerar</button>
             </form>
           </div>
-
-          <div class="text">
-            <p>
-              Quantidade atual: {{ quantidade }}
-            </p>
-          </div>
-          <div class="text">
-            <p>
-              Quantidade atual: {{ quantidade }}
-            </p>
-          </div>
-
-          <form method="post" action="/add-quantidade/{{ idProduto }}">
-            <div class="quantidade">
-              <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
-            </div>
-            <button type="submit" class="btnComprar">Enviar</button>
-          </form>
-          
-          <form method="post" action="/zera-quantidade/{{ idProduto }}">
-            <button type="submit" class="btnComprar">Zera</button>
-          </form>
-
         </div>
+        {{/each}}
       </div>
-      {{/each}}
     </div>
-    </section>
+  </section>
 </body>
-
-<!-- <footer id="contato">
-
-    <p>Telefone: (46) 3272-3700<br /></p>
-    <p>Instagram: @senacparana</p>
-    <p>Endereço: Av. Tupi, 385 - Bortot, Pato Branco - PR, 85504-000</p>
-  </footer> -->
 
 <script src="../public/js/btn-mobile.js"></script>
 
