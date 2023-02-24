@@ -9,20 +9,18 @@ header {
     padding: 15px 100px 10px 100px;
     z-index: 999;
     margin: auto;
-    background: #fafafdcb;
+    background: var(--background);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(5px);
     animation: header-anim .8s forwards ease-in-out;
 }
 
 .logo {
-    background: linear-gradient(45deg, var(--cor02), var(--cor03));
+    background: linear-gradient(45deg, var(--cor1), var(--cor2));
     border-radius: 50%;
     font-size: 1.2rem;
     color: #fff;
     padding: 10px 17px;
-    box-shadow: 4px 4px 8px #c5c5c5bd,
-        -4px -4px 8px #ffffff;
 }
 
 .navbar {
@@ -46,8 +44,8 @@ header {
     margin-left: 1rem;
     padding: .7rem 1.5rem;
     font-weight: 500;
-    color: #494949;
-    transition: .5s ease-in-out;
+    color: var(--fonte1);
+    /* transition: .5s ease-in-out; */
     cursor: pointer;
     position: relative;
     display: inline-block;
@@ -67,7 +65,7 @@ header {
     width: 100%;
     height: 2px;
     background: linear-gradient(270deg, transparent, #fff);
-    background: var(--cor02);
+    background: var(--cor1);
 }
 
 .link.active .link--linha {
@@ -84,22 +82,25 @@ header {
 }
 
 .login {
-    background: linear-gradient(45deg, #494949, #000000);
+    background: var(--background2);
     color: #fff;
     padding: 10px 27px;
     border-radius: 5px;
-    box-shadow: 4px 4px 8px #c5c5c5bd,
-        -4px -4px 8px #ffffff;
+}
+
+.login:hover {
+    color: var(--hover);
+    padding: 9px 26px;
+    border: 1px solid var(--cor1);
+    background-color: var(--background2);
 }
 
 .carrinho {
     padding: 10px;
     border-radius: 5px;
     background: #fafafd;
-    box-shadow: 1px 1px 10px #c5c5c54b,
-        -4px -4px 8px #ffffff;
     position: relative;
-    color: var(--cor04);
+    color: var(--fonte1);
 }
 
 .carrinho:hover {
@@ -152,7 +153,6 @@ header {
         background: #fafafdcb;
         backdrop-filter: blur(7px);
         -webkit-backdrop-filter: blur(5px);
-        box-shadow: 4px 4px 8px #c5c5c5bd;
         transition: .2s ease;
     }
 
@@ -190,14 +190,14 @@ header {
         border: none;
         background: none;
         cursor: pointer;
-        color: var(--cor04);
+        color: var(--fonte1);
         text-shadow: 0 0 2px #fff;
         gap: 0.5rem;
     }
 
     .btnMobile--icon {
         display: block;
-        border-top: 2px solid var(--cor04);
+        border-top: 2px solid var(--fonte1);
         width: 20px;
         height: 5px;
     }

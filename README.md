@@ -76,7 +76,7 @@ The background color should be `#ffffff` for light mode and `#0d1117` for dark m
 ### Paleta de cores:
 
 - `#F8FEF9`
-- `#FF6D21`
-- `#FA9529`
-- `#233545`
+- `--cor1`
+- `--cor2`
+- `--fonte1`
 - `#E6F9E7`
