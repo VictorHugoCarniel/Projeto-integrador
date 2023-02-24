@@ -2300,7 +2300,7 @@ progress {
     height: 1.5em
 }
 
-.form-control::-moz-placeholder {
+/* .form-control::-moz-placeholder {
     color: #6c757d;
     opacity: 1
 }
@@ -2308,13 +2308,8 @@ progress {
 .form-control::placeholder {
     color: #6c757d;
     opacity: 1
-}
+} */
 
-.form-control:disabled,
-.form-control[readonly] {
-    /* background-color: #e9ecef; */
-    opacity: 1
-}
 
 .form-control::-webkit-file-upload-button {
     padding: .375rem .75rem;
@@ -2511,7 +2506,7 @@ textarea.form-control-lg {
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #fff;
+    /* background-color: #fff; */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right .75rem center;
@@ -2604,19 +2599,13 @@ textarea.form-control-lg {
     border-radius: 50%
 }
 
-.form-check-input:active {
-    filter: brightness(90%)
-}
-
 .form-check-input:focus {
-    border-color: #86b7fe;
     outline: 0;
     box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25)
 }
 
 .form-check-input:checked {
-    background-color: #0d6efd;
-    border-color: #0d6efd
+
 }
 
 .form-check-input:checked[type=checkbox] {
@@ -3205,9 +3194,6 @@ textarea.form-control.is-invalid {
     }
 }
 
-.btn:hover {
-    color: #212529
-}
 
 .btn-check:focus+.btn,
 .btn:focus {
@@ -3222,23 +3208,9 @@ fieldset:disabled .btn {
     opacity: .65
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #0d6efd;
-    border-color: #0d6efd
-}
-
-.btn-primary:hover {
-    color: #fff;
-    background-color: #0b5ed7;
-    border-color: #0a58ca
-}
-
 .btn-check:focus+.btn-primary,
 .btn-primary:focus {
     color: #fff;
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
     box-shadow: 0 0 0 .25rem rgba(49, 132, 253, .5)
 }
 
@@ -6234,6 +6206,7 @@ fieldset:disabled .btn {
     overflow-x: hidden;
     overflow-y: auto;
     outline: 0
+
 }
 
 .modal-dialog {
@@ -6287,7 +6260,6 @@ fieldset:disabled .btn {
     flex-direction: column;
     width: 100%;
     pointer-events: auto;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: .3rem;

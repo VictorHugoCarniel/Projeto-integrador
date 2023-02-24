@@ -58,6 +58,22 @@ label {
   color: var(--fonte1);
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px var(--background) inset;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px var(--background) inset;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--fonte1) !important;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--fonte1) !important;
+}
+
 a {
   color: var(--fonte1);
   text-decoration: none;
