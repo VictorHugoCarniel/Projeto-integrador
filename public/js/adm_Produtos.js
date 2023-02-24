@@ -16,3 +16,9 @@ btn.addEventListener("click", function(e) {
         alert('Todos os campos do formulário devem estar preenchidos!!')
     }
 })
+
+function changeFormAction() {
+    form = document.getElementById("image-form");
+    form.action = "/post"
+    
+}

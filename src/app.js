@@ -36,7 +36,7 @@ app.use(morgan('dev'));
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 
-app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
+app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
 
 const DADOS_CRIPTOGRAFAR = {
     algoritmo: 'aes256',
@@ -69,7 +69,7 @@ app.get('/home', async (req, res) => {
                 quantidade: {
                     [Op.ne]: 0
                 }
-              }
+            }
         })
         var rowsB = await Produtos.findAll({
             where: {
@@ -77,7 +77,7 @@ app.get('/home', async (req, res) => {
                 quantidade: {
                     [Op.ne]: 0
                 }
-              }
+            }
         })
         res.render('index', { rowsC, rowsB })
     } else {
@@ -88,7 +88,7 @@ app.get('/home', async (req, res) => {
 app.get('/testee', async (req, res) => {
     rows = await User.findAll({})
     res.render('teste', { rows })
-})
+});
 
 // Login
 app.get('/login', (req, res) => {
@@ -99,8 +99,9 @@ app.get('/sobre', (req, res) => {
 });
 
 app.post('/auth', async (req, res) => {
-    let email = req.body.email;
-    let senha = req.body.senha;
+    req.session.user = req.body.email
+    const email = req.body.email;
+    const senha = req.body.senha;
     if (email && senha) {
         const usuario = await User.findOne({
             where:
@@ -117,7 +118,7 @@ app.post('/auth', async (req, res) => {
             res.redirect('/login')
         }
     }
-})
+});
 
 app.get('/logout', (req, res) => {
     req.session.loggedIn = false;
@@ -127,6 +128,7 @@ app.get('/logout', (req, res) => {
 // cadastro
 app.post('/add-usuario', async (req, res) => {
     console.log('teste')
+
     await User.create({
         nome: req.body.nome,
         sobrenome: req.body.sobrenome,
@@ -240,8 +242,6 @@ app.post('/zera-quantidade/:id', async (req, res) => {
 })
 
 // User
-app.get('/user', async (req, res) => {
-    const rows = await Tipo.findAll({})
-    res.render('user', { rows })
-});
-module.exports = app;'  '
+
+
+module.exports = app;

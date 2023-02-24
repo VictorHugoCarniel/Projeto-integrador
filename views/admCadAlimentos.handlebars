@@ -99,23 +99,24 @@
 
         <div>
           <label for="inputState" class="form-label">Imagem do alimento</label>
-          <input type="file" class="form-control" id="inputPeso">
+          <input name = "img" type="file" class="form-control" id="inputPeso">
         </div>
-
-        <div class="col-12">
-          <input type="submit" class="btn btnForm"></input>
-        </div>
+        <input type="submit" name="enviar" onclick="changeFormAction()" id="imgbtn"class="btn btnForm imgbtn"></input>
+        {{!-- <div class="col-12">
+          <input type="submit" name="enviar" class="btn btnForm imgbtn"></input>
+        </div> --}}
       </form>
     </section>
-  </main>
-  <form enctype="multipart/form-data" method="post">
+  
+  <form enctype="multipart/form-data" action="/post" method="post">
     <div>
       <label for="formFileLg" class="form-label">Imagem do alimento</label>
       <input name="img" type="file">
-      <button type="submit">enviar</button>
+      {{!-- <input name = "enviarimg" class="imgbtn" type="submit">enviar</input> --}}
     </div>
   </form>
-
+  
+</main>
   <script src="../public/js/adm_Produtos.js"></script>
 
   <script src="../public/js/btn-mobile.js"></script>
