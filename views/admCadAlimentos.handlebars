@@ -11,12 +11,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
   <!-- favicon -->
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <link rel="stylesheet" href="public/css/bootstrap.css" />
 
   <link rel="stylesheet" href="public/css/default.css" />
 
@@ -57,8 +57,12 @@
       </div>
       <div class="navbar--login">
         <a href="/home">
-          <div class="sair">Sair</div>
+          <div class="login">Sair</div>
         </a>
+        <div class="toggle-btn" id="_1st-toggle-btn">
+          <input type="checkbox" onchange="darkModeToggle()" id="chkDarkMode">
+          <span></span>
+        </div>
       </div>
     </nav>
   </header>
@@ -69,42 +73,42 @@
         <h1>Cadastrar alimento:</h1>
       </div>
       <form class="row g-3" action="/add-alimentos" id="image-form" novalidate method="post">
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Lanche</label>
-            <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"
-              name="nome" />
-          </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Lanche</label>
+          <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"
+            name="nome" />
+        </div>
 
-          <div class="col-md-6 input--box">
-            <label for="inputPassword4" class="form-label">Preço</label>
-            <input type="number" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
-              name="preco" />
-          </div>
+        <div class="col-md-6 input--box">
+          <label for="inputPassword4" class="form-label">Preço</label>
+          <input type="number" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
+            name="preco" />
+        </div>
 
-          <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Peso</label>
-            <input type="number" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
-              placeholder="kg/ml" id="peso" maxlength="15" name="peso" />
-          </div>
+        <div class="col-md-6">
+          <label for="inputAddress" class="form-label">Peso</label>
+          <input type="number" class="form-control" id="inputPeso" data-mask="00:00" pattern="\(\d{2}\)\s*\d{5}-\d{4}"
+            placeholder="kg/ml" id="peso" maxlength="15" name="peso" />
+        </div>
 
-          <div class="col-md-6">
-            <label for="inputState"  class="form-label">Tipo</label>
-            <select name="idTipoProduto" class="form-control">
-               <option selected disabled>Escolha</option>
-              {{#each rows}} <option value=" {{ idTipoProduto }} "> {{ descricao }} </option>
-              {{/each}}
-              </select>
-          </div>
+        <div class="col-md-6">
+          <label for="inputState" class="form-label">Tipo</label>
+          <select name="idTipoProduto" class="form-control">
+            <option selected disabled>Escolha</option>
+            {{#each rows}} <option value=" {{ idTipoProduto }} "> {{ descricao }} </option>
+            {{/each}}
+          </select>
+        </div>
 
-          <div>
-            <label for="inputState" class="form-label">Imagem do alimento</label>
-            <input type="file" class="form-control" id="inputPeso">
-          </div>
+        <div>
+          <label for="inputState" class="form-label">Imagem do alimento</label>
+          <input type="file" class="form-control" id="inputPeso">
+        </div>
 
-          <div class="col-12">
-            <input type="submit" class="btn btnForm"></input>
-          </div>
-        </form>
+        <div class="col-12">
+          <input type="submit" class="btn btnForm"></input>
+        </div>
+      </form>
     </section>
   </main>
   <form enctype="multipart/form-data" method="post">
@@ -122,6 +126,8 @@
   <script src="../public/js/cardapio.js"></script>
 
   <script src="../public/js/carrinho.js"></script>
+
+  <script src="/public/js/header.js"></script>
 
 </body>
 
