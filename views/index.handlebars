@@ -6,26 +6,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="A confeitaria do Senac proporciona o melhor para o seu bem-estar e alimentação" />
-    <link rel="stylesheet" href="public/css/bootstrap.css" />
+  <link rel="stylesheet" href="public/css/bootstrap.css" />
 
 
   <!-- favicon -->
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <link rel="stylesheet" href="public/css/default.css" />
 
-  <link rel="stylesheet" href="public/css/header.css" />
+  <link rel="stylesheet" href="/public/css/default.css" />
 
-  <link rel="stylesheet" href="public/css/home.css" />
+  <link rel="stylesheet" href="/public/css/header.css" />
 
-  <link rel="stylesheet" href="public/css/cardapio.css" />
+  <link rel="stylesheet" href="/public/css/home.css" />
 
-  <link rel="stylesheet" href="public/css/carrinho.css" />
+  <link rel="stylesheet" href="/public/css/cardapio.css" />
 
-  <link rel="stylesheet" href="public/css/sobre.css" />
+  <link rel="stylesheet" href="/public/css/admQtd.css">
 
-  <link rel="stylesheet" href="public/css/footer.css" />
+  <link rel="stylesheet" href="/public/css/carrinho.css" />
+
+  <link rel="stylesheet" href="/public/css/sobre.css" />
+
+  <link rel="stylesheet" href="/public/css/footer.css" />
 
   <title>Projeto Integrador</title>
 </head>
@@ -104,71 +107,54 @@
       <img src="public/images/comidaTeste2.png" alt="img" />
     </div>
   </section>
-
-  <section class="cardapio" id="cardapio">
-    <div class="headerTitle">
-      <h1 class="title">Cardápio</h1>
-      <span></span>
-    </div>
-    <h3>Comida</h3>
-
     <section class="cardapio" id="cardapio">
-      <div class="cards">
-        {{#each rowsC}}
-        <div class="card">
-          <div class="cardImg">
-
-            {{ imagem }}
-
-            <img {{ imagem }}>
-
-          </div>
-          <div class="cardBody">
-            <div class="titulo">
-              <h2>
-                {{ nome }}
-              </h2>
+      <div class="cardapio-comidas">
+        <h3 class="h3-cardapio">Comidas</h3>
+        <div class="cards">
+          {{#each rowsC}}
+          <div class="card">
+            <div class="cardImg">
+              {{ imagem }}
+              <img {{ imagem }}>
             </div>
-
-            <button type="submit" class="btnComprar">Comprar</button>
-            </form>
-
+            <div class="cardBody">
+              <div class="titulo">
+                <h2>
+                  {{ nome }}
+                </h2>
+              </div>
+              <button type="submit" class="btnComprar">Comprar</button>
+              </form>
+            </div>
           </div>
+          {{/each}}
         </div>
-        {{/each}}
+      </div>
+
+      <div class="cardapio-comidas">
+        <h3  class="h3-cardapio">Bebidas</h3>
+        <div class="cards">
+          {{#each rowsB}}
+          <div class="card">
+            <div class="cardImg">
+              {{ imagem }}
+              <img {{ imagem }}>
+            </div>
+            <div class="cardBody">
+              <div class="titulo">
+                <h2>
+                  {{ nome }}
+                </h2>
+              </div>
+              <button type="submit" class="btnComprar">Comprar</button>
+              </form>
+            </div>
+          </div>
+          {{/each}}
+        </div>
       </div>
     </section>
-    <h3>Bebida</h3>
-    <section class="cardapio" id="cardapio">
-      <div class="cards">
-        {{#each rowsB}}
-        <div class="card">
-          <div class="cardImg">
-
-            {{ imagem }}
-
-            <img {{ imagem }}>
-
-          </div>
-          <div class="cardBody">
-            <div class="titulo">
-              <h2>
-                {{ nome }}
-              </h2>
-            </div>
-
-            <button type="submit" class="btnComprar">Comprar</button>
-            </form>
-
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </section>
-
-
-
-
+    
     <footer id="contato">
       <p>Telefone: (46) 3272-3700<br /></p>
       <p>Instagram: @senacparana</p>
