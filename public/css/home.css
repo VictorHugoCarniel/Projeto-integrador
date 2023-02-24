@@ -2,10 +2,6 @@ body{
     overflow-y: scroll;
 }
 
-.desc {
-    color: var(--fonte1)!important;
-}
-
 .home {
     padding: 0px 8%;
     width: 100%;
@@ -52,7 +48,7 @@ body{
 .home--text p {
     width: 70%;
     margin: 7px;
-    color: #00000088;
+    color: var(--fonte1);
 }
 
 .btnComprarAgora {
@@ -186,4 +182,13 @@ body{
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--cor1);
+    color: white;
+    width: 100%;
+    
   }
