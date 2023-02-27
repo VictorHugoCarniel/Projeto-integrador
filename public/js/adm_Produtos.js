@@ -19,6 +19,5 @@ btn.addEventListener("click", function(e) {
 
 function changeFormAction() {
     form = document.getElementById("image-form");
-    form.action = "/post"
-    
+    form.action = "/post"  
 }
