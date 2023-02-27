@@ -11,8 +11,7 @@
 .cadastro--container {
     opacity: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+
     flex-direction: column;
     max-width: 1000px;
     padding-bottom: 30px;
@@ -101,4 +100,8 @@
     color: #fff;
     border: 1px solid var(--cor1);
     background-color: var(--background2);
+}
+
+.input-imagem{
+    margin-bottom: 10px;
 }
