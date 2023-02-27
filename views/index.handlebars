@@ -110,103 +110,109 @@
   <section class="cardapio" id="cardapio">
     <div class="headerTitle">
       <h1 class="title">Cardápio</h1>
+      <h3>Comidas</h3>
       <span></span>
     </div>
-    <h3>Comida</h3>
 
-    <section class="cardapio" id="cardapio">
-      <div class="cards">
-        {{#each rowsC}}
-        <div class="card">
-          <div class="cardImg">
 
-            {{ imagem }}
+    <div class="cards">
+      {{#each rowsC}}
+      <div class="card">
+        <div class="cardImg">
 
-            <img {{ imagem }}>
+          {{ imagem }}
 
-          </div>
-          <div class="cardBody">
-            <div class="titulo">
-              <h2>
-                {{ nome }}
-              </h2>
-            </div>
-            <div class="text">
-              <p>
-                Quantidade atual: {{ quantidade }}
-              </p>
-            </div>
-            <button type="submit" class="btnComprar">Comprar</button>
-            </form>
+          <img {{ imagem }}>
 
-          </div>
         </div>
-        {{/each}}
-      </div>
-    </section>
-    <h3>Bebida</h3>
-    <section class="cardapio" id="cardapio">
-      <div class="cards">
-        {{#each rowsB}}
-        <div class="card">
-          <div class="cardImg">
-
-            {{ imagem }}
-
-            <img {{ imagem }}>
-
+        <div class="cardBody">
+          <div class="titulo">
+            <h2>
+              {{ nome }}
+            </h2>
           </div>
-          <div class="cardBody">
-            <div class="titulo">
-              <h2>
-                {{ nome }}
-              </h2>
-            </div>
-            <div class="text">
-              <p>
-                Quantidade atual: {{ quantidade }}
-              </p>
-            </div>
-            <button type="submit" class="btnComprar">Comprar</button>
-            </form>
-
+          <div class="text">
+            <p>
+              Quantidade atual: {{ quantidade }}
+            </p>
           </div>
+          <button type="submit" class="btnComprar">Comprar</button>
+          </form>
+
         </div>
-        {{/each}}
       </div>
-    </section>
+      {{/each}}
+    </div>
 
-    <script src="/public/js/btn-mobile.js"></script>
 
-    <script src="/public/js/cardapio.js"></script>
 
-    <script src="/public/js/carrinho.js"></script>
 
-    <script src="/public/js/header.js"></script>
+    <div class="cards">
+      <div class="headerTitle">
+        <h3>Bebidas</h3>
+        <span></span>
+      </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      {{#each rowsB}}
+      <div class="card">
+        <div class="cardImg">
 
-    <script>
-      var $doc = $("html, body");
-      $(".animateLink").click(function () {
-        $doc.animate(
-          {
-            scrollTop: $($.attr(this, "href")).offset().top,
-          },
-          500
-        );
-        return false;
-      });
-    </script>
+          {{ imagem }}
 
-    <script src="../public/js/preloader.js"></script>
+          <img {{ imagem }}>
 
+        </div>
+        <div class="cardBody">
+          <div class="titulo">
+            <h2>
+              {{ nome }}
+            </h2>
+          </div>
+          <div class="text">
+            <p>
+              Quantidade atual: {{ quantidade }}
+            </p>
+          </div>
+          <button type="submit" class="btnComprar">Comprar</button>
+          </form>
+
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+
+  <footer id="">
+    <p>Telefone: (46) 3272-3700<br /></p>
+    <p>Instagram: @senacparana</p>
+    <p>Endereço: Av. Tupi, 385 - Bortot, Pato Branco - PR, 85504-000</p>
+  </footer>
 </body>
 
-<footer id="">
-  <p>Telefone: (46) 3272-3700<br /></p>
-  <p>Instagram: @senacparana</p>
-  <p>Endereço: Av. Tupi, 385 - Bortot, Pato Branco - PR, 85504-000</p>
-</footer>
+<script src="/public/js/btn-mobile.js"></script>
+
+<script src="/public/js/cardapio.js"></script>
+
+<script src="/public/js/carrinho.js"></script>
+
+<script src="/public/js/header.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+  var $doc = $("html, body");
+  $(".animateLink").click(function () {
+    $doc.animate(
+      {
+        scrollTop: $($.attr(this, "href")).offset().top,
+      },
+      500
+    );
+    return false;
+  });
+</script>
+
+<script src="../public/js/preloader.js"></script>
+
 
 </html>
