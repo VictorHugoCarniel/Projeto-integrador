@@ -299,6 +299,11 @@ input[type=number]::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
+
+input[type=number]::-webkit-inner-spin-button:active {
+
+}
+
 .cardBody{
     padding: 15px;
 }
