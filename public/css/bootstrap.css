@@ -170,7 +170,6 @@ h6 {
 
 p {
     margin-top: 0;
-    margin-bottom: 1rem
 }
 
 abbr[data-bs-original-title],
@@ -280,6 +279,7 @@ samp {
 pre {
     display: block;
     margin-top: 0;
+
     overflow: auto;
     font-size: .875em
 }
