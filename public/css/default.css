@@ -19,6 +19,7 @@
   --placeholder: #d4d4d4;
   --background: #FAFAFA;
   --background2: #282a36;
+  --background3: #d4d4d4;
 }
 
 .dark-mode:root {
@@ -30,6 +31,7 @@
   --placeholder: #c5c5c5bd;
   --background: #282a36;
   --background2: #44475a;
+  --background3: #313442;
 }
 
 * {

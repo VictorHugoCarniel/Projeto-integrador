@@ -16,13 +16,13 @@
 
   <link rel="stylesheet" href="/public/css/footer.css" />
 
-  <link rel="stylesheet" href="/public/css/admQtd.css">
+  <link rel="stylesheet" href="/public/css/cardapio.css">
 
   <!-- favicon -->
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
 
   <meta name="description" content="A confeitaria do Senac proporciona o melhor para o seu bem-estar e alimentação" />
-    <link rel="stylesheet" href="public/css/bootstrap.css" />
+  <link rel="stylesheet" href="public/css/bootstrap.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <title>| QtdAlimentos</title>
 </head>
@@ -40,17 +40,21 @@
         <a href="/home" class="animateLink" onclick="LinkActive()">
           <div class="link">Home<span class="link--linha"></span></div>
         </a>
-        <a href="/administrador" class="animateLink" onclick="LinkActive()">
-          <div class="link">Alimentos<span class="link--linha"></span></div>
-        </a>
         <a href="/admQtd" class="animateLink" onclick="LinkActive()">
-          <div class="link active">Quantidade<span class="link--linha"></span></div>
+          <div class="link">Quantidade<span class="link--linha"></span></div>
+        </a>
+        <a href="#lanches" class="animateLink" onclick="LinkActive()">
+          <div class="link active">Alimentos<span class="link--linha"></span></div>
         </a>
       </div>
-      <div>
-        <a class="sairTexto" href="/home">
+      <div class="navbar--login">
+        <a href="/home">
           <div class="login">Sair</div>
         </a>
+        <div class="toggle-btn" id="_1st-toggle-btn">
+          <input type="checkbox" onchange="darkModeToggle()" id="chkDarkMode">
+          <span></span>
+        </div>
       </div>
     </nav>
   </header>
@@ -146,6 +150,9 @@
 <script src="../public/js/cardapio.js"></script>
 
 <script src="../public/js/carrinho.js"></script>
+
+<script src="/public/js/header.js"></script>
+
 </body>
 
 </html>
