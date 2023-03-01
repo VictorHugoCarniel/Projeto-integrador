@@ -152,13 +152,13 @@ app.get('/administrador', async (req, res) => {
 
 app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
 
-    const { originalname: name, size, key, url = "" } = req.file;
+    const { originalname: name, size, filename: key } = req.file;
 
     const post = await Improds.create({
         name,
         size,
         key,
-        url
+        url: ''
     });
 
     return res.json(post)
