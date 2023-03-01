@@ -154,7 +154,7 @@ app.get('/administrador', async (req, res) => {
 });
 
 app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
-
+    console.log('img')
     const { originalname: name, size, filename: key } = req.file;
 
     const post = await Improds.create({

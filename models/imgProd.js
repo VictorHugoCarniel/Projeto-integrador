@@ -19,5 +19,4 @@ const ImgProd = db.sequelize.define('imgprod', {
 });
 
 // ImgProd.sync({ force: true })
-
 module.exports = ImgProd;
