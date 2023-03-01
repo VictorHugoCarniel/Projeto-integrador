@@ -94,6 +94,8 @@ app.get('/testee', async (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login')
 });
+
+//Sobre
 app.get('/sobre', (req, res) => {
     res.render('sobre')
 });
@@ -135,7 +137,8 @@ app.post('/add-usuario', async (req, res) => {
         email: req.body.email,
         telefone: req.body.telefone,
         cidade: req.body.cidade,
-        senha: criptografar(req.body.senha)
+        senha: criptografar(req.body.senha),
+        idTipoUsuario: req.body.idTipoUsuario = 2
     })
     res.redirect('/login')
 })
@@ -172,7 +175,8 @@ app.post('/add-alimentos', async (req, res) => {
         preco: req.body.preco,
         peso: req.body.peso,
         imagem: req.body.imagem,
-        idTipoProduto: req.body.idTipoProduto
+        idTipoProduto: req.body.idTipoProduto,
+        quantidade: req.body.quantidade = 0
     })
 
     console.log("deu certo")
@@ -242,6 +246,17 @@ app.post('/zera-quantidade/:id', async (req, res) => {
 })
 
 // User
+
+app.get('/user:id', async (req, res) => {
+    console.log('cu Usuario')
+    const id = req.params.id;
+    var rowsC = await User.findAll({
+        where: {
+            id: 1
+        }
+    })
+    res.render('user')
+})
 
 
 module.exports = app;
