@@ -70,10 +70,11 @@
         <h1>Cadastrar alimento:</h1>
       </div>
 
-      <form enctype="multipart/form-data" action="/post" method="post">
+      <form enctype="multipart/form-data" action="/posts" method="post" id="formIMG">
         <div class="input-imagem">
           <label for="inputState" class="form-label">Imagem do alimento</label>
-          <input name="img" type="file" class="form-control">
+          <input name="file" type="file" class="form-control">
+          
         </div>
       </form>
 
@@ -98,20 +99,18 @@
 
         <div class="col-md-6">
           <label for="inputState" class="form-label">Tipo</label>
-          <select name="idTipoProduto" class="form-control">
+          <select name="idTipoProduto" id="tipo" class="form-control">
             <option selected disabled>Escolha</option>
             {{#each rows}} <option value=" {{ idTipoProduto }} "> {{ descricao }} </option>
             {{/each}}
           </select>
         </div>
 
-        <input type="submit" name="enviar" onclick="changeFormAction()" id="imgbtn" class="btn btnForm imgbtn"></input>
+       <input type="submit" name="enviar" onclick="myFunction()" id="imgbtn" class="btn btnForm imgbtn"></input>
         {{!-- <div class="col-12">
           <input type="submit" name="enviar" class="btn btnForm imgbtn"></input>
         </div> --}}
       </form>
-
-
     </section>
 
 
