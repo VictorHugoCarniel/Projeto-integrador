@@ -10,9 +10,10 @@ header {
     z-index: 999;
     margin: auto;
     background: var(#20212bf6);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(10px);
     animation: header-anim .8s forwards ease-in-out;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 .logo {
@@ -83,7 +84,7 @@ header {
 }
 
 .login {
-    background: #282a36;
+    background: var(--background2);
     color: #fff;
     padding: 10px 27px;
     border-radius: 5px;

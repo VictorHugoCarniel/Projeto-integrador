@@ -2,13 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&display=swap');
 
-/*
-:root {
-  --cor1: #FF6D21;
-  --cor2: #FA9529;
-  --fonte1: #233545;
-  --background: #FAFAFA;
-}*/
 
 :root {
   --cor1: #FF6D21;
@@ -19,7 +12,7 @@
   --placeholder: #d4d4d4;
   --background: #FAFAFA;
   --background2: #282a36;
-  --background3: #d4d4d4;
+  --background3: #f1f1f1;
 }
 
 .dark-mode:root {

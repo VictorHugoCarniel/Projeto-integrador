@@ -50,7 +50,6 @@ function criptografar(password) {
     return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
 };
 
-
 //Rotas
 app.use('/public', express.static(path.join('public')))
 
@@ -242,6 +241,5 @@ app.post('/zera-quantidade/:id', async (req, res) => {
 })
 
 // User
-
 
 module.exports = app;
