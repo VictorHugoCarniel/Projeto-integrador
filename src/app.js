@@ -16,7 +16,7 @@ const handlebars = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
 const fs = require('fs');
 
-//Tabelas
+//Models
 const User = require('../models/User');
 const Produtos = require('../models/Produtos');
 const Estoque = require('../models/Estoque');
@@ -258,5 +258,10 @@ app.get('/user:id', async (req, res) => {
     res.render('user')
 })
 
+// Deixa essa rota no final ↴
+
+app.use(function(req, res, next) {
+    res.render('404', { url: req.url })
+});
 
 module.exports = app;
