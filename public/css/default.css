@@ -2,13 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&display=swap');
 
-/*
-:root {
-  --cor1: #FF6D21;
-  --cor2: #FA9529;
-  --fonte1: #233545;
-  --background: #FAFAFA;
-}*/
 
 :root {
   --cor1: #FF6D21;
@@ -17,9 +10,11 @@
   --fonte2: #f8f8f2;
   --hover: #f8f8f2;
   --placeholder: #d4d4d4;
+  --placeholder2: #5a5a5a;
   --background: #FAFAFA;
   --background2: #282a36;
-  --background3: #d4d4d4;
+  --background3: #f1f1f1;
+  --background4: #d1d1d1;
 }
 
 .dark-mode:root {
@@ -29,9 +24,11 @@
   --fonte1: #f8f8f2;
   --hover: #f8f8f2;
   --placeholder: #c5c5c5bd;
+  --placeholder2: #c5c5c5bd;
   --background: #282a36;
   --background2: #44475a;
   --background3: #313442;
+  --background4: #44475a;
 }
 
 * {

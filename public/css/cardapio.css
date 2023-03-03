@@ -85,11 +85,10 @@ body {
     word-wrap: break-word;
     flex-direction: column;
     background-clip: border-box;
-    border: 2px solid rgba(0, 0, 0, .125);
+    border: 1px solid rgba(0, 0, 0, .125);
 
     padding: 10px;
     width: 300px;
-    /* border-radius: 10px; */
     opacity: .3;
     animation: card-anim .5s ease forwards;
     background-color: var(--background3);
@@ -263,13 +262,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type="number"] {
     outline: none;
-    border: none;
+    /* border: none; */
     /* border-top: 1px solid #A8ACB3;
     border-left: 1px solid #A8ACB3;
     border-bottom: 1px solid #A8ACB3;
     border-right: 1px solid #A8ACB3; */
     height: 20px;
     padding: 1%;
+    padding-left: 6px;
 }
 
 label,
@@ -299,7 +299,6 @@ input[type=number]::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-
 input[type=number]::-webkit-inner-spin-button:active {
 
 }
@@ -321,6 +320,10 @@ input[type=number]::-webkit-inner-spin-button:active {
 .delete{
     width: 15px;
     cursor: pointer;
+}
+
+button {
+    background-color: transparent;
 }
 
 .h3-cardapio{

@@ -2,7 +2,7 @@
 
 // function LinkActive(){
 //     item.classList.toggle("active")
-// }
+// }'
 
 document.addEventListener('DOMContentLoaded', () => {
     if (isDarkModeSystem()) {
