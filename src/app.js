@@ -15,6 +15,7 @@ const path = require('path');
 const handlebars = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
 const fs = require('fs');
+const flash = require('connect-flash');
 
 //Models
 const User = require('../models/User');
@@ -28,6 +29,9 @@ const { json } = require('body-parser');
 const { framework } = require('passport');
 
 require("dotenv").config();
+
+app.use(flash()); 
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -130,17 +134,33 @@ app.get('/logout', (req, res) => {
 // cadastro
 app.post('/add-usuario', async (req, res) => {
     console.log('teste')
+    const usuario = await User.findOne({
+        where: { email: req.body.email }
+    });
 
-    await User.create({
-        nome: req.body.nome,
-        sobrenome: req.body.sobrenome,
-        email: req.body.email,
-        telefone: req.body.telefone,
-        cidade: req.body.cidade,
-        senha: criptografar(req.body.senha),
-        idTipoUsuario: req.body.idTipoUsuario = 2
-    })
-    res.redirect('/login')
+    if (usuario) {
+        console.log('teste2')
+        req.session.message = {
+            type: "danger",
+            intro: "Hey,",
+            message: "um usuário com este e-mail já existe! Faça o formulário novamente"
+        }
+        console.log('teste3')
+        res.redirect("/cadastro");
+    } else {
+        console.log('teste else')
+        await User.create({
+            nome: req.body.nome,
+            sobrenome: req.body.sobrenome,
+            email: req.body.email,
+            telefone: req.body.telefone,
+            cidade: req.body.cidade,
+            senha: criptografar(req.body.senha),
+            idTipoUsuario: req.body.idTipoUsuario = 2
+        })
+        console.log('teste 90')
+        res.redirect('/login')
+    }
 })
 
 app.get('/cadastro', (req, res) => {
@@ -260,7 +280,7 @@ app.get('/user:id', async (req, res) => {
 
 // Deixa essa rota no final ↴
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.render('404', { url: req.url })
 });
 
