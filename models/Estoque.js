@@ -18,6 +18,6 @@ Estoque.belongsTo(Produtos, {
 
 //force: criacao e exclusao de tabela
 //alter: alteração de tabela
-//Produtos.sync({ alter: true })
-//Estoque.sync({ force: true })
+//Estoque.sync({ alter: true })
+// Estoque.sync({ force: true })
 module.exports = Estoque;

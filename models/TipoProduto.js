@@ -14,6 +14,6 @@ const TipoProduto = db.sequelize.define('tipoproduto', {
 
 //force: criacao e exclusao de tabela
 //alter: alteração de tabela
-//Produtos.sync({ alter: true })
-//TipoProduto.sync({ force: true })
+//TipoProdutos.sync({ alter: true })
+// TipoProduto.sync({ force: true })
 module.exports = TipoProduto;
