@@ -30,7 +30,7 @@ const { framework } = require('passport');
 
 require("dotenv").config();
 
-app.use(flash()); 
+app.use(flash());
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -137,18 +137,18 @@ app.post('/add-usuario', async (req, res) => {
     const usuario = await User.findOne({
         where: { email: req.body.email }
     });
-
     if (usuario) {
         console.log('teste2')
         req.session.message = {
             type: "danger",
             intro: "Hey,",
-            message: "um usuário com este e-mail já existe! Faça o formulário novamente"
+            message: "Um susuário com este e-mail já existe! Faça o formulário novamente"
         }
         console.log('teste3')
         res.redirect("/cadastro");
     } else {
         console.log('teste else')
+        alert('Usario cadastrado com sucesso!!')
         await User.create({
             nome: req.body.nome,
             sobrenome: req.body.sobrenome,
@@ -156,7 +156,8 @@ app.post('/add-usuario', async (req, res) => {
             telefone: req.body.telefone,
             cidade: req.body.cidade,
             senha: criptografar(req.body.senha),
-            idTipoUsuario: req.body.idTipoUsuario = 2
+            // idTipoUsuario: req.body.idTipoUsuario = 2
+            idTipoUsuario: req.body.idTipoUsuario = 1
         })
         console.log('teste 90')
         res.redirect('/login')
@@ -168,6 +169,11 @@ app.get('/cadastro', (req, res) => {
 });
 
 // adm
+app.get('/alimentosCad', async (req, res) => {
+    const rows = await Tipo.findAll({})
+    res.render('admCadAlimentos', { rows })
+});
+
 app.get('/administrador', async (req, res) => {
     const rows = await Tipo.findAll({})
     res.render('admCadAlimentos', { rows })
@@ -189,7 +195,6 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
 
 //Cadastro Alimentos
 app.post('/add-alimentos', async (req, res) => {
-
     await Produtos.create({
         nome: req.body.nome,
         preco: req.body.preco,
