@@ -28,6 +28,9 @@ const bodyParser = require('body-parser');
 const { json } = require('body-parser');
 const { framework } = require('passport');
 
+const nodemailer = require('nodemailer');
+const mailchimp = require('@mailchimp/mailchimp_marketing');
+
 require("dotenv").config();
 
 app.use(flash()); 
@@ -56,6 +59,29 @@ function criptografar(password) {
 
 
 //Rotas
+
+app.get("/send-email", async (req, res) => {
+
+    const mailchimp = require("@mailchimp/mailchimp_marketing");
+
+    mailchimp.setConfig({
+      apiKey: "e567fb8310680b77b36b8f9cb5dd9ff9-us21",
+      server: "us21",
+    });
+    
+    async function run() {
+      const response = await mailchimp.ping.get();
+      console.log(response);
+    }
+    
+    run();
+    
+    return res.json({
+        erro: false,
+        mensagem: "E-mail enviado com sucesso!"
+    });
+})
+
 app.use('/public', express.static(path.join('public')))
 
 app.set('/views', (path.join('views')))
