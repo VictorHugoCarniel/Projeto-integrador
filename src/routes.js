@@ -8,4 +8,6 @@ routes.post("/posts", multer(multerConfig).single('file'), (req, res) => {
     return res.send("Hello Bitches")
 });
 
+
+
 module.exports = routes;
