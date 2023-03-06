@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('./db');
 
 
-const ImgProd = db.sequelize.define('imgprod', {
+const ImgProd = db.sequelize.define('imgProd', {
     idImgProd:{
         type: db.Sequelize.INTEGER,
         autoIncrement: true,
