@@ -177,7 +177,7 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
     console.log('img')
     const { originalname: name, size, filename: key } = req.file;
 
-    const post = await Improds.create({
+    const post = await ImProds.create({
         name,
         size,
         key,
