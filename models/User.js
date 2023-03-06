@@ -26,7 +26,7 @@ const User = db.sequelize.define('user', {
 //force: criacao e exclusao de tabela
 //alter: alteração de tabela
 //User.sync({ alter: true })
-// User.sync({ force: true })
+//User.sync({ force: true })
 module.exports = User;
 
 User.belongsTo(TipoUsuario, {

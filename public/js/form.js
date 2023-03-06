@@ -138,7 +138,7 @@ function enviarCadastro() {
    if (validacao.senha == false || validacao.email == false) {
     alert("Há campos inválidos");
   } else {
-    alert("Cadastrado com sucesso!");
+    alert("Os dados estão corretos!");
 
     window.location.href = window.location.origin + "/login.html";
   }
