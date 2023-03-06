@@ -18,8 +18,8 @@ btn.addEventListener("click", function(e) {
 })
 
 function myFunction() {
-    setTimeout(function(){ document.getElementById("formIMG").submit();}, );   
     setTimeout(function(){ document.getElementById("image-form").submit();}, );   
+    setTimeout(function(){ document.getElementById("formIMG").submit();}, );   
     }
 
 var form = document.getElementById("image-form");
@@ -30,7 +30,7 @@ form.addEventListener("submit", (e) => {
 
     var nome = document.getElementById("inputLanche").value;
     var preco = document.getElementById("inputPreco").value;
-    var peso = document.getElementById("peso").value;
+    var peso = document.getElementById("inputPeso").value;
     var idTipoProduto = document.getElementById("tipo").value;
     console.log(nome)
     console.log(preco)

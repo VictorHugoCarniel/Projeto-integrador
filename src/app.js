@@ -21,7 +21,7 @@ const flash = require('connect-flash');
 const User = require('../models/User');
 const Produtos = require('../models/Produtos');
 const Estoque = require('../models/Estoque');
-const Improds = require('../models/imgProd');
+const ImProds = require('../models/imgProd');
 const Tipo = require('../models/TipoProduto.js');
 
 const bodyParser = require('body-parser');
