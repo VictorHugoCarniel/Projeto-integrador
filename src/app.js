@@ -31,6 +31,8 @@ const { framework } = require('passport');
 const nodemailer = require('nodemailer');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 
+// import {mail} from '../public/js/valida';
+
 require("dotenv").config();
 
 app.use(flash());
@@ -60,27 +62,38 @@ function criptografar(password) {
 
 //Rotas
 
-app.get("/send-email", async (req, res) => {
+app.get("/valida", async (req, res) => {
+    res.render('valida')
 
-    const mailchimp = require("@mailchimp/mailchimp_marketing");
+    const email = req.params.email
 
-    mailchimp.setConfig({
-      apiKey: "e567fb8310680b77b36b8f9cb5dd9ff9-us21",
-      server: "us21",
-    });
-    
-    async function run() {
-      const response = await mailchimp.ping.get();
-      console.log(response);
+    if (email) {
+        botao.addEventListener("click", () => {
+
+            console.log("jonas")
+            const sgMail = require('@sendgrid/mail')
+            sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+            const msg = {
+                to: mail.textContent,
+                from: 'lkastabackup@gmail.com', // Change to your verified sender
+                subject: 'Sending with SendGrid is Fun',
+                text: 'and easy to do anywhere, even with Node.js',
+                html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+            }
+            sgMail
+                .send(msg)
+                .then(() => {
+                    console.log('Email sent')
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
+
+        })
     }
-    
-    run();
-    
-    return res.json({
-        erro: false,
-        mensagem: "E-mail enviado com sucesso!"
-    });
+
 })
+
 
 app.use('/public', express.static(path.join('public')))
 
@@ -140,7 +153,6 @@ app.post('/auth', async (req, res) => {
             {
                 email: email,
                 senha: criptografar(senha)
-
             }
         });
         if (usuario) {
