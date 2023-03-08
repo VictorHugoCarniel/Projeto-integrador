@@ -15,6 +15,13 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.login--box.redefinirSenha{
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
 .login--img {
     opacity: 0;
     width: 100%;
@@ -39,6 +46,11 @@
     color: #494949;
     position: relative;
     animation: login-anim .8s .6s forwards ease-in-out;
+}
+
+.login--inputs.redefinirSenha{
+    width: 50%;
+    padding: 0%;
 }
 
 .login--inputs a {

@@ -117,6 +117,32 @@ console.log('ok funfou')
 
 })
 
+app.get('/redefinirSenha', (req, res) => {
+    res.render('redefinirSenha')
+});
+
+app.post('/redefinirSenha', async (req, res) => {
+    console.log('senha redefinir')
+    const Email = req.body.email;
+    const Senha = req.body.senha;
+    const usuario = await User.findAll({
+        where: { email: Email }
+    });
+    if (usuario) {
+        console.log('userbostinha')
+        User.update(
+            { senha: criptografar(Senha) },
+            {
+                where: {
+                    email: Email,
+                }
+            });
+    }
+    if (usuario) {
+        res.render('redefinirSenha')
+    }
+});
+
 
 
 app.use('/public', express.static(path.join('public')))
@@ -146,10 +172,10 @@ app.get('/home', async (req, res) => {
                 }
             }
         })
-        res.render('index', { rowsC, rowsB })
     } else {
         res.redirect('/login')
     }
+        res.render('index', { rowsC, rowsB })
 })
 
 app.get('/testee', async (req, res) => {

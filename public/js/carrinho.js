@@ -46,10 +46,10 @@ function addCarrinho(id, nome, preco, imagem) {
   }
   tagUnidades = document.querySelector("#unidades");
   tagCards = document.querySelector(".card")
-  
-  let UnidadesRestantes = estoqueUnidades(valorContador,idProduto);
 
-  if(UnidadesRestantes == 0){
+  let UnidadesRestantes = estoqueUnidades(valorContador, idProduto);
+
+  if (UnidadesRestantes == 0) {
     console.log("aa")
     tagCards.classList.add("displayNone")
   }
@@ -70,23 +70,18 @@ function atualizaCarrinho() {
     tagPedidos.innerHTML += `
                                 <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
-                                    <button onclick="decrementClick('${
-                                      pedido.idProduto
-                                    }', true)">-</button>
-                                    <p id="${
-                                      pedido.idProduto
-                                    }" class="num-contador-pedido" data-contador=${
-      pedido.quantidade
-    }>${pedido.quantidade}</p>
-                                    <button onclick="incrementClick('${
-                                      pedido.idProduto
-                                    }', true)">+</button>
+                                    <button onclick="decrementClick('${pedido.idProduto
+      }', true)">-</button>
+                                    <p id="${pedido.idProduto
+      }" class="num-contador-pedido" data-contador=${pedido.quantidade
+      }>${pedido.quantidade}</p>
+                                    <button onclick="incrementClick('${pedido.idProduto
+      }', true)">+</button>
                                 </div>
                                     <div class="pedido--item">
                                         <div class="pedido--img">
-                                            <img src=${pedido.imagem} alt=${
-      pedido.nome
-    }>
+                                            <img src=${pedido.imagem} alt=${pedido.nome
+      }>
                                         </div>
                                         <div class="pedido--texto">
                                             <h2>${pedido.nome}</h2>
@@ -182,5 +177,24 @@ function enviaPedido() {
   `;
   console.log = "joasn"
 }
+
+
+document.addEventListener('click', (e) => {
+  const targetEl = e.target;
+
+  if (targetEl.classList.contains('btnComprar')) {
+    const cardBody = targetEl.parentNode;
+    GetCard(cardBody)
+  }
+});
+
+function GetCard(cardBody){
+    console.log(cardBody)
+
+};
+
+
+
+
 
 //#endregion
