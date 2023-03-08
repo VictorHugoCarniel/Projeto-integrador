@@ -31,8 +31,6 @@ const { framework } = require('passport');
 const nodemailer = require('nodemailer');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 
-// import {mail} from '../public/js/valida';
-
 require("dotenv").config();
 
 app.use(flash());
@@ -64,35 +62,61 @@ function criptografar(password) {
 
 app.get("/valida", async (req, res) => {
     res.render('valida')
+})
 
-    const email = req.params.email
+app.post("/valida", async (req, res) => {
+    let mail = req.body.mail
 
-    if (email) {
-        botao.addEventListener("click", () => {
 
-            console.log("jonas")
-            const sgMail = require('@sendgrid/mail')
-            sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-            const msg = {
-                to: mail.textContent,
-                from: 'lkastabackup@gmail.com', // Change to your verified sender
-                subject: 'Sending with SendGrid is Fun',
-                text: 'and easy to do anywhere, even with Node.js',
-                html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-            }
-            sgMail
-                .send(msg)
-                .then(() => {
-                    console.log('Email sent')
-                })
-                .catch((error) => {
-                    console.error(error)
-                })
+    var transport = nodemailer.createTransport({
+        host: "sandbox.smtp.mailtrap.io",
+        port: 2525,
+        auth: {
+            user: "42fff224361672",
+            pass: "cc12b400c4b0eb"
+        }
+    });
 
-        })
-    }
+    const buf = crypto.randomBytes(3);
+
+    var message = {
+        from: "noreplay@celke.com.br",
+        to: mail,
+        subject: "Instrução para recuperar a senha",
+        text: "teste",
+        html: "O seu codigo de verificação é: " + buf.toString('hex')
+    };
+
+    transport.sendMail(message, function (err) {
+        if (err) {
+            console.log("Erro: E-mail não enviado com sucesso!")
+            // return res.status(400) 
+        }
+    });
+
+console.log('ok funfou')
+
+    // const sgMail = require('@sendgrid/mail')
+    // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    // const msg = {
+    //     to: 'juliaamarxal@gmail.com',
+    //     from: 'lkastabackup@gmail.com', // Change to your verified sender
+    //     subject: 'Validasapoha',
+    //     text: 'and easy to do anywhere, even with Node.js',
+    //     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    // }
+    // sgMail
+    //     .send(msg)
+    //     .then(() => {
+    //         console.log('Email sent to', req.body.mail)
+    //     })
+    //     .catch((error) => {
+    //         console.error(error)
+    //     })
+
 
 })
+
 
 
 app.use('/public', express.static(path.join('public')))
