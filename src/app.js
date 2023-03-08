@@ -65,36 +65,46 @@ app.get("/valida", async (req, res) => {
 })
 
 app.post("/valida", async (req, res) => {
-    let mail = req.body.mail
+    const mail = req.body.mail
 
-
-    var transport = nodemailer.createTransport({
-        host: "sandbox.smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-            user: "42fff224361672",
-            pass: "cc12b400c4b0eb"
-        }
+    const email = await User.findOne({
+        where: { email: mail }
     });
 
-    const buf = crypto.randomBytes(3);
+    if (email) {
+        var transport = nodemailer.createTransport({
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
+            auth: {
+                user: "42fff224361672",
+                pass: "cc12b400c4b0eb"
+            }
+        });
 
-    var message = {
-        from: "noreplay@celke.com.br",
-        to: mail,
-        subject: "Instrução para recuperar a senha",
-        text: "teste",
-        html: "O seu codigo de verificação é: " + buf.toString('hex')
-    };
+        const buf = crypto.randomBytes(3);
 
-    transport.sendMail(message, function (err) {
-        if (err) {
-            console.log("Erro: E-mail não enviado com sucesso!")
-            // return res.status(400) 
-        }
-    });
+        var message = {
+            from: "noreplay@celke.com.br",
+            to: mail,
+            subject: "Instrução para recuperar a senha",
+            text: "teste",
+            html: "O seu codigo de verificação é: " + buf.toString('hex')
+        };
 
-console.log('ok funfou')
+        transport.sendMail(message, function (err) {
+            if (err) {
+                console.log("Erro: E-mail não enviado com sucesso!")
+            }
+        });
+
+        console.log('ok funfou')
+
+        res.redirect('/validar')
+    } else {
+        console.log("Email não tem no banco")
+    }
+
+    
 
     // const sgMail = require('@sendgrid/mail')
     // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
@@ -114,7 +124,20 @@ console.log('ok funfou')
     //         console.error(error)
     //     })
 
+})
 
+app.get("/validar", async (req, res) => {
+    res.render('validar')
+})
+
+app.post("/validar", async (req, res) => {
+    const code = req.body.mail;
+
+    if (code == buf) {
+        console.log("Comes e bebes")
+    } else {
+        console.log ("mermao deu ruim")
+    }
 })
 
 app.get('/redefinirSenha', (req, res) => {
@@ -125,7 +148,7 @@ app.post('/redefinirSenha', async (req, res) => {
     console.log('senha redefinir')
     const Email = req.body.email;
     const Senha = req.body.senha;
-    const usuario = await User.findAll({
+    const usuario = await User.findOne({
         where: { email: Email }
     });
     if (usuario) {
@@ -139,7 +162,7 @@ app.post('/redefinirSenha', async (req, res) => {
             });
     }
     if (usuario) {
-        res.render('redefinirSenha')
+        res.render('login')
     }
 });
 
@@ -175,7 +198,7 @@ app.get('/home', async (req, res) => {
     } else {
         res.redirect('/login')
     }
-        res.render('index', { rowsC, rowsB })
+    res.render('index', { rowsC, rowsB })
 })
 
 app.get('/testee', async (req, res) => {
