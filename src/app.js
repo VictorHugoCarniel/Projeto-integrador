@@ -57,6 +57,7 @@ function criptografar(password) {
     return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
 };
 
+const buf = crypto.randomBytes(3);
 
 //Rotas
 
@@ -81,8 +82,6 @@ app.post("/valida", async (req, res) => {
             }
         });
 
-        const buf = crypto.randomBytes(3);
-
         var message = {
             from: "noreplay@celke.com.br",
             to: mail,
@@ -93,18 +92,15 @@ app.post("/valida", async (req, res) => {
 
         transport.sendMail(message, function (err) {
             if (err) {
-                console.log("Erro: E-mail não enviado com sucesso!")
+                console.log("Erro: E-mail não enviado com sucesso!" + buf.toString('hex'))
             }
         });
 
         console.log('ok funfou')
-
         res.redirect('/validar')
     } else {
         console.log("Email não tem no banco")
     }
-
-    
 
     // const sgMail = require('@sendgrid/mail')
     // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
@@ -128,15 +124,17 @@ app.post("/valida", async (req, res) => {
 
 app.get("/validar", async (req, res) => {
     res.render('validar')
+    console.log(buf.toString('hex'))
 })
 
 app.post("/validar", async (req, res) => {
     const code = req.body.mail;
+    console.log(buf.toString('hex'))
 
     if (code == buf) {
-        console.log("Comes e bebes")
+        console.log("ate ai tudo bem")
     } else {
-        console.log ("mermao deu ruim")
+        console.log("mermao deu ruim")
     }
 })
 
@@ -152,7 +150,7 @@ app.post('/redefinirSenha', async (req, res) => {
         where: { email: Email }
     });
     if (usuario) {
-        console.log('userbostinha')
+        console.log('user')
         User.update(
             { senha: criptografar(Senha) },
             {
@@ -165,8 +163,6 @@ app.post('/redefinirSenha', async (req, res) => {
         res.render('login')
     }
 });
-
-
 
 app.use('/public', express.static(path.join('public')))
 
