@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="public/css/bootstrap.css" />
+  <link rel="stylesheet" href="public/css/bootstrap.css" />
 
   <!-- favicon -->
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
@@ -22,9 +22,9 @@
 
   <link rel="stylesheet" href="public/css/carrinho.css" />
 
-    <link rel="stylesheet" href="public/css/redefinirSenha.css">
+  <link rel="stylesheet" href="public/css/redefinirSenha.css">
 
-  <title>| Login</title>
+  <title>| Recuperar Senha</title>
 </head>
 
 <body>
@@ -71,16 +71,24 @@
   </header>
 
   <section class="login--container">
-    <form class="login--box redefinirSenha" action="/auth" method="post">
+    <form class="login--box redefinirSenha" action="/redefinirSenha" method="post">
       <div class="login--inputs redefinirSenha">
         <h1>Redefina sua senha</h1>
         <div class="input--box">
           <label for="inputEmail">Email</label>
           <input type="email" id="inputEmail" class="form-control" placeholder="Email"
-            onchange="validaEmail(this, false)" maxlength="60" name="email" />
-          <i class="fas fa-check-circle ok" id="okEmail"></i>
-          <i class="fas fa-exclamation-circle erro" id="erroEmail"></i>
+            onchange="validaEmail(this, false)" maxlength="60" name="email" disabled />
           <span id="msgErroEmail" class="msgErro">Mensagem de erro</span>
+        </div>
+        <div class="input--box">
+          <div class="text--senha">
+            <label for="inputSenha">Nova senha</label>
+          </div>
+          <input name="senha" type="password" id="inputSenha" class="form-control" placeholder="Senha"
+            onchange="validaSenha(this)" name="senha" />
+          <i class="fas fa-check-circle ok" id="okSenha"></i>
+          <i class="fas fa-exclamation-circle erro" id="erroSenha"></i>
+          <span id="msgErroSenha" class="msgErro">Mensagem de erro</span>
         </div>
         <div class="input--box">
           <div class="text--senha">
@@ -98,6 +106,7 @@
     </form>
   </section>
 
+
   <script src="../public/js/btn-mobile.js"></script>
 
   <script src="../public/js/form.js"></script>
@@ -107,6 +116,9 @@
   <script src="../public/js/preloader.js"></script>
 
   <script src="/public/js/header.js"></script>
+
+  <script src="/public/js/valida.js"></script>
+  <script src="/public/js/redefine.js"></script>
 
 </body>
 
