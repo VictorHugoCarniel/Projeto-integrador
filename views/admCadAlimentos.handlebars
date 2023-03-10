@@ -25,6 +25,8 @@
 
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
 
+ 
+
   <meta name="description" content="A confeitaria do Senac proporciona o melhor para o seu bem-estar e alimentação" />
 
   <title>| Administrador</title>
@@ -74,11 +76,11 @@
         <div class="input-imagem">
           <label for="inputState" class="form-label">Imagem do alimento</label>
           <input name="file" type="file" class="form-control">
-          
+
         </div>
       </form>
 
-      <form class="row g-3" id="image-form" novalidate method="post">
+      <form class="row g-3" id="produto-form" novalidate method="post">
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Lanche</label>
           <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"
@@ -106,16 +108,39 @@
           </select>
         </div>
 
-       <input type="submit" name="enviar" onclick="myFunction()" id="imgbtn" class="btn btnForm imgbtn"></input>
+
         {{!-- <div class="col-12">
           <input type="submit" name="enviar" class="btn btnForm imgbtn"></input>
         </div> --}}
       </form>
     </section>
-
+    <input type="submit" name="enviar" onclick="myFunction()" id="imgbtn" class="btn btnForm imgbtn"></input>
 
 
   </main>
+  <script>
+
+   function myFunction() {
+    setTimeout(function(){ document.getElementById("formIMG").submit();}, );
+    myFunction2();
+    }
+
+  function myFunction2() {
+    $("#imgbtn").on("clique", function () {
+      $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/add-alimentos",
+        data:$("produto-form").serialize(),
+        success: função(dados)    
+		{
+          //Transferir dados do servidor 
+        } 
+	}); 
+});   
+  }
+
+     </script>
   <script src="../public/js/adm_Produtos.js"></script>
 
   <script src="../public/js/btn-mobile.js"></script>
@@ -125,6 +150,8 @@
   <script src="../public/js/carrinho.js"></script>
 
   <script src="/public/js/header.js"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 </body>
 

@@ -16,6 +16,7 @@ const handlebars = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
 const fs = require('fs');
 const flash = require('connect-flash');
+const localStorage = require('localStorage');
 
 //Models
 const User = require('../models/User');
@@ -296,6 +297,9 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
         key,
         url: ''
     });
+    
+    localStorage.getItem('produto', 1)
+    "null" === localStorage.getItem('produto');
 
     return res.json(post)
 });
@@ -303,7 +307,7 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
 //Cadastro Alimentos
 app.post('/add-alimentos', async (req, res) => {
     await Produtos.create({
-        nome: req.body.nome,
+        nome: req.localStorage.nome,
         preco: req.body.preco,
         peso: req.body.peso,
         imagem: req.body.imagem,
