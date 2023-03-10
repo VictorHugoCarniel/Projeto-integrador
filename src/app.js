@@ -16,6 +16,7 @@ const handlebars = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
 const fs = require('fs');
 const flash = require('connect-flash');
+const localStorage = require('localStorage');
 
 //Models
 const User = require('../models/User');
@@ -27,6 +28,9 @@ const Tipo = require('../models/TipoProduto.js');
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
 const { framework } = require('passport');
+
+const nodemailer = require('nodemailer');
+const mailchimp = require('@mailchimp/mailchimp_marketing');
 
 require("dotenv").config();
 
@@ -54,8 +58,113 @@ function criptografar(password) {
     return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
 };
 
+const buf = crypto.randomBytes(3);
 
 //Rotas
+
+app.get("/valida", async (req, res) => {
+    res.render('valida')
+})
+
+app.post("/valida", async (req, res) => {
+    const mail = req.body.mail
+
+    const email = await User.findOne({
+        where: { email: mail }
+    });
+
+    if (email) {
+        var transport = nodemailer.createTransport({
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
+            auth: {
+                user: "42fff224361672",
+                pass: "cc12b400c4b0eb"
+            }
+        });
+
+        var message = {
+            from: "noreplay@celke.com.br",
+            to: mail,
+            subject: "Instrução para recuperar a senha",
+            text: "teste",
+            html: "O seu codigo de verificação é: " + buf.toString('hex')
+        };
+
+        transport.sendMail(message, function (err) {
+            if (err) {
+                console.log("Erro: E-mail não enviado com sucesso!" + buf.toString('hex'))
+            }
+        });
+
+        console.log('ok funfou')
+        res.redirect('/validar')
+    } else {
+        console.log("Email não tem no banco")
+    }
+
+    // const sgMail = require('@sendgrid/mail')
+    // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    // const msg = {
+    //     to: 'juliaamarxal@gmail.com',
+    //     from: 'lkastabackup@gmail.com', // Change to your verified sender
+    //     subject: 'Validasapoha',
+    //     text: 'and easy to do anywhere, even with Node.js',
+    //     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    // }
+    // sgMail
+    //     .send(msg)
+    //     .then(() => {
+    //         console.log('Email sent to', req.body.mail)
+    //     })
+    //     .catch((error) => {
+    //         console.error(error)
+    //     })
+
+})
+
+app.get("/validar", async (req, res) => {
+    res.render('validar')
+    console.log(buf.toString('hex'))
+})
+
+app.post("/validar", async (req, res) => {
+    const code = req.body.mail;
+    console.log(buf.toString('hex'))
+
+    if (code == buf) {
+        console.log("ate ai tudo bem")
+    } else {
+        console.log("mermao deu ruim")
+    }
+})
+
+app.get('/redefinirSenha', (req, res) => {
+    res.render('redefinirSenha')
+});
+
+app.post('/redefinirSenha', async (req, res) => {
+    console.log('senha redefinir')
+    const Email = req.body.email;
+    const Senha = req.body.senha;
+    const usuario = await User.findOne({
+        where: { email: Email }
+    });
+    if (usuario) {
+        console.log('user')
+        User.update(
+            { senha: criptografar(Senha) },
+            {
+                where: {
+                    email: Email,
+                }
+            });
+    }
+    if (usuario) {
+        res.render('login')
+    }
+});
+
 app.use('/public', express.static(path.join('public')))
 
 app.set('/views', (path.join('views')))
@@ -83,10 +192,10 @@ app.get('/home', async (req, res) => {
                 }
             }
         })
-        res.render('index', { rowsC, rowsB })
     } else {
         res.redirect('/login')
     }
+    res.render('index', { rowsC, rowsB })
 })
 
 app.get('/testee', async (req, res) => {
@@ -114,7 +223,6 @@ app.post('/auth', async (req, res) => {
             {
                 email: email,
                 senha: criptografar(senha)
-
             }
         });
         if (usuario) {
@@ -189,6 +297,9 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
         key,
         url: ''
     });
+    
+    localStorage.getItem('produto', 1)
+    "null" === localStorage.getItem('produto');
 
     return res.json(post)
 });
@@ -196,7 +307,7 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
 //Cadastro Alimentos
 app.post('/add-alimentos', async (req, res) => {
     await Produtos.create({
-        nome: req.body.nome,
+        nome: req.localStorage.nome,
         preco: req.body.preco,
         peso: req.body.peso,
         imagem: req.body.imagem,

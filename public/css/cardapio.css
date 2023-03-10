@@ -11,7 +11,7 @@ body {
     padding: 50px 8%;
 }
 
-.cardapio-comidas{
+.cardapio-comidas {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +19,7 @@ body {
     margin-bottom: 40px;
 }
 
-.cardapio-bebidas{
+.cardapio-bebidas {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -299,11 +299,9 @@ input[type=number]::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-input[type=number]::-webkit-inner-spin-button:active {
+input[type=number]::-webkit-inner-spin-button:active {}
 
-}
-
-.cardBody{
+.cardBody {
     padding: 15px;
 }
 
@@ -313,11 +311,11 @@ input[type=number]::-webkit-inner-spin-button:active {
     justify-content: space-between;
 }
 
-.titulo h2{
+.titulo h2 {
     margin: 0%;
 }
 
-.delete{
+.delete {
     width: 15px;
     cursor: pointer;
 }
@@ -326,7 +324,7 @@ button {
     background-color: transparent;
 }
 
-.h3-cardapio{
+.h3-cardapio {
     padding-bottom: 6px;
     border-bottom: 2px solid var(--cor1);
     width: 200px;

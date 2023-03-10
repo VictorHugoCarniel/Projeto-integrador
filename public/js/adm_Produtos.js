@@ -22,28 +22,7 @@ function myFunction() {
     setTimeout(function(){ document.getElementById("formIMG").submit();}, );   
     }
 
-var form = document.getElementById("image-form");
 
-form.addEventListener("submit", (e) => {
 
-    e.preventDefault();
 
-    var nome = document.getElementById("inputLanche").value;
-    var preco = document.getElementById("inputPreco").value;
-    var peso = document.getElementById("inputPeso").value;
-    var idTipoProduto = document.getElementById("tipo").value;
-    console.log(nome)
-    console.log(preco)
-    console.log(peso)
-    console.log(idTipoProduto)
 
-    let produto = new Array();
-
-    if(localStorage.hasOwnProperty("produto")){
-     produto =JSON.parse(localStorage.getItem("produto"))
-    }
-
-    produto.push({nome, preco, peso, idTipoProduto})
-
-    localStorage.setItem("produto", JSON.stringify(produto));
-})
