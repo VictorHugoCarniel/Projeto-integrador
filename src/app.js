@@ -304,7 +304,7 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '../public/uploads') // Diretório onde os arquivos serão armazenados
+      cb(null, './public/uploads') // Diretório onde os arquivos serão armazenados
     },
     filename: function (req, file, cb) {
       cb(null, Date.now() + '-' + file.originalname) // Nome do arquivo
@@ -315,7 +315,7 @@ const storage = multer.diskStorage({
 //Cadastro Alimentos
 
 app.post('/add-alimentos', upload.single('imagem'), async (req, res) => {
-    const imagePath = path.join('../public/uploads', req.file.filename);
+    const imagePath = path.join('./public/uploads', req.file.filename);
     await Produtos.create({
         nome: req.body.nome,
         preco: req.body.preco,
