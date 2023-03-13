@@ -178,23 +178,19 @@ function enviaPedido() {
   console.log = "joasn"
 }
 
-
-document.addEventListener('click', (e) => {
-  const targetEl = e.target;
-
-  if (targetEl.classList.contains('btnComprar')) {
-    const cardBody = targetEl.parentNode;
-    GetCard(cardBody)
-  }
-});
-
-function GetCard(cardBody){
-    console.log(cardBody)
-
-};
-
-
-
-
-
+// function GetCard(cardBody){
+//     console.log(cardBody)
+// };
 //#endregion
+
+
+
+EnviaId = (id) => {
+  console.log(id);
+  console.log("EnviaID");
+  return id;
+}
+
+module.exports = EnviaId;
+// export {default as EnviaId} from "carrinho.js";
+// module.exports = { EnviaId as default};

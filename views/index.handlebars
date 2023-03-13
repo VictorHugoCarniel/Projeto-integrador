@@ -94,7 +94,7 @@
       <h1>Confeitaria do Senac</h1>
       <p class="desc">
         Projeto desenvolvido pelos alunos do curso de desenvolvimento de
-        software para a cantina do Senac
+        software para a cantina do Senac.
       </p>
       <div>
         <a href="#cardapio" class="btnComprarAgora animateLink">Comprar agora</a>
@@ -138,6 +138,11 @@
               Quantidade atual: {{ quantidade }}
             </p>
           </div>
+          <div class="text">
+            <p>
+              Preço: {{ preco }}
+            </p>
+          </div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
           </form>
 
@@ -167,9 +172,15 @@
               {{ nome }}
             </h2>
           </div>
+          
           <div class="text">
             <p>
               Quantidade atual: {{ quantidade }}
+            </p>
+          </div>
+          <div class="text">
+            <p>
+              Preço: {{ preco }}
             </p>
           </div>
           <button type="submit" class="btnComprar">Comprar</button>
