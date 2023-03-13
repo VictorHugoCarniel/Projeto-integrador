@@ -72,12 +72,12 @@ var lostmail = ''
 //Rotas
 
 app.get("/valida", async (req, res) => {
-    if(buf == buf){
+    if (buf == buf) {
         buf = crypto.randomBytes(3);
         console.log('jonas apelao')
     }
     res.render('valida');
-    
+
     console.log(buf.toString('hex'))
 })
 
@@ -97,12 +97,23 @@ app.post("/valida", async (req, res) => {
             }
         });
 
+        const header = fs.readFileSync('./templates/header.html', 'utf8');
+        const resetsenha = fs.readFileSync('./templates/resetpass.html', 'utf8');
+        const welcome = fs.readFileSync('./templates/welcome.html', 'utf8');
+        const footer = fs.readFileSync('./templates/footer.html', 'utf8');
+
+        const emailBody = `
+            ${header}
+            ${resetsenha}
+            ${footer}
+        `;
+
         var message = {
             from: "noreplay@celke.com.br",
             to: mail,
             subject: "Instrução para recuperar a senha",
             text: "teste",
-            html: "O seu codigo de verificação é: " + buf.toString('hex')
+            html: emailBody
         };
 
         transport.sendMail(message, function (err) {
