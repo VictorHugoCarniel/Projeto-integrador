@@ -23,7 +23,7 @@ const localStorage = require('localStorage');
 const User = require('../models/User');
 const Produtos = require('../models/Produtos');
 const Estoque = require('../models/Estoque');
-const ImProds = require('../models/imgProd');
+const ImgProds = require('../models/imgProd');
 const Tipo = require('../models/TipoProduto.js');
 
 const bodyParser = require('body-parser');
@@ -302,15 +302,27 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
     return res.json(post)
 });
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '../public/uploads') // Diretório onde os arquivos serão armazenados
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname) // Nome do arquivo
+    }
+  });
+  
+  const upload = multer({ storage: storage });
 //Cadastro Alimentos
-app.post('/add-alimentos', async (req, res) => {
+
+app.post('/add-alimentos', upload.single('imagem'), async (req, res) => {
+    const imagePath = path.join('../public/uploads', req.file.filename);
     await Produtos.create({
-        nome: req.localStorage.nome,
+        nome: req.body.nome,
         preco: req.body.preco,
         peso: req.body.peso,
         imagem: req.body.imagem,
         idTipoProduto: req.body.idTipoProduto,
-        imagem: req.file,
+        imgProd: imagePath,
         quantidade: req.body.quantidade = 0
     })
 
