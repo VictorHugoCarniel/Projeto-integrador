@@ -72,8 +72,16 @@
         <h1>Cadastrar alimento:</h1>
       </div>
 
+<<<<<<< Updated upstream
       <form  action="/posts" method="post" id="formIMG">
         
+=======
+      <form enctype="multipart/form-data" action="/posts" method="post" id="formIMG">
+        <div class="input-imagem">
+          <label for="inputState" class="form-label">Imagem do alimento</label>
+          <input id="inputIMG"name="file" type="file" class="form-control">
+
+>>>>>>> Stashed changes
         </div>
       </form>
 
@@ -123,26 +131,14 @@
 
   </main>
   <script>
-
-   function myFunction() {
-    setTimeout(function(){ document.getElementById("formIMG").submit();}, );
-    myFunction2();
-    }
-
-  function myFunction2() {
-    $("#imgbtn").on("clique", function () {
-      $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "/add-alimentos",
-        data:$("produto-form").serialize(),
-        success: função(dados)    
-		{
-          //Transferir dados do servidor 
-        } 
-	}); 
-});   
+  var inputIMG = document.getElementById("inputIMG");
+  var valor = inputIMG.value;
+  if valor != null{
+  function myFunction() {
+  setTimeout(function(){ document.getElementById("formIMG").submit();}, );
   }
+  }
+ 
 
      </script>
   <script src="../public/js/adm_Produtos.js"></script>
