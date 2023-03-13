@@ -13,7 +13,7 @@ const Produtos = db.sequelize.define('produto', {
     peso: db.Sequelize.DOUBLE,
     quantidade: db.Sequelize.INTEGER,
     idTipoProduto: db.Sequelize.INTEGER,
-    imgProd: db.Sequelize.BLOB
+    imgProd: db.Sequelize.STRING
 })
 
 
