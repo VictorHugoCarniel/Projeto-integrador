@@ -72,21 +72,33 @@
         <h1>Cadastrar alimento:</h1>
       </div>
 
+<<<<<<< Updated upstream
+      <form  action="/posts" method="post" id="formIMG">
+        
+=======
       <form enctype="multipart/form-data" action="/posts" method="post" id="formIMG">
         <div class="input-imagem">
           <label for="inputState" class="form-label">Imagem do alimento</label>
-          <input name="file" type="file" class="form-control">
+          <input id="inputIMG"name="file" type="file" class="form-control">
 
+>>>>>>> Stashed changes
         </div>
       </form>
 
+     
+
       <form class="row g-3" id="produto-form" novalidate method="post">
+
+         <div class="input-imagem">
+          <label for="inputState" class="form-label">Imagem do alimento</label>
+          <input name="file" type="file" class="form-control">
+          
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Lanche</label>
           <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"
             name="nome" />
         </div>
-
+        
         <div class="col-md-6 input--box">
           <label for="inputPassword4" class="form-label">Preço</label>
           <input type="number" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
@@ -119,26 +131,14 @@
 
   </main>
   <script>
-
-   function myFunction() {
-    setTimeout(function(){ document.getElementById("formIMG").submit();}, );
-    myFunction2();
-    }
-
-  function myFunction2() {
-    $("#imgbtn").on("clique", function () {
-      $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "/add-alimentos",
-        data:$("produto-form").serialize(),
-        success: função(dados)    
-		{
-          //Transferir dados do servidor 
-        } 
-	}); 
-});   
+  var inputIMG = document.getElementById("inputIMG");
+  var valor = inputIMG.value;
+  if valor != null{
+  function myFunction() {
+  setTimeout(function(){ document.getElementById("formIMG").submit();}, );
   }
+  }
+ 
 
      </script>
   <script src="../public/js/adm_Produtos.js"></script>

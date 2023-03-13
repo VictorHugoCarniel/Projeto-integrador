@@ -12,6 +12,7 @@ const multer = require('multer');
 const multerConfig = require("./config/multer");
 const app = express();
 const path = require('path');
+
 const handlebars = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
 const fs = require('fs');
@@ -31,13 +32,14 @@ const { framework } = require('passport');
 
 const nodemailer = require('nodemailer');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
+const { get } = require('http');
 
 require("dotenv").config();
 
 app.use(flash());
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
@@ -58,17 +60,29 @@ function criptografar(password) {
     return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
 };
 
-const buf = crypto.randomBytes(3);
+var buf = crypto.randomBytes(3);
+var lostmail = ''
+
+// function getEmail(email) {
+//     return email
+// }
+
+// getEmail(lostmail)
 
 //Rotas
 
 app.get("/valida", async (req, res) => {
-    res.render('valida')
+    if(buf == buf){
+        buf = crypto.randomBytes(3);
+        console.log('jonas apelao')
+    }
+    res.render('valida');
+    
+    console.log(buf.toString('hex'))
 })
 
 app.post("/valida", async (req, res) => {
     const mail = req.body.mail
-
     const email = await User.findOne({
         where: { email: mail }
     });
@@ -98,10 +112,12 @@ app.post("/valida", async (req, res) => {
         });
 
         console.log('ok funfou')
-        res.redirect('/validar')
+        // res.redirect('/validar')
     } else {
         console.log("Email não tem no banco")
     }
+
+    lostmail = mail
 
     // const sgMail = require('@sendgrid/mail')
     // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
@@ -132,8 +148,9 @@ app.post("/validar", async (req, res) => {
     const code = req.body.mail;
     console.log(buf.toString('hex'))
 
-    if (code == buf) {
+    if (code == buf.toString('hex')) {
         console.log("ate ai tudo bem")
+        res.redirect('/redefinirSenha')
     } else {
         console.log("mermao deu ruim")
     }
@@ -145,6 +162,7 @@ app.get('/redefinirSenha', (req, res) => {
 
 app.post('/redefinirSenha', async (req, res) => {
     console.log('senha redefinir')
+    
     const Email = req.body.email;
     const Senha = req.body.senha;
     const usuario = await User.findOne({
@@ -256,7 +274,6 @@ app.post('/add-usuario', async (req, res) => {
         res.redirect("/cadastro");
     } else {
         console.log('teste else')
-        alert('Usario cadastrado com sucesso!!')
         await User.create({
             nome: req.body.nome,
             sobrenome: req.body.sobrenome,
@@ -297,7 +314,7 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
         key,
         url: ''
     });
-    
+
     localStorage.getItem('produto', 1)
     "null" === localStorage.getItem('produto');
 
@@ -312,6 +329,7 @@ app.post('/add-alimentos', async (req, res) => {
         peso: req.body.peso,
         imagem: req.body.imagem,
         idTipoProduto: req.body.idTipoProduto,
+        imagem: req.file,
         quantidade: req.body.quantidade = 0
     })
 
