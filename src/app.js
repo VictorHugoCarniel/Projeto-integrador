@@ -38,7 +38,7 @@ require("dotenv").config();
 app.use(flash());
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
@@ -328,6 +328,7 @@ app.post('/add-alimentos', async (req, res) => {
         peso: req.body.peso,
         imagem: req.body.imagem,
         idTipoProduto: req.body.idTipoProduto,
+        imagem: req.file,
         quantidade: req.body.quantidade = 0
     })
 
