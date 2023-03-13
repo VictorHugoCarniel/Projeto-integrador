@@ -111,30 +111,11 @@ app.post("/valida", async (req, res) => {
         });
 
         console.log('ok funfou')
-        // res.redirect('/validar')
+        lostmail = mail
+        res.redirect('/validar')
     } else {
         console.log("Email não tem no banco")
     }
-
-    lostmail = mail
-
-    // const sgMail = require('@sendgrid/mail')
-    // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-    // const msg = {
-    //     to: 'juliaamarxal@gmail.com',
-    //     from: 'lkastabackup@gmail.com', // Change to your verified sender
-    //     subject: 'Validasapoha',
-    //     text: 'and easy to do anywhere, even with Node.js',
-    //     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-    // }
-    // sgMail
-    //     .send(msg)
-    //     .then(() => {
-    //         console.log('Email sent to', req.body.mail)
-    //     })
-    //     .catch((error) => {
-    //         console.error(error)
-    //     })
 
 })
 
@@ -161,11 +142,11 @@ app.get('/redefinirSenha', (req, res) => {
 
 app.post('/redefinirSenha', async (req, res) => {
     console.log('senha redefinir')
-    
-    const Email = req.body.email;
+    console.log(lostmail)
+
     const Senha = req.body.senha;
     const usuario = await User.findOne({
-        where: { email: Email }
+        where: { email: lostmail }
     });
     if (usuario) {
         console.log('user')
@@ -173,7 +154,7 @@ app.post('/redefinirSenha', async (req, res) => {
             { senha: criptografar(Senha) },
             {
                 where: {
-                    email: Email,
+                    email: lostmail,
                 }
             });
     }

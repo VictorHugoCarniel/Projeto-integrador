@@ -74,12 +74,12 @@
     <form class="login--box redefinirSenha" action="/redefinirSenha" method="post">
       <div class="login--inputs redefinirSenha">
         <h1>Redefina sua senha</h1>
-        <div class="input--box">
+        {{!-- <div class="input--box">
           <label for="inputEmail">Email</label>
           <input type="email" id="inputEmail" class="form-control" placeholder="Email"
             onchange="validaEmail(this, false)" maxlength="60" name="email" disabled />
           <span id="msgErroEmail" class="msgErro">Mensagem de erro</span>
-        </div>
+        </div> --}}
         <div class="input--box">
           <div class="text--senha">
             <label for="inputSenha">Nova senha</label>
@@ -94,7 +94,7 @@
           <div class="text--senha">
             <label for="inputSenha">Nova senha</label>
           </div>
-          <input name="senha" type="password" id="inputSenha" class="form-control" placeholder="Senha"
+          <input name="senha2" type="password" id="inputSenha" class="form-control" placeholder="Senha"
             onchange="validaSenha(this)" name="senha" />
           <i class="fas fa-check-circle ok" id="okSenha"></i>
           <i class="fas fa-exclamation-circle erro" id="erroSenha"></i>
