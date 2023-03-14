@@ -66,12 +66,6 @@ function criptografar(password) {
 var buf = crypto.randomBytes(3);
 var lostmail = ''
 
-// function getEmail(email) {
-//     return email
-// }
-
-// getEmail(lostmail)
-
 //Rotas
 
 app.get("/valida", async (req, res) => {
@@ -128,7 +122,7 @@ app.post("/valida", async (req, res) => {
                 console.log("Erro: E-mail não enviado com sucesso!" + buf.toString('hex'))
             }
         });
-
+        
         console.log('ok funfou')
         lostmail = mail
         res.redirect('/validar')
@@ -161,7 +155,7 @@ app.post("/validar", async (req, res) => {
 })
 
 app.get('/redefinirSenha', (req, res) => {
-    res.render('redefinirSenha')
+    res.render('redefinirSenha', {email: lostmail})
 });
 
 app.post('/redefinirSenha', async (req, res) => {

@@ -106,6 +106,10 @@ p {
   background: var(--cor2);
 }
 
+#desativado {
+  opacity: 50% !important;
+}
+
 body,
 html {
   background: var(--background);
