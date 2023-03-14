@@ -4,6 +4,7 @@ const { userInfo } = require('os');
 const { equal } = require('assert');
 const { where } = require('sequelize');
 const { reset } = require('nodemon');[]
+const ejs = require('ejs');
 // const ejs = require('ejs');
 const express = require('express');
 const session = require('express-session');
@@ -12,8 +13,10 @@ const multer = require('multer');
 const multerConfig = require("./config/multer");
 const app = express();
 const path = require('path');
+const handlebars = require('handlebars');
 
-const handlebars = require("express3-handlebars").create(); // engine
+
+const handlebarss = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
 const fs = require('fs');
 const flash = require('connect-flash');
@@ -43,7 +46,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
-app.engine("handlebars", handlebars.engine);
+app.engine("handlebars", handlebarss.engine);
 app.set("view engine", "handlebars");
 
 app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
@@ -97,14 +100,18 @@ app.post("/valida", async (req, res) => {
             }
         });
 
-        const header = fs.readFileSync('./templates/header.html', 'utf8');
-        const resetsenha = fs.readFileSync('./templates/resetpass.html', 'utf8');
-        const welcome = fs.readFileSync('./templates/welcome.html', 'utf8');
-        const footer = fs.readFileSync('./templates/footer.html', 'utf8');
+        const header = fs.readFileSync('./templates/header.handlebars', 'utf8');
+        const resetsenha = fs.readFileSync('./templates/resetpass.handlebars', 'utf8');
+        const welcome = fs.readFileSync('./templates/welcome.handlebars', 'utf8');
+        const footer = fs.readFileSync('./templates/footer.handlebars', 'utf8');
+
+        const varToPass = handlebars.compile(resetsenha);
+        const texto = buf.toString('hex');
+        const code = varToPass({ texto });
 
         const emailBody = `
             ${header}
-            ${resetsenha}
+            ${code}
             ${footer}
         `;
 
@@ -133,6 +140,11 @@ app.post("/valida", async (req, res) => {
 
 app.get("/validar", async (req, res) => {
     res.render('validar')
+    console.log(buf.toString('hex'))
+})
+
+app.get("/test", async (req, res) => {
+    res.render('resetpass')
     console.log(buf.toString('hex'))
 })
 
@@ -315,14 +327,14 @@ app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './public/uploads') // Diretório onde os arquivos serão armazenados
+        cb(null, './public/uploads') // Diretório onde os arquivos serão armazenados
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now() + '-' + file.originalname) // Nome do arquivo
+        cb(null, Date.now() + '-' + file.originalname) // Nome do arquivo
     }
-  });
-  
-  const upload = multer({ storage: storage });
+});
+
+const upload = multer({ storage: storage });
 //Cadastro Alimentos
 
 app.post('/add-alimentos', upload.single('imagem'), async (req, res) => {

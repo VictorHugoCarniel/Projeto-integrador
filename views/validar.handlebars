@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -21,5 +20,14 @@
 </div>
 
 <script src="/public/js/valida.js"></script>
+
+<script>
+    fetch('/validar')
+  .then(response => response.json())
+  .then(data => {
+    const minhaVariavel = data.lostmail;
+    console.log(minhaVariavel, "esse é o ponas");
+  });
+</script>
 
 </html>
