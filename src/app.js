@@ -71,11 +71,8 @@ var lostmail = ''
 app.get("/valida", async (req, res) => {
     if (buf == buf) {
         buf = crypto.randomBytes(3);
-        console.log('jonas apelao')
     }
     res.render('valida');
-
-    console.log(buf.toString('hex'))
 })
 
 app.post("/valida", async (req, res) => {
@@ -89,8 +86,8 @@ app.post("/valida", async (req, res) => {
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
-                user: "42fff224361672",
-                pass: "cc12b400c4b0eb"
+                user: "589068e3d0b971",
+                pass: "8672cc117e3fac"
             }
         });
 
@@ -119,10 +116,10 @@ app.post("/valida", async (req, res) => {
 
         transport.sendMail(message, function (err) {
             if (err) {
-                console.log("Erro: E-mail não enviado com sucesso!" + buf.toString('hex'))
+                console.log("Erro: E-mail não enviado!  -  " + buf.toString('hex'))
             }
         });
-        
+
         console.log('ok funfou')
         lostmail = mail
         res.redirect('/validar')
@@ -155,7 +152,7 @@ app.post("/validar", async (req, res) => {
 })
 
 app.get('/redefinirSenha', (req, res) => {
-    res.render('redefinirSenha', {email: lostmail})
+    res.render('redefinirSenha', { email: lostmail })
 });
 
 app.post('/redefinirSenha', async (req, res) => {

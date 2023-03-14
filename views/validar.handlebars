@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -7,27 +8,112 @@
   <meta name="description" content="A confeitaria do Senac proporciona o melhor para o seu bem-estar e alimentação" />
   <link rel="stylesheet" href="public/css/bootstrap.css" />
 
+  <!-- favicon -->
+  <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <link rel="stylesheet" href="public/css/default.css" />
+
+  <link rel="stylesheet" href="public/css/header.css" />
+
+  <link rel="stylesheet" href="public/css/form.css" />
+
+  <link rel="stylesheet" href="public/css/login.css" />
+
+  <link rel="stylesheet" href="public/css/carrinho.css" />
+
+  <link rel="stylesheet" href="public/css/redefinirSenha.css">
+
   <title>validacao</title>
 </head>
 
 <body>
-  <form action="/validar" method="post">
+
+  <header>
+    <a href="https://www.senac.br" target="_blank">
+      <div class="logo"><i class="fas fa-utensils"></i></div>
+    </a>
+    <button class="navbar--btnMobile" id="navbar--btnMobile">
+      <span class="btnMobile--icon"></span>
+    </button>
+    <nav class="navbar" id="navbar">
+      <div class="navbar--links">
+        <a href="home">
+          <div class="link">Home<span class="link--linha"></span></div>
+        </a>
+        <a href="home#cardapio">
+          <div class="link">Cardápio<span class="link--linha"></span></div>
+        </a>
+        <a href="home#sobre">
+          <div class="link">Sobre<span class="link--linha"></span></div>
+        </a>
+        <a href="home#contato">
+          <div class="link">Contato<span class="link--linha"></span></div>
+        </a>
+      </div>
+
+      <div class="navbar--login">
+        <a href="cadastro">
+          <div class="link cadastro">
+            Cadastre-se<span class="link--linha"></span>
+          </div>
+        </a>
+        <a href="#">
+          <div class="login" data-bs-toggle="modal" data-bs-target="#modalLogin">
+            Login
+          </div>
+        </a>
+        <div class="toggle-btn" id="_1st-toggle-btn">
+          <input type="checkbox" onchange="darkModeToggle()" id="chkDarkMode">
+          <span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="login--container">
+    <form class="login--box redefinirSenha" action="/validar" method="post">
+      <div class="login--inputs redefinirSenha">
+        <h1>Informe o código que enviamos a seu email</h1>
+        <div class="input--box">
+          <label for="inputEmail">Código</label>
+          <input type="text" id="inputEmail " class="form-control input" onchange="validaEmail(this, false)"
+            maxlength="6" name="mail" />
+          <span id="msgErroEmail" class="msgErro">Mensagem de erro</span>
+        </div>
+        <input type="submit" id="btnLogin" class="btnForm">
+      </div>
+    </form>
+  </section>
+
+
+  {{!-- <form action="/validar" method="post">
     <label for="mail"></label>
     <input type="text" name="mail" class="input">
     <input type="submit" class="envialogo">envia</input>
-  </form>
+  </form> --}}
 </body>
 </div>
 
-<script src="/public/js/valida.js"></script>
+<script src="../public/js/btn-mobile.js"></script>
+
+<script src="../public/js/form.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="../public/js/preloader.js"></script>
+
+<script src="/public/js/header.js"></script>
+
+<script src="/public/js/redefine.js"></script>
 
 <script>
-    fetch('/validar')
-  .then(response => response.json())
-  .then(data => {
-    const minhaVariavel = data.lostmail;
-    console.log(minhaVariavel, "esse é o ponas");
-  });
+  fetch('/validar')
+    .then(response => response.json())
+    .then(data => {
+      const minhaVariavel = data.lostmail;
+      console.log(minhaVariavel, "esse é o ponas");
+    });
 </script>
 
 </html>
