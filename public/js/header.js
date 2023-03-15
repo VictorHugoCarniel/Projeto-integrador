@@ -20,3 +20,18 @@ function darkModeToggle() {
 function isDarkModeSystem() {
     return matchMedia && matchMedia('(prefers-color-scheme: dark)').matches
 }
+
+
+const inputFile = document.getElementById('inputIMG');
+const previewImage = document.getElementById('preview');
+
+inputFile.addEventListener('change', function() {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.addEventListener('load', function() {
+      previewImage.setAttribute('src', reader.result);
+    });
+    reader.readAsDataURL(file);
+  }
+});

@@ -25,7 +25,7 @@
 
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
 
- 
+
 
   <meta name="description" content="A confeitaria do Senac proporciona o melhor para o seu bem-estar e alimentação" />
 
@@ -71,19 +71,20 @@
       <div class="cadastro--title">
         <h1>Cadastrar alimento:</h1>
       </div>
-      <form enctype="multipart/form-data" action="/add-alimentos" class="row g-3" id="produto-form" novalidate method="post">
+      <form enctype="multipart/form-data" action="/add-alimentos" class="row g-3" id="produto-form" novalidate
+        method="post">
 
         <div class="input-imagem">
-          <label for="inputState" class="form-label">Imagem do alimento</label>
+          <label for="inputState" class="form-label">Imagem do alimento</label>        
           <input id="inputIMG" name="imagem" type="file" class="form-control">
         </div>
-
+<img id="preview" style="width: 100px">
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Lanche</label>
           <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"
             name="nome" />
         </div>
-        
+
         <div class="col-md-6 input--box">
           <label for="inputPassword4" class="form-label">Preço</label>
           <input type="number" class="form-control" id="inputPreco" placeholder="Preço" maxlength="200" id="preco"
@@ -105,7 +106,7 @@
           </select>
         </div>
 
-        <input type="submit" name="enviar"  id="imgbtn" class="btn btnForm imgbtn"></input>
+        <input type="submit" name="enviar" id="imgbtn" class="btn btnForm imgbtn"></input>
 
 
         {{!-- <div class="col-12">
@@ -113,8 +114,6 @@
         </div> --}}
       </form>
     </section>
-    
-
   </main>
 
   <script src="../public/js/adm_Produtos.js"></script>
@@ -127,7 +126,7 @@
 
   <script src="/public/js/header.js"></script>
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 </body>
 

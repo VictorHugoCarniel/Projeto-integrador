@@ -206,7 +206,7 @@ app.get('/', (req, res) => {
 
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
-    if (req.session.loggedIn == true) {
+    // if (req.session.loggedIn == true) {
         var rowsC = await Produtos.findAll({
             where: {
                 idTipoProduto: 1,
@@ -223,9 +223,9 @@ app.get('/home', async (req, res) => {
                 }
             }
         })
-    } else {
-        res.redirect('/login')
-    }
+    // } else {
+    //     res.redirect('/login')
+    // }
     res.render('index', { rowsC, rowsB })
 })
 
