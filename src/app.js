@@ -82,14 +82,14 @@ app.post("/valida", async (req, res) => {
     });
 
     if (email) {
-        // var transport = nodemailer.createTransport({
-        //     host: "sandbox.smtp.mailtrap.io",
-        //     port: 2525,
-        //     auth: {
-        //         user: "589068e3d0b971",
-        //         pass: "8672cc117e3fac"
-        //     }
-        // });
+        var transport = nodemailer.createTransport({
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
+            auth: {
+                user: "589068e3d0b971",
+                pass: "8672cc117e3fac"
+            }
+        });
 
         const header = fs.readFileSync('./templates/header.handlebars', 'utf8');
         const resetsenha = fs.readFileSync('./templates/resetpass.handlebars', 'utf8');
@@ -102,41 +102,23 @@ app.post("/valida", async (req, res) => {
 
         const emailBody = `
             ${header}
-            ${welcome}
+            ${code}
             ${footer}
         `;
 
-        // var message = {
-        //     from: "noreplay@celke.com.br",
-        //     to: mail,
-        //     subject: "Instrução para recuperar a senha",
-        //     text: "teste",
-        //     html: emailBody
-        // };
+        var message = {
+            from: "noreplay@celke.com.br",
+            to: mail,
+            subject: "Instrução para recuperar a senha",
+            text: "teste",
+            html: emailBody
+        };
 
-        // transport.sendMail(message, function (err) {
-        //     if (err) {
-        //         console.log("Erro: E-mail não enviado!  -  " + buf.toString('hex'))
-        //     }
-        // });
-
-        const sgMail = require('@sendgrid/mail')
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-        const msg = {
-            to: 'test@example.com', // Change to your recipient
-            from: mail, // Change to your verified sender
-            subject: 'Vei',
-            text: 'agora vai nuepusilvio',
-            html: emailBody,
-        }
-        sgMail
-            .send(msg)
-            .then(() => {
-                console.log('Email sent')
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+        transport.sendMail(message, function (err) {
+            if (err) {
+                console.log("Erro: E-mail não enviado!  -  " + buf.toString('hex'))
+            }
+        });
 
         console.log('ok funfou')
         lostmail = mail
@@ -207,22 +189,22 @@ app.get('/', (req, res) => {
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
     // if (req.session.loggedIn == true) {
-        var rowsC = await Produtos.findAll({
-            where: {
-                idTipoProduto: 1,
-                quantidade: {
-                    [Op.ne]: 0
-                }
+    var rowsC = await Produtos.findAll({
+        where: {
+            idTipoProduto: 1,
+            quantidade: {
+                [Op.ne]: 0
             }
-        })
-        var rowsB = await Produtos.findAll({
-            where: {
-                idTipoProduto: 2,
-                quantidade: {
-                    [Op.ne]: 0
-                }
+        }
+    })
+    var rowsB = await Produtos.findAll({
+        where: {
+            idTipoProduto: 2,
+            quantidade: {
+                [Op.ne]: 0
             }
-        })
+        }
+    })
     // } else {
     //     res.redirect('/login')
     // }

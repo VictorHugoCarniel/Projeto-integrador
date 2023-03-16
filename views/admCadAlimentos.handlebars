@@ -45,11 +45,11 @@
         <a href="/home" class="animateLink" onclick="LinkActive()">
           <div class="link">Home<span class="link--linha"></span></div>
         </a>
+        <a href="/alimentosCad" class="animateLink" onclick="LinkActive()">
+          <div class="link active">Cadastro<span class="link--linha"></span></div>
+        </a>
         <a href="/admQtd" class="animateLink" onclick="LinkActive()">
           <div class="link">Quantidade<span class="link--linha"></span></div>
-        </a>
-        <a href="#lanches" class="animateLink" onclick="LinkActive()">
-          <div class="link active">Alimentos<span class="link--linha"></span></div>
         </a>
       </div>
       <div class="navbar--login">
@@ -75,10 +75,10 @@
         method="post">
 
         <div class="input-imagem">
-          <label for="inputState" class="form-label">Imagem do alimento</label>        
+          <label for="inputState" class="form-label">Imagem do alimento</label>
           <input id="inputIMG" name="imagem" type="file" class="form-control">
         </div>
-<img id="preview" style="width: 100px">
+        <img id="preview" style="width: 100px">
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Lanche</label>
           <input type="text" class="form-control" id="inputLanche" placeholder="Lanche/Bebida" maxlength="200"

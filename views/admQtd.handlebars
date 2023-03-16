@@ -51,10 +51,10 @@
           <div class="link">Home<span class="link--linha"></span></div>
         </a>
         <a href="/alimentosCad" class="animateLink" onclick="LinkActive()">
-          <div class="link">Quantidade<span class="link--linha"></span></div>
+          <div class="link">Cadastro<span class="link--linha"></span></div>
         </a>
-        <a href="#lanches" class="animateLink" onclick="LinkActive()">
-          <div class="link active">Alimentos<span class="link--linha"></span></div>
+        <a href="/admQtd" class="animateLink" onclick="LinkActive()">
+          <div class="link active">Quantidade<span class="link--linha"></span></div>
         </a>
       </div>
       <div class="navbar--login">
@@ -68,7 +68,6 @@
       </div>
     </nav>
   </header>
-
 
   <section class="cardapio" id="cardapio">
     <div class="cardapio-comidas">
@@ -128,6 +127,11 @@
                 <button type="submit" onclick="certezaExcluir()"><img class="delete" src="/public/images/delete.svg"
                     alt="deletar produto"></button>
               </form>
+            </div> 
+            <div class="text">
+              <p>
+                Preço: {{ preco }}
+              </p>
             </div>
             <div class="text">
               <p>
