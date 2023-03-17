@@ -13,7 +13,7 @@ if (typeof window === "object") {
       const nome = h2nome.textContent;
       const preco = penultimoFilho.textContent;
 
-      
+
       console.log(preco)
       
       const pedido = {
@@ -216,13 +216,14 @@ function enviaPedido() {
 // };
 //#endregion
 
+
+
 function EnviaId(idProduto) {
   const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () { };
-  xhttp.open("GET", "/home/" + idProduto, true);
+  xhttp.onreadystatechange = function() {
+  };
+  xhttp.open("GET", "/home/" +  idProduto, true);
   xhttp.send();
 }
 
 module.exports = EnviaId;
-// export {default as EnviaId} from "carrinho.js";
-// module.exports = { EnviaId as default};

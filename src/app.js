@@ -37,6 +37,8 @@ const nodemailer = require('nodemailer');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 const { get } = require('http');
 
+
+
 require("dotenv").config();
 
 app.use(flash());
@@ -82,14 +84,14 @@ app.post("/valida", async (req, res) => {
     });
 
     if (email) {
-        var transport = nodemailer.createTransport({
-            host: "sandbox.smtp.mailtrap.io",
-            port: 2525,
-            auth: {
-                user: "589068e3d0b971",
-                pass: "8672cc117e3fac"
-            }
-        });
+        // var transport = nodemailer.createTransport({
+        //     host: "sandbox.smtp.mailtrap.io",
+        //     port: 2525,
+        //     auth: {
+        //         user: "589068e3d0b971",
+        //         pass: "8672cc117e3fac"
+        //     }
+        // });
 
         const header = fs.readFileSync('./templates/header.handlebars', 'utf8');
         const resetsenha = fs.readFileSync('./templates/resetpass.handlebars', 'utf8');
@@ -102,23 +104,41 @@ app.post("/valida", async (req, res) => {
 
         const emailBody = `
             ${header}
-            ${code}
+            ${welcome}
             ${footer}
         `;
 
-        var message = {
-            from: "noreplay@celke.com.br",
-            to: mail,
-            subject: "Instrução para recuperar a senha",
-            text: "teste",
-            html: emailBody
-        };
+        // var message = {
+        //     from: "noreplay@celke.com.br",
+        //     to: mail,
+        //     subject: "Instrução para recuperar a senha",
+        //     text: "teste",
+        //     html: emailBody
+        // };
 
-        transport.sendMail(message, function (err) {
-            if (err) {
-                console.log("Erro: E-mail não enviado!  -  " + buf.toString('hex'))
-            }
-        });
+        // transport.sendMail(message, function (err) {
+        //     if (err) {
+        //         console.log("Erro: E-mail não enviado!  -  " + buf.toString('hex'))
+        //     }
+        // });
+
+        const sgMail = require('@sendgrid/mail')
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        const msg = {
+            to: 'test@example.com', // Change to your recipient
+            from: mail, // Change to your verified sender
+            subject: 'Vei',
+            text: 'agora vai nuepusilvio',
+            html: emailBody,
+        }
+        sgMail
+            .send(msg)
+            .then(() => {
+                console.log('Email sent')
+            })
+            .catch((error) => {
+                console.error(error)
+            })
 
         console.log('ok funfou')
         lostmail = mail
@@ -186,34 +206,42 @@ app.get('/', (req, res) => {
     res.redirect('/home')
 })
 
-const EnviaId = require('../public/js/carrinho.js')                                                                                                                                                                                                             
+
+const EnviaId = require('../public/js/carrinho.js')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
 
     console.log(EnviaId)
 
-    // if (req.session.loggedIn == true) {
-    var rowsC = await Produtos.findAll({
-        where: {
-            idTipoProduto: 1,
-            quantidade: {
-                [Op.ne]: 0
+    if (req.session.loggedIn == true) {
+        app.get('/home', async (req, res) => {
+            const { Op } = require("sequelize");
+            if (req.session.loggedIn == true) {
+                console.log(EnviaId)
+
+                var rowsC = await Produtos.findAll({
+                    where: {
+                        idTipoProduto: 1,
+                        quantidade: {
+                            [Op.ne]: 0
+                        }
+                    }
+                })
+                var rowsB = await Produtos.findAll({
+                    where: {
+                        idTipoProduto: 2,
+                        quantidade: {
+                            [Op.ne]: 0
+                        }
+                    }
+                })
+            } else {
+                res.redirect('/login')
             }
-        }
-    })
-    var rowsB = await Produtos.findAll({
-        where: {
-            idTipoProduto: 2,
-            quantidade: {
-                [Op.ne]: 0
-            }
-        }
-    })
-    // } else {
-    //     res.redirect('/login')
-    // }
-    res.render('index', { rowsC, rowsB })
-})
+            res.render('index', { rowsC, rowsB })
+        })
+    }
+});
 
 app.get('/testee', async (req, res) => {
     rows = await User.findAll({})
