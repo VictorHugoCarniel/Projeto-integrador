@@ -185,12 +185,19 @@ function enviaPedido() {
 
 
 
-EnviaId = (id) => {
+EnviaIdIndex = (id) => {
   console.log(id);
-  console.log("EnviaID");
   return id;
 }
 
+// module.exports = EnviaId;
+
+function EnviaId(idProduto) {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+  };
+  xhttp.open("GET", "/home/" +  idProduto, true);
+  xhttp.send();
+}
+
 module.exports = EnviaId;
-// export {default as EnviaId} from "carrinho.js";
-// module.exports = { EnviaId as default};

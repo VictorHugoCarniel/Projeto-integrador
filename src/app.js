@@ -37,6 +37,8 @@ const nodemailer = require('nodemailer');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 const { get } = require('http');
 
+
+
 require("dotenv").config();
 
 app.use(flash());
@@ -206,26 +208,31 @@ app.get('/', (req, res) => {
 
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
-    if (req.session.loggedIn == true) {
-        var rowsC = await Produtos.findAll({
-            where: {
-                idTipoProduto: 1,
-                quantidade: {
-                    [Op.ne]: 0
-                }
+    // if (req.session.loggedIn == true) {
+    const EnviaId = require('../public/js/carrinho')
+    idProduto = req.body.idProduto
+    // console.log(EnviaId)
+    // const id = EnviaId(idProduto)
+    // console.log("joao king" ,+ id)
+    var rowsC = await Produtos.findAll({
+        where: {
+            idTipoProduto: 1,
+            quantidade: {
+                [Op.ne]: 0
             }
-        })
-        var rowsB = await Produtos.findAll({
-            where: {
-                idTipoProduto: 2,
-                quantidade: {
-                    [Op.ne]: 0
-                }
+        }
+    })
+    var rowsB = await Produtos.findAll({
+        where: {
+            idTipoProduto: 2,
+            quantidade: {
+                [Op.ne]: 0
             }
-        })
-    } else {
-        res.redirect('/login')
-    }
+        }
+    })
+    // } else {
+    //     res.redirect('/login')
+    // }
     res.render('index', { rowsC, rowsB })
 })
 
