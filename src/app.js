@@ -186,8 +186,12 @@ app.get('/', (req, res) => {
     res.redirect('/home')
 })
 
+const EnviaId = require('../public/js/carrinho.js')                                                                                                                                                                                                             
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
+
+    console.log(EnviaId)
+
     // if (req.session.loggedIn == true) {
     var rowsC = await Produtos.findAll({
         where: {

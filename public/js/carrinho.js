@@ -1,5 +1,70 @@
-
 let pedidos = [];
+
+if (typeof window === "object") {
+  document.addEventListener('click', (e) => {
+    const targetEl = e.target;
+
+    if (targetEl.classList.contains('btnComprar')) {
+      const cardBody = targetEl.parentNode;
+      const filhos = cardBody.childNodes;
+      const penultimoFilho = filhos[filhos.length - 4];
+      const divTitulo = cardBody.firstElementChild;
+      const h2nome = divTitulo.firstElementChild;
+      const nome = h2nome.textContent;
+      const preco = penultimoFilho.textContent;
+
+      
+      console.log(preco)
+      
+      const pedido = {
+          nome : nome,
+          preco : preco
+      }
+
+      pedidos.push(pedido);
+      console.log(pedidos)
+      atualizaCarrinho(pedidos);
+    }
+  })
+
+
+} else {
+  // code is running in a non-browser environment
+}
+
+
+
+function atualizaCarrinho(pedidos) {
+  console.log('sdfsdf')
+  let tagPedidos = document.querySelector("#pedidos");
+  tagPedidos.innerHTML = "";
+
+  pedidos.forEach((pedido) => {
+    tagPedidos.innerHTML += `
+                                <div class="pedido">
+                                <div class="quantidade pedido--quantidade">
+                                    <button onclick="decrementClick('${pedido.nome
+      }', true)">-</button>
+                                    <p id="" class="num-contador-pedido" data-contador=></p>
+                                    <button onclick="incrementClick('', true)">+</button>
+                                </div>
+                                    <div class="pedido--item">
+                                        <div class="pedido--img">
+                                            <img src= alt=>
+                                        </div>
+                                        <div class="pedido--texto">
+                                            <h2>${pedido.nome}</h2>
+                                            <p>R$${pedido.preco}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+  });
+
+  atualizaNotificacao();
+  atualizaSubTotal();
+}
+
 
 //#region Tarefas Iniciais
 
@@ -62,39 +127,7 @@ function buscaProduto(idProduto) {
   return produto;
 }
 
-function atualizaCarrinho() {
-  let tagPedidos = document.querySelector("#pedidos");
-  tagPedidos.innerHTML = "";
 
-  pedidos.forEach((pedido) => {
-    tagPedidos.innerHTML += `
-                                <div class="pedido">
-                                <div class="quantidade pedido--quantidade">
-                                    <button onclick="decrementClick('${pedido.idProduto
-      }', true)">-</button>
-                                    <p id="${pedido.idProduto
-      }" class="num-contador-pedido" data-contador=${pedido.quantidade
-      }>${pedido.quantidade}</p>
-                                    <button onclick="incrementClick('${pedido.idProduto
-      }', true)">+</button>
-                                </div>
-                                    <div class="pedido--item">
-                                        <div class="pedido--img">
-                                            <img src=${pedido.imagem} alt=${pedido.nome
-      }>
-                                        </div>
-                                        <div class="pedido--texto">
-                                            <h2>${pedido.nome}</h2>
-                                            <p>R$${pedido.preco.toFixed(2)}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                `;
-  });
-
-  atualizaNotificacao();
-  atualizaSubTotal();
-}
 
 function atualizaContador(idProduto) {
   let { valorContador } = dadosContador(idProduto.replace(/^./, ""));
@@ -183,12 +216,11 @@ function enviaPedido() {
 // };
 //#endregion
 
-
-
-EnviaId = (id) => {
-  console.log(id);
-  console.log("EnviaID");
-  return id;
+function EnviaId(idProduto) {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () { };
+  xhttp.open("GET", "/home/" + idProduto, true);
+  xhttp.send();
 }
 
 module.exports = EnviaId;
