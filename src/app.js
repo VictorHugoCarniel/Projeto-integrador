@@ -206,13 +206,16 @@ app.get('/', (req, res) => {
     res.redirect('/home')
 })
 
+const EnviaId = require('../public/js/carrinho.js')
+const EnviaIdIndex = require('../public/js/carrinho')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
-    // if (req.session.loggedIn == true) {
-    const EnviaId = require('../public/js/carrinho')
-    idProduto = req.body.idProduto
-    // console.log(EnviaId)
+    if (req.session.loggedIn == true) {
+        // idProduto = req.body.idProduto
+    console.log(EnviaId)
+    // console.log(EnviaIdIndex)
     // const id = EnviaId(idProduto)
+    // console.log(idProduto)
     // console.log("joao king" ,+ id)
     var rowsC = await Produtos.findAll({
         where: {
@@ -230,9 +233,9 @@ app.get('/home', async (req, res) => {
             }
         }
     })
-    // } else {
-    //     res.redirect('/login')
-    // }
+    } else {
+        res.redirect('/login')
+    }
     res.render('index', { rowsC, rowsB })
 })
 
