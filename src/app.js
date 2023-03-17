@@ -207,16 +207,17 @@ app.get('/', (req, res) => {
 })
 
 const EnviaId = require('../public/js/carrinho.js')
-const EnviaIdIndex = require('../public/js/carrinho')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
-    if (req.session.loggedIn == true) {
+    const Usuario = req.session.user
+    const usuario = await User.findOne({
+        where: { email: Usuario,
+                 idTipoUsuario: 2
+        }
+    });
+    if (req.session.loggedIn == true && usuario) {
         // idProduto = req.body.idProduto
     console.log(EnviaId)
-    // console.log(EnviaIdIndex)
-    // const id = EnviaId(idProduto)
-    // console.log(idProduto)
-    // console.log("joao king" ,+ id)
     var rowsC = await Produtos.findAll({
         where: {
             idTipoProduto: 1,
@@ -233,10 +234,13 @@ app.get('/home', async (req, res) => {
             }
         }
     })
+    if (Usuario){
+        res.render('index', { rowsC, rowsB })}
+    
     } else {
         res.redirect('/login')
     }
-    res.render('index', { rowsC, rowsB })
+   
 })
 
 app.get('/testee', async (req, res) => {
