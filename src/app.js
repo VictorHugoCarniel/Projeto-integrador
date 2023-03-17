@@ -206,6 +206,7 @@ app.get('/', (req, res) => {
     res.redirect('/home')
 })
 
+
 const EnviaId = require('../public/js/carrinho.js')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
