@@ -246,6 +246,16 @@ app.post('/auth', async (req, res) => {
 const EnviaId = require('../public/js/carrinho.js')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
+
+    const Usuario = req.session.user
+    console.log(Usuario)
+    const usuario = await User.findOne({
+        where: {
+            email: Usuario,
+            idTipoUsuario: 2
+        }
+    });
+    
     if (req.session.loggedIn == true) {
         // idProduto = req.body.idProduto
         console.log(EnviaId)
