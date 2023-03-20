@@ -1,3 +1,7 @@
+const User = require('../models/User');
+const { where } = require('sequelize');
+const bodyParser = require('body-parser');
+
 let oSimbolosEmail = {
   Erro: document.querySelector("#erroEmail"),
   Ok: document.querySelector("#okEmail"),
