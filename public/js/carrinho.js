@@ -14,38 +14,52 @@ if (typeof window === "object") {
       const preco = penultimoFilho.textContent;
 
 
+
       console.log(preco)
+
 
       const pedido = {
         nome: nome,
         preco: preco
       }
-
       pedidos.push(pedido);
-      console.log(pedidos)
+      console.log(pedido);
+
+      const precoFormatado = retornaPreco(preco);
+
+      atualizaSubTotal(precoFormatado)
       atualizaCarrinho(pedidos);
     }
   })
-
-
 } else {
   // code is running in a non-browser environment
+}
+
+function retornaPreco(preco) {
+  var preco = preco.slice(7);
+  return preco;
 }
 
 
 
 function atualizaCarrinho(pedidos) {
-  console.log('sdfsdf')
   let tagPedidos = document.querySelector("#pedidos");
   tagPedidos.innerHTML = "";
+
 
   pedidos.forEach((pedido) => {
     tagPedidos.innerHTML += `
                                 <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
+
+                            <div class="quantidade">
+                              <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
+                            </div>
+
                                     <button onclick="decrementClick('${pedido.nome}', true)">-</button>
                                     <p id="" class="num-contador-pedido" data-contador=></p>
                                     <button onclick="incrementClick('', true)">+</button>
+
                                 </div>
                                     <div class="pedido--item">
                                         <div class="pedido--img">
@@ -53,7 +67,7 @@ function atualizaCarrinho(pedidos) {
                                         </div>
                                         <div class="pedido--texto">
                                             <h2>${pedido.nome}</h2>
-                                            <p>R$${pedido.preco}</p>
+                                            <p>${pedido.preco}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -162,15 +176,21 @@ function removeCarrinho(idProduto) {
   }
 }
 
-function atualizaSubTotal() {
-  let tagSubTotal = document.querySelector("#subtotal");
-  let subtotal = 0;
+function atualizaSubTotal(preco) {
 
-  pedidos.forEach((pedido) => {
-    subtotal += pedido.preco * pedido.quantidade;
-  });
+  document.addEventListener('click', (e) => {
+    var valor, valorTotal;
 
-  tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ ${subtotal}`;
+    const targetEl = e.target;
+    if (targetEl.classList.contains('form-control')) {
+      valor = targetEl.value;
+      valorTotal = valor * preco
+      console.log(valorTotal)
+      let tagSubTotal = document.querySelector("#subtotal");
+
+      tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ ${valorTotal}`;
+    }
+  })
   gravaPedidos();
 }
 
