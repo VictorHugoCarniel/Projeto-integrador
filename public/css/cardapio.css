@@ -327,4 +327,5 @@ button {
     padding-bottom: 6px;
     border-bottom: 2px solid var(--cor1);
     width: 200px;
+    text-align: center;
 }
