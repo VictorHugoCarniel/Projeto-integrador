@@ -225,6 +225,7 @@ app.post('/auth', async (req, res) => {
     req.session.user = req.body.email
     const email = req.body.email;
     const senha = req.body.senha;
+
     if (email && senha) {
         const usuario = await User.findOne({
             where:
@@ -245,31 +246,31 @@ app.post('/auth', async (req, res) => {
 const EnviaId = require('../public/js/carrinho.js')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
-    if (req.session.loggedIn == true ) {
+    if (req.session.loggedIn == true) {
         // idProduto = req.body.idProduto
-    console.log(EnviaId)
-    var rowsC = await Produtos.findAll({
-        where: {
-            idTipoProduto: 1,
-            quantidade: {
-                [Op.ne]: 0
+        console.log(EnviaId)
+        var rowsC = await Produtos.findAll({
+            where: {
+                idTipoProduto: 1,
+                quantidade: {
+                    [Op.ne]: 0
+                }
             }
-        }
-    })
-    var rowsB = await Produtos.findAll({
-        where: {
-            idTipoProduto: 2,
-            quantidade: {
-                [Op.ne]: 0
+        })
+        var rowsB = await Produtos.findAll({
+            where: {
+                idTipoProduto: 2,
+                quantidade: {
+                    [Op.ne]: 0
+                }
             }
-        }
-    });
-    res.render('index', { rowsC, rowsB })
+        });
+        res.render('index', { rowsC, rowsB })
 
-    }else{
+    } else {
         res.redirect('/login')
     }
-   
+
 })
 
 app.get('/logout', (req, res) => {
