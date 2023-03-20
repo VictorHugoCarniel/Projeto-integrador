@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A confeitaria do Senac proporciona o melhor para o seu bem-estar e alimentação" />
+  <link rel="stylesheet" href="public/css/bootstrap.css" />
+
+
+  <!-- favicon -->
+  <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <link rel="stylesheet" href="public/css/default.css" />
+
+  <link rel="stylesheet" href="public/css/header.css" />
+
+  <link rel="stylesheet" href="public/css/home.css" />
+
+  <link rel="stylesheet" href="../public/css/cardapio.css" />
+
+  <link rel="stylesheet" href="public/css/carrinho.css" />
+
+  <link rel="stylesheet" href="public/css/sobre.css" />
+
+  <link rel="stylesheet" href="public/css/footer.css" />
+
+  <title>Projeto Integrador</title>
+</head>
+
+<body onload="carregaDiaSemana(), carregaPedidos()">
+  <header>
+    <a href="https://www.senac.br" target="_blank">
+      <div class="logo"><i class="fas fa-utensils"></i></div>
+    </a>
+    <button class="navbar--btnMobile" id="navbar--btnMobile">
+      <span class="btnMobile--icon"></span>
+    </button>
+    <nav class="navbar" id="navbar">
+      <div class="navbar--links">
+        <a href="#home" class="animateLink" onclick="LinkActive()">
+          <div class="link active">Home<span class="link--linha"></span></div>
+        </a>
+        <a href="/administrador" class="animateLink" onclick="LinkActive()">
+          <div class="link">Alimento<span class="link--linha"></span></div>
+        </a>
+        <a href="/admQtd" class="animateLink" onclick="LinkActive()">
+          <div class="link">Cadastro<span class="link--linha"></span></div>
+        </a>
+      </div>
+
+      <div class="navbar--login">
+        <a href="#" onclick="abreFechaModal()">
+          <i class="fas fa-shopping-cart carrinho">
+            <span class="notificacao" id="notificacao">0</span>
+          </i>
+        </a>
+        <a href="cadastro">
+          <div class="link cadastro">
+            Cadastre-se<span class="link--linha"></span>
+          </div>
+        </a>
+
+        <a href="login">
+          <div class="login">Login</div>
+        </a>
+        <div class="toggle-btn" id="_1st-toggle-btn">
+          <input type="checkbox" onchange="darkModeToggle()" id="chkDarkMode">
+          <span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="modalCarrinho" id="modalCarrinho">
+    <button class="btnFechar" onclick="abreFechaModal()">&times;</button>
+    <i class="fas fa-shopping-cart"></i>
+    <div class="pedidos" id="pedidos"></div>
+    <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
+    <span></span>
+    <button class="btnPedido" onclick="enviaPedido()">Fechar Pedido</button>
+  </div>
+
+  <section class="home" id="home">
+    <div class="home--text">
+      <span><i class="fas fa-hamburger"></i> Seu melhor ensino e comida juntos é
+        na</span>
+      <h1>Confeitaria do Senac</h1>
+      <p class="desc">
+        Projeto desenvolvido pelos alunos do curso de desenvolvimento de
+        software para a cantina do Senac.
+      </p>
+      <div>
+        <a href="#cardapio" class="btnComprarAgora animateLink">Comprar agora</a>
+        <a href="#cardapio" class="btnVerCardapio animateLink">Ver Cardápio</a>
+      </div>
+    </div>
+    <div class="home--img">
+      <img src="public/images/comidaTeste2.png" alt="img" />
+    </div>
+  </section>
+
+  <section class="cardapio" id="cardapio">
+    <div class="headerTitle">
+      <h1 class="title">Cardápio</h1>
+      <h3>Comidas</h3>
+      <span></span>
+    </div>
+
+
+    <div class="cards">
+      {{#each rowsC}}
+      <div class="card">
+        <div class="cardImg">
+          <img src="{{ imgProd }}">
+        </div>
+        <div class="cardBody">
+          <div class="titulo">
+            <h2>
+              {{ nome }}
+            </h2>
+          </div>
+          <div class="quantidade">
+            <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
+          </div>
+          <div class="text">
+            <p>
+              Quantidade atual: {{ quantidade }}
+            </p>
+          </div>
+          <div class="text">
+            <p>
+              Preço: {{ preco }}
+            </p>
+          </div>
+          <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
+          </form>
+
+        </div>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="cards">
+      <div class="headerTitle">
+        <h3>Bebidas</h3>
+        <span></span>
+      </div>
+
+      {{#each rowsB}}
+      <div class="card">
+        <div class="cardImg">
+
+      <img src="{{ imgProd }}">
+
+        </div>
+        <div class="cardBody">
+          <div class="titulo">
+            <h2>
+              {{ nome }}
+            </h2>
+          </div>
+          
+          <div class="text">
+            <p>
+              Quantidade atual: {{ quantidade }}
+            </p>
+          </div>
+          <div class="text">
+            <p>
+              Preço: {{ preco }}
+            </p>
+          </div>
+          <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
+          </form>
+
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+
+  <footer id="">
+    <p>Telefone: (46) 3272-3700<br /></p>
+    <p>Instagram: @senacparana</p>
+    <p>Endereço: Av. Tupi, 385 - Bortot, Pato Branco - PR, 85504-000</p>
+  </footer>
+</body>
+
+<script src="/public/js/btn-mobile.js"></script>
+
+<script src="/public/js/cardapio.js"></script>
+
+<script src="/public/js/carrinho.js"></script>
+
+<script src="/public/js/header.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="../public/js/preloader.js"></script>
+<script>
+  var $doc = $("html, body");
+  $(".animateLink").click(function () {
+    $doc.animate(
+      {
+        scrollTop: $($.attr(this, "href")).offset().top,
+      },
+      500
+    );
+    return false;
+  });
+</script>
+
+
+
+
+</html>

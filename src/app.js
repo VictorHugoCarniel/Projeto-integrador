@@ -67,6 +67,7 @@ function criptografar(password) {
 
 var buf = crypto.randomBytes(3);
 var lostmail = ''
+var validaAdmin = false
 
 //Rotas
 
@@ -246,19 +247,18 @@ app.post('/auth', async (req, res) => {
 const EnviaId = require('../public/js/carrinho.js')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
-
-    const Usuario = req.session.user
-    console.log(Usuario)
-    const usuario = await User.findOne({
-        where: {
-            email: Usuario,
-            idTipoUsuario: 2
-        }
-    });
-    
     if (req.session.loggedIn == true) {
+        const Usuario = req.session.user
+        
+        console.log(Usuario)
+        const usuario = await User.findOne({
+            where: {
+                email: Usuario,
+                idTipoUsuario: 1
+            }
+        });
         // idProduto = req.body.idProduto
-        console.log(EnviaId)
+        // console.log(EnviaId)
         var rowsC = await Produtos.findAll({
             where: {
                 idTipoProduto: 1,
@@ -275,9 +275,14 @@ app.get('/home', async (req, res) => {
                 }
             }
         });
+        if (usuario) {
+            validaAdmin = true
+            res.render('indexADM', { rowsC, rowsB })
+        }else{
         res.render('index', { rowsC, rowsB })
-
-    } else {
+        }
+        
+    }else {
         res.redirect('/login')
     }
 
@@ -312,8 +317,7 @@ app.post('/add-usuario', async (req, res) => {
             telefone: req.body.telefone,
             cidade: req.body.cidade,
             senha: criptografar(req.body.senha),
-            // idTipoUsuario: req.body.idTipoUsuario = 2
-            idTipoUsuario: req.body.idTipoUsuario = 1
+            idTipoUsuario: req.body.idTipoUsuario = 2
         })
         console.log('teste 90')
         res.redirect('/login')
@@ -325,14 +329,13 @@ app.get('/cadastro', (req, res) => {
 });
 
 // adm
-app.get('/alimentosCad', async (req, res) => {
-    const rows = await Tipo.findAll({})
-    res.render('admCadAlimentos', { rows })
-});
-
 app.get('/administrador', async (req, res) => {
-    const rows = await Tipo.findAll({})
-    res.render('admCadAlimentos', { rows })
+    if (validaAdmin == true) {
+        const rows = await Tipo.findAll({})
+        res.render('admCadAlimentos', { rows })
+    } else {
+        res.render('404')
+    }
 });
 
 app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
