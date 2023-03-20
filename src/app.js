@@ -206,45 +206,6 @@ app.get('/', (req, res) => {
     res.redirect('/home')
 })
 
-
-const EnviaId = require('../public/js/carrinho.js')
-app.get('/home', async (req, res) => {
-    const { Op } = require("sequelize");
-    const Usuario = req.session.user
-    console.log(Usuario)
-    const usuario = await User.findOne({
-        where: { email: Usuario,
-                 idTipoUsuario: 2
-        }
-    });
-    if (req.session.loggedIn == true && usuario) {
-        // idProduto = req.body.idProduto
-    console.log(EnviaId)
-    var rowsC = await Produtos.findAll({
-        where: {
-            idTipoProduto: 1,
-            quantidade: {
-                [Op.ne]: 0
-            }
-        }
-    })
-    var rowsB = await Produtos.findAll({
-        where: {
-            idTipoProduto: 2,
-            quantidade: {
-                [Op.ne]: 0
-            }
-        }
-    })
-    if (Usuario){
-        res.render('index', { rowsC, rowsB })}
-    
-    } else {
-        res.redirect('/login')
-    }
-   
-})
-
 app.get('/testee', async (req, res) => {
     rows = await User.findAll({})
     res.render('teste', { rows })
@@ -280,6 +241,36 @@ app.post('/auth', async (req, res) => {
         }
     }
 });
+
+const EnviaId = require('../public/js/carrinho.js')
+app.get('/home', async (req, res) => {
+    const { Op } = require("sequelize");
+    if (req.session.loggedIn == true ) {
+        // idProduto = req.body.idProduto
+    console.log(EnviaId)
+    var rowsC = await Produtos.findAll({
+        where: {
+            idTipoProduto: 1,
+            quantidade: {
+                [Op.ne]: 0
+            }
+        }
+    })
+    var rowsB = await Produtos.findAll({
+        where: {
+            idTipoProduto: 2,
+            quantidade: {
+                [Op.ne]: 0
+            }
+        }
+    });
+    res.render('index', { rowsC, rowsB })
+
+    }else{
+        res.redirect('/login')
+    }
+   
+})
 
 app.get('/logout', (req, res) => {
     req.session.loggedIn = false;
