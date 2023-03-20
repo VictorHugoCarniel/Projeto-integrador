@@ -31,7 +31,7 @@
   <title>Projeto Integrador</title>
 </head>
 
-<body onload="carregaDiaSemana(), carregaPedidos()">
+<body onload="">
   <header>
     <a href="https://www.senac.br" target="_blank">
       <div class="logo"><i class="fas fa-utensils"></i></div>
@@ -121,24 +121,13 @@
           <img src="{{ imgProd }}">
         </div>
         <div class="cardBody">
-          <div class="titulo">
-            <h2>
-              {{ nome }}
-            </h2>
-          </div>
-          <div class="quantidade">
-            <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
-          </div>
+          <div class="titulo"> <h2>{{ nome }}</h2></div>
           <div class="text">
             <p>
               Quantidade atual: {{ quantidade }}
             </p>
           </div>
-          <div class="text">
-            <p>
-              Preço: {{ preco }}
-            </p>
-          </div>
+          <div class="text"><p>Preço: {{ preco }}</p></div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
           </form>
 
@@ -157,7 +146,7 @@
       <div class="card">
         <div class="cardImg">
 
-      <img src="{{ imgProd }}">
+          <img src="{{ imgProd }}">
 
         </div>
         <div class="cardBody">
@@ -166,7 +155,7 @@
               {{ nome }}
             </h2>
           </div>
-          
+
           <div class="text">
             <p>
               Quantidade atual: {{ quantidade }}

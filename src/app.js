@@ -245,7 +245,7 @@ app.post('/auth', async (req, res) => {
 const EnviaId = require('../public/js/carrinho.js')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
-    if (req.session.loggedIn == true ) {
+    // if (req.session.loggedIn == true ) {
         // idProduto = req.body.idProduto
     console.log(EnviaId)
     var rowsC = await Produtos.findAll({
@@ -266,9 +266,9 @@ app.get('/home', async (req, res) => {
     });
     res.render('index', { rowsC, rowsB })
 
-    }else{
-        res.redirect('/login')
-    }
+    // }else{
+    //     res.redirect('/login')
+    // }
    
 })
 
