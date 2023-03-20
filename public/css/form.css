@@ -35,6 +35,7 @@
     color: var(--hover);
     padding: 13px;
     border: none;
+    border-radius: .3rem;
 }
 
 .btn {

@@ -247,9 +247,10 @@ app.post('/auth', async (req, res) => {
 const EnviaId = require('../public/js/carrinho.js')
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
+
     if (req.session.loggedIn == true) {
         const Usuario = req.session.user
-        
+
         console.log(Usuario)
         const usuario = await User.findOne({
             where: {
@@ -257,6 +258,7 @@ app.get('/home', async (req, res) => {
                 idTipoUsuario: 1
             }
         });
+
         // idProduto = req.body.idProduto
         // console.log(EnviaId)
         var rowsC = await Produtos.findAll({
@@ -278,15 +280,15 @@ app.get('/home', async (req, res) => {
         if (usuario) {
             validaAdmin = true
             res.render('indexADM', { rowsC, rowsB })
-        }else{
-        res.render('index', { rowsC, rowsB })
+        } else {
+            res.render('index', { rowsC, rowsB })
         }
-        
-    }else {
+
+        res.render('index', { rowsC, rowsB })
+    } else {
         res.redirect('/login')
     }
-
-})
+});
 
 app.get('/logout', (req, res) => {
     req.session.loggedIn = false;
@@ -300,7 +302,7 @@ app.post('/add-usuario', async (req, res) => {
         where: { email: req.body.email }
     });
     if (usuario) {
-        console.log('teste2')
+        console.log('teste2')   
         req.session.message = {
             type: "danger",
             intro: "Hey,",
@@ -443,6 +445,19 @@ app.post('/zera-quantidade/:id', async (req, res) => {
         console.log("quantidade eh igual a 0")
     }
 
+})
+app.get('/produtos', async (req, res) => {
+    var rowsC = await Produtos.findAll({
+        where: {
+            idTipoProduto: 1
+        }
+    })
+    var rowsB = await Produtos.findAll({
+        where: {
+            idTipoProduto: 2
+        }
+    })
+    res.render('produtos', { rowsC, rowsB })
 })
 
 // User
