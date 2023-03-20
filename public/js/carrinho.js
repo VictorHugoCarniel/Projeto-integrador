@@ -15,10 +15,10 @@ if (typeof window === "object") {
 
 
       console.log(preco)
-      
+
       const pedido = {
-          nome : nome,
-          preco : preco
+        nome: nome,
+        preco: preco
       }
 
       pedidos.push(pedido);
@@ -43,8 +43,7 @@ function atualizaCarrinho(pedidos) {
     tagPedidos.innerHTML += `
                                 <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
-                                    <button onclick="decrementClick('${pedido.nome
-      }', true)">-</button>
+                                    <button onclick="decrementClick('${pedido.nome}', true)">-</button>
                                     <p id="" class="num-contador-pedido" data-contador=></p>
                                     <button onclick="incrementClick('', true)">+</button>
                                 </div>
@@ -220,9 +219,9 @@ function enviaPedido() {
 
 function EnviaId(idProduto) {
   const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
   };
-  xhttp.open("GET", "/home/" +  idProduto, true);
+  xhttp.open("GET", "/home/" + idProduto, true);
   xhttp.send();
 }
 
