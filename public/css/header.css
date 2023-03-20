@@ -101,7 +101,6 @@ header {
 .carrinho {
     padding: 10px;
     border-radius: 5px;
-    background: #fafafd;
     position: relative;
     color: var(--fonte1);
 }
@@ -122,9 +121,9 @@ header {
     width: 13px;
     height: 13px;
     padding: 0 0;
-    border-radius: 50%;
+    border-radius: 200px;
     background: red;
-    color: #fff;
+    color: var(--hover);
     font-size: 0.7rem;
 }
 

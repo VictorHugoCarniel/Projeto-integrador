@@ -13,6 +13,11 @@ if (typeof window === "object") {
       const nome = h2nome.textContent;
       const preco = penultimoFilho.textContent;
 
+
+
+      console.log(preco)
+
+
       const pedido = {
         nome: nome,
         preco: preco
@@ -46,9 +51,15 @@ function atualizaCarrinho(pedidos) {
     tagPedidos.innerHTML += `
                                 <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
+
                             <div class="quantidade">
                               <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
                             </div>
+
+                                    <button onclick="decrementClick('${pedido.nome}', true)">-</button>
+                                    <p id="" class="num-contador-pedido" data-contador=></p>
+                                    <button onclick="incrementClick('', true)">+</button>
+
                                 </div>
                                     <div class="pedido--item">
                                         <div class="pedido--img">
