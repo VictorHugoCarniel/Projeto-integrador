@@ -14,20 +14,20 @@ if (typeof window === "object") {
       const preco = penultimoFilho.textContent;
 
 
-
+      const precoFormatado = retornaPreco(preco);
       console.log(preco)
 
 
       const pedido = {
         nome: nome,
-        preco: preco
+        preco: precoFormatado,
+        quantidade : 1
       }
       pedidos.push(pedido);
       console.log(pedido);
 
-      const precoFormatado = retornaPreco(preco);
 
-      atualizaSubTotal(precoFormatado)
+
       atualizaCarrinho(pedidos);
     }
   })
@@ -52,11 +52,7 @@ function atualizaCarrinho(pedidos) {
                                 <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
 
-                            <div class="quantidade">
-                              <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
-                            </div>
-
-                                    <button onclick="decrementClick('${pedido.nome}', true)">-</button>
+                                    <button onclick="decrementClick('${pedido.quantidade}',' ${pedido.preco}}')">-</button>
                                     <p id="" class="num-contador-pedido" data-contador=></p>
                                     <button onclick="incrementClick('', true)">+</button>
 
@@ -67,7 +63,7 @@ function atualizaCarrinho(pedidos) {
                                         </div>
                                         <div class="pedido--texto">
                                             <h2>${pedido.nome}</h2>
-                                            <p>${pedido.preco}</p>
+                                            <p>$${pedido.preco}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -76,6 +72,11 @@ function atualizaCarrinho(pedidos) {
 
   atualizaNotificacao();
   atualizaSubTotal();
+}
+
+function decrementClick(a,aa){
+  console.log(a,aa)
+
 }
 
 
