@@ -13,12 +13,11 @@ if (typeof window === "object") {
       const nome = h2nome.textContent;
       const preco = penultimoFilho.textContent;
 
-
       const precoFormatado = retornaPreco(preco);
-      console.log(preco)
-
+      const id = Math.random()
 
       const pedido = {
+        id: id,
         nome: nome,
         preco: precoFormatado,
         quantidade : 1
@@ -52,7 +51,7 @@ function atualizaCarrinho(pedidos) {
                                 <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
 
-                                    <button onclick="decrementClick('${pedido.quantidade}',' ${pedido.preco}}')">-</button>
+                                    <button onclick="decrementClick('${pedido.quantidade}',' ${pedido.preco}', '${pedido.id}')">-</button>
                                     <p id="" class="num-contador-pedido" data-contador=></p>
                                     <button onclick="incrementClick('', true)">+</button>
 
@@ -74,9 +73,8 @@ function atualizaCarrinho(pedidos) {
   atualizaSubTotal();
 }
 
-function decrementClick(a,aa){
-  console.log(a,aa)
-
+function decrementClick(a,aa,aaa){
+  console.log(a,aa,aaa)
 }
 
 
