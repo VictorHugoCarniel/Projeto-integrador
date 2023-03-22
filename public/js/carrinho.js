@@ -30,8 +30,40 @@ if (typeof window === "object") {
       atualizaCarrinho(pedidos);
     }
   })
+
+  
+document.addEventListener('click', (e) => {
+  var valorTotalUm;
+
+
+  const targetEl = e.target;
+
+  if (targetEl.classList.contains('increment')){
+    const quantidadePedido = targetEl.parentNode;
+    const pedidoItem = quantidadePedido.nextElementSibling;
+    const pedidoTexto = pedidoItem.lastElementChild;
+    const h2Nome = pedidoTexto.firstElementChild;
+    var nome = h2Nome.textContent;
+    console.log(nome)
+    pedidos.forEach(pedido =>{
+      if(pedido.nome == nome){
+          pedido.quantidade = pedido.quantidade += 1;
+          valorTotalUm = pedido.quantidade * pedido.preco;
+          console.log(valorTotalUm)
+      }
+      
+    })
+    
+  }
+
+})
 } else {
   // code is running in a non-browser environment
+}
+
+function somaValores(valor){
+    var total = valor += valor;
+    console.log(total)
 }
 
 function retornaPreco(preco) {
@@ -48,24 +80,22 @@ function atualizaCarrinho(pedidos) {
 
   pedidos.forEach((pedido) => {
     tagPedidos.innerHTML += `
-                                <div class="pedido">
+                              <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
-
-                                    <button onclick="decrementClick('${pedido.quantidade}',' ${pedido.preco}', '${pedido.id}')">-</button>
+                                    <button class='decrement'  onclick="decrementClick(' ${pedido.preco}', '${pedido.id}')">-</button>
                                     <p id="" class="num-contador-pedido" data-contador=></p>
-                                    <button onclick="incrementClick('', true)">+</button>
-
+                                    <button class='increment'  onclick="incrementClick(' ${pedido.preco}', '${pedido.id}')">+</button>
                                 </div>
-                                    <div class="pedido--item">
-                                        <div class="pedido--img">
+                                <div class="pedido--item">
+                                      <div class="pedido--img">
                                             <img src= alt=>
-                                        </div>
-                                        <div class="pedido--texto">
-                                            <h2>${pedido.nome}</h2>
-                                            <p>$${pedido.preco}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                      </div>
+                                      <div class="pedido--texto">
+                                          <h2>${pedido.nome}</h2>
+                                          <p>$${pedido.preco}</p>
+                                      </div>
+                                  </div>
+                              </div>
                                 `;
   });
 
@@ -73,10 +103,17 @@ function atualizaCarrinho(pedidos) {
   atualizaSubTotal();
 }
 
-function decrementClick(a,aa,aaa){
-  console.log(a,aa,aaa)
+function decrementClick(){
+  
 }
 
+function incrementClick(preco, id){
+  pedidos.forEach(pedido =>{
+    if(id = pedido.id){
+  
+    }
+  })
+}
 
 //#region Tarefas Iniciais
 
@@ -175,23 +212,6 @@ function removeCarrinho(idProduto) {
   }
 }
 
-function atualizaSubTotal(preco) {
-
-  document.addEventListener('click', (e) => {
-    var valor, valorTotal;
-
-    const targetEl = e.target;
-    if (targetEl.classList.contains('form-control')) {
-      valor = targetEl.value;
-      valorTotal = valor * preco
-      console.log(valorTotal)
-      let tagSubTotal = document.querySelector("#subtotal");
-
-      tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ ${valorTotal}`;
-    }
-  })
-  gravaPedidos();
-}
 
 function atualizaNotificacao() {
   let notf = document.querySelector("#notificacao");
