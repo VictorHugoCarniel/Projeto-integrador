@@ -1,4 +1,6 @@
 let pedidos = [];
+var aux = 0;
+var auxi = parseInt(aux, 10)
 
 if (typeof window === "object") {
   document.addEventListener('click', (e) => {
@@ -20,51 +22,53 @@ if (typeof window === "object") {
         id: id,
         nome: nome,
         preco: precoFormatado,
-        quantidade : 1
+        quantidade: 1
       }
       pedidos.push(pedido);
-      console.log(pedido);
-
-
 
       atualizaCarrinho(pedidos);
     }
   })
 
-  
-document.addEventListener('click', (e) => {
-  var valorTotalUm;
 
+  document.addEventListener('click', (e) => {
 
-  const targetEl = e.target;
+    const targetEl = e.target;
 
-  if (targetEl.classList.contains('increment')){
-    const quantidadePedido = targetEl.parentNode;
-    const pedidoItem = quantidadePedido.nextElementSibling;
-    const pedidoTexto = pedidoItem.lastElementChild;
-    const h2Nome = pedidoTexto.firstElementChild;
-    var nome = h2Nome.textContent;
-    console.log(nome)
-    pedidos.forEach(pedido =>{
-      if(pedido.nome == nome){
+    if (targetEl.classList.contains('increment')) {
+      const quantidadePedido = targetEl.parentNode;
+      const pedidoItem = quantidadePedido.nextElementSibling;
+      const pedidoTexto = pedidoItem.lastElementChild;
+      const h2Nome = pedidoTexto.firstElementChild;
+      var nome = h2Nome.textContent;
+      pedidos.forEach(pedido => {
+        if (pedido.nome == nome) {
           pedido.quantidade = pedido.quantidade += 1;
-          valorTotalUm = pedido.quantidade * pedido.preco;
-          console.log(valorTotalUm)
-      }
-      
-    })
-    
-  }
+          atualizaSubTotal();
+        }
 
-})
+      })
+
+    }
+
+
+  })
 } else {
   // code is running in a non-browser environment
 }
 
-function somaValores(valor){
-    var total = valor += valor;
-    console.log(total)
+
+function atualizaSubTotal() {
+  let tagSubTotal = document.querySelector("#subtotal");
+  let subtotal = 0;
+
+  pedidos.forEach((pedido) => {
+    subtotal += pedido.preco * pedido.quantidade;
+  });
+
+  tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ ${subtotal}`;
 }
+
 
 function retornaPreco(preco) {
   var preco = preco.slice(7);
@@ -82,9 +86,9 @@ function atualizaCarrinho(pedidos) {
     tagPedidos.innerHTML += `
                               <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
-                                    <button class='decrement'  onclick="decrementClick(' ${pedido.preco}', '${pedido.id}')">-</button>
+                                    <button class='decrement' >-</button>
                                     <p id="" class="num-contador-pedido" data-contador=></p>
-                                    <button class='increment'  onclick="incrementClick(' ${pedido.preco}', '${pedido.id}')">+</button>
+                                    <button class='increment'>+</button>
                                 </div>
                                 <div class="pedido--item">
                                       <div class="pedido--img">
@@ -97,23 +101,13 @@ function atualizaCarrinho(pedidos) {
                                   </div>
                               </div>
                                 `;
+
+    atualizaSubTotal();
+    atualizaNotificacao();
   });
 
-  atualizaNotificacao();
-  atualizaSubTotal();
 }
 
-function decrementClick(){
-  
-}
-
-function incrementClick(preco, id){
-  pedidos.forEach(pedido =>{
-    if(id = pedido.id){
-  
-    }
-  })
-}
 
 //#region Tarefas Iniciais
 
