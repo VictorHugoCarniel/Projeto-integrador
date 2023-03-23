@@ -18,13 +18,23 @@ if (typeof window === "object") {
       const precoFormatado = retornaPreco(preco);
       const id = Math.random()
 
+
+
       const pedido = {
         id: id,
         nome: nome,
         preco: precoFormatado,
         quantidade: 1
       }
+
       pedidos.push(pedido);
+      
+      pedidos.forEach(pedido => {
+        if (pedido.nome == nome) {
+          console.log("tem dois nomes iguais meo")
+
+        }
+      })
 
       atualizaCarrinho(pedidos);
     }
@@ -53,6 +63,25 @@ if (typeof window === "object") {
 
 
   })
+
+  document.addEventListener('click', (e) => {
+
+    const targetEl = e.target;
+
+    if (targetEl.classList.contains('decrement')) {
+      const quantidadePedido = targetEl.parentNode;
+      const pedidoItem = quantidadePedido.nextElementSibling;
+      const pedidoTexto = pedidoItem.lastElementChild;
+      const h2Nome = pedidoTexto.firstElementChild;
+      var nome = h2Nome.textContent;
+      pedidos.forEach(pedido => {
+        if (pedido.nome == nome) {
+          pedido.quantidade = pedido.quantidade -= 1;
+          atualizaSubTotal();
+        }
+      })
+    }
+  })
 } else {
   // code is running in a non-browser environment
 }
@@ -66,7 +95,11 @@ function atualizaSubTotal() {
     subtotal += pedido.preco * pedido.quantidade;
   });
 
-  tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ ${subtotal}`;
+  if (subtotal >= 0) {
+    tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ ${subtotal.toFixed(2)}`;
+  } else {
+    tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ 0.00`;
+  }
 }
 
 
