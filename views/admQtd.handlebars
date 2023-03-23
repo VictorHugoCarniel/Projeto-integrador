@@ -103,6 +103,9 @@
             <form method="post" action="/zera-quantidade/{{ idProduto }}">
               <button type="submit" class="btnComprar">Zerar</button>
             </form>
+            <form method="post" action="/dec-quantidade/ {{idProduto}}">
+              <button type="submit" class="btnComprar">Vendeu</button>
+            </form>
           </div>
         </div>
         {{/each}}
@@ -140,9 +143,11 @@
               </div>
               <button type="submit" class="btnComprar">Enviar</button>
             </form>
-
             <form method="post" action="/zera-quantidade/{{ idProduto }}">
               <button type="submit" class="btnComprar">Zerar</button>
+            </form>
+            <form method="post" action="/dec-quantidade/ {{idProduto}}">
+              <button type="submit" class="btnComprar">Vendeu</button>
             </form>
           </div>
         </div>

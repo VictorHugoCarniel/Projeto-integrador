@@ -37,8 +37,6 @@ const nodemailer = require('nodemailer');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 const { get } = require('http');
 
-
-
 require("dotenv").config();
 
 app.use(flash());
@@ -144,7 +142,7 @@ app.post("/valida", async (req, res) => {
         lostmail = mail
         res.redirect('/validar')
     } else {
-        console.log("Email não tem no banco")
+        console.log("Email não existe em nosso banco de dados")
     }
 
 })
@@ -310,7 +308,7 @@ app.post('/add-usuario', async (req, res) => {
         where: { email: req.body.email }
     });
     if (usuario) {
-        console.log('teste2')   
+        console.log('teste2')
         req.session.message = {
             type: "danger",
             intro: "Hey,",
@@ -375,8 +373,8 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-//Cadastro Alimentos
 
+//Cadastro Alimentos
 app.post('/add-alimentos', upload.single('imagem'), async (req, res) => {
     const imagePath = path.join('./public/uploads', req.file.filename);
     await Produtos.create({
@@ -420,6 +418,22 @@ app.post('/add-quantidade/:id', async (req, res) => {
         }
     );
     res.redirect('/admQtd')
+})
+
+//Vendeu
+app.post('/dec-quantidade/:id', async (req, res) => {
+    const id_param = req.params.id;
+    let quantidade = req.body.quantidade;
+
+    if (quantidade => quantidade => 0) {
+        const produto = await Produtos.findOne({ where: { idProduto: id_param } });
+        produto.quantidade = produto.quantidade - 1;
+        await produto.save();
+        console.log('O produtode id:', id_param, 'foi decrementado')
+        res.redirect('/admQtd')
+    } else {
+        console.log('quantidade do produto de id:', id_param, 'é menor ou igual a 0')
+    }
 })
 
 //Delete produtos
@@ -469,7 +483,6 @@ app.get('/produtos', async (req, res) => {
 })
 
 // User
-
 app.get('/user:id', async (req, res) => {
     console.log('cu Usuario')
     const id = req.params.id;
