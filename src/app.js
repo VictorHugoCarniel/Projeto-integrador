@@ -44,6 +44,7 @@ require("dotenv").config();
 app.use(flash());
 
 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
@@ -65,6 +66,12 @@ function criptografar(password) {
     return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
 };
 
+String.prototype.capitalize = function() {
+	return this.charAt(0).toUpperCase() + this.substr(1);
+}
+
+var nomeUser = "caraiooo"
+
 var buf = crypto.randomBytes(3);
 var lostmail = ''
 var validaAdmin = false
@@ -85,14 +92,6 @@ app.post("/valida", async (req, res) => {
     });
 
     if (email) {
-        // var transport = nodemailer.createTransport({
-        //     host: "sandbox.smtp.mailtrap.io",
-        //     port: 2525,
-        //     auth: {
-        //         user: "589068e3d0b971",
-        //         pass: "8672cc117e3fac"
-        //     }
-        // });
 
         const header = fs.readFileSync('./templates/header.handlebars', 'utf8');
         const resetsenha = fs.readFileSync('./templates/resetpass.handlebars', 'utf8');
@@ -177,8 +176,8 @@ app.get('/redefinirSenha', (req, res) => {
 });
 
 app.post('/redefinirSenha', async (req, res) => {
-    console.log('senha redefinir')
-    console.log(lostmail)
+    // console.log('senha redefinir')
+    // console.log(lostmail)
 
     const Senha = req.body.senha;
     const usuario = await User.findOne({
@@ -251,7 +250,8 @@ app.get('/home', async (req, res) => {
     if (req.session.loggedIn == true) {
         const Usuario = req.session.user
 
-        console.log(Usuario)
+        // console.log(Usuario)
+        
         const usuario = await User.findOne({
             where: {
                 email: Usuario,
@@ -259,8 +259,12 @@ app.get('/home', async (req, res) => {
             }
         });
 
-        // idProduto = req.body.idProduto
-        // console.log(EnviaId)
+        const user = await User.findOne({
+            where: {
+                email: Usuario
+            }
+        });
+
         var rowsC = await Produtos.findAll({
             where: {
                 idTipoProduto: 1,
@@ -277,14 +281,18 @@ app.get('/home', async (req, res) => {
                 }
             }
         });
+        
+        nomeUser = user.nome.capitalize()
+        nomeUser = (nomeUser.substring(0,10) + "...")
+
         if (usuario) {
             validaAdmin = true
-            res.render('indexADM', { rowsC, rowsB })
+            console.log( user.nome , "catapimbas meooo")
+            res.render('indexADM', { rowsC, rowsB, nomeUser })
         } else {
-            res.render('index', { rowsC, rowsB })
+            console.log( user.nome , "catapimbas meooo")
+            res.render('index', { rowsC, rowsB, nomeUser })
         }
-
-        res.render('index', { rowsC, rowsB })
     } else {
         res.redirect('/login')
     }

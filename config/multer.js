@@ -5,7 +5,7 @@ const crypto = require('crypto');
 module.exports = (multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => {
-            cb(null, 'C:/Users/douglas.8998/Documents/GitHub/Projeto-integrador/public/upload')
+            // cb(null, 'C:/Users/douglas.8998/Documents/GitHub/Projeto-integrador/public/upload')
         },
         filename: (req, file, cb) => {
             cb(null, Date.now().toString() + "_" + file.originalname)  

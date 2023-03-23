@@ -41,7 +41,7 @@
     </button>
     <nav class="navbar" id="navbar">
       <div class="navbar--links">
-        <a href="#home" class="animateLink" onclick="LinkActive()">
+        <a href="/home" class="animateLink" onclick="LinkActive()">
           <div class="link active">Home<span class="link--linha"></span></div>
         </a>
         <a href="#cardapio" class="animateLink" onclick="LinkActive()">
@@ -50,7 +50,7 @@
         <a href="/" class="animateLink" onclick="LinkActive()">
           <div class="link">Sobre<span class="link--linha"></span></div>
         </a>
-        <a href="#contato" class="animateLink" onclick="LinkActive()">
+        <a href="/contato" class="animateLink" onclick="LinkActive()">
           <div class="link">Contato<span class="link--linha"></span></div>
         </a>
       </div>
@@ -61,15 +61,15 @@
             <span class="notificacao" id="notificacao">0</span>
           </i>
         </a>
-        <a href="cadastro">
-          <div class="link cadastro">
-            Cadastre-se<span class="link--linha"></span>
+        <div class="user-info">
+          <button class="user-dropdown login" onclick="toggleDropdown()">{{nomeUser}}</button>
+          <div class="user-dropdown-content">
+            <a href="#">Funcionalidade 1</a>
+            <a href="#">Funcionalidade 2</a>
+            <a href="#">Funcionalidade 3</a>
+            <button onclick="logoff()">Logoff</button>
           </div>
-        </a>
-
-        <a href="login">
-          <div class="login">Login</div>
-        </a>
+        </div>
         <div class="toggle-btn" id="_1st-toggle-btn">
           <input type="checkbox" onchange="darkModeToggle()" id="chkDarkMode">
           <span></span>
@@ -134,7 +134,9 @@
               Quantidade atual: {{ quantidade }}
             </p>
           </div>
-          <div class="text"><p>Preço: {{ preco }}</p></div>
+          <div class="text">
+            <p>Preço: {{ preco }}</p>
+          </div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
           </form>
 
@@ -168,7 +170,9 @@
               Quantidade atual: {{ quantidade }}
             </p>
           </div>
-          <div class="text"><p>Preço: {{ preco }}</p></div>
+          <div class="text">
+            <p>Preço: {{ preco }}</p>
+          </div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
           </form>
 

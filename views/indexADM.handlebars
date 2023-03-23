@@ -41,7 +41,7 @@
     </button>
     <nav class="navbar" id="navbar">
       <div class="navbar--links">
-        <a href="#home" class="animateLink" onclick="LinkActive()">
+        <a href="/home" class="animateLink" onclick="LinkActive()">
           <div class="link active">Home<span class="link--linha"></span></div>
         </a>
         <a href="/administrador" class="animateLink" onclick="LinkActive()">
@@ -53,7 +53,7 @@
       </div>
 
       <div class="navbar--login">
-        <a href="#" onclick="abreFechaModal()">
+        <a href="/" onclick="abreFechaModal()">
           <i class="fas fa-shopping-cart carrinho">
             <span class="notificacao" id="notificacao">0</span>
           </i>
@@ -65,7 +65,7 @@
         </a>
 
         <a href="login">
-          <div class="login">Login</div>
+          <div class="login">{{ nomeUser }}</div>
         </a>
         <div class="toggle-btn" id="_1st-toggle-btn">
           <input type="checkbox" onchange="darkModeToggle()" id="chkDarkMode">
@@ -110,7 +110,6 @@
       <span></span>
     </div>
 
-
     <div class="cards">
       {{#each rowsC}}
       <div class="card">
@@ -133,7 +132,7 @@
           </div>
           <div class="text">
             <p>
-              Preço: {{ preco }}
+              Preço:#{{ preco }}
             </p>
           </div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
