@@ -64,8 +64,17 @@ function criptografar(password) {
     return cipher.final(DADOS_CRIPTOGRAFAR.tipo);
 };
 
-String.prototype.capitalize = function() {
-	return this.charAt(0).toUpperCase() + this.substr(1);
+String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.substr(1);
+}
+
+function primeiroNome(str) {
+    str = str.trim();
+    const espacoIndex = str.indexOf(' ');
+    if (espacoIndex === -1) {
+        return str;
+    }
+    return str.substring(0, espacoIndex);
 }
 
 var nomeUser = "caraiooo"
@@ -102,7 +111,7 @@ app.post("/valida", async (req, res) => {
 
         const emailBody = `
             ${header}
-            ${welcome}
+            ${code}
             ${footer}
         `;
 
@@ -241,7 +250,8 @@ app.post('/auth', async (req, res) => {
     }
 });
 
-const EnviaId = require('../public/js/carrinho.js')
+const EnviaId = require('../public/js/carrinho.js');
+const { CodeArtifact } = require('aws-sdk');
 app.get('/home', async (req, res) => {
     const { Op } = require("sequelize");
 
@@ -249,7 +259,7 @@ app.get('/home', async (req, res) => {
         const Usuario = req.session.user
 
         // console.log(Usuario)
-        
+
         const usuario = await User.findOne({
             where: {
                 email: Usuario,
@@ -279,16 +289,16 @@ app.get('/home', async (req, res) => {
                 }
             }
         });
-        
+
         nomeUser = user.nome.capitalize()
-        nomeUser = (nomeUser.substring(0,10) + "...")
+        nomeUser = primeiroNome(nomeUser)
 
         if (usuario) {
             validaAdmin = true
-            console.log( user.nome , "catapimbas meooo")
+            console.log(user.nome, "catapimbas meooo")
             res.render('indexADM', { rowsC, rowsB, nomeUser })
         } else {
-            console.log( user.nome , "catapimbas meooo")
+            console.log(user.nome, "catapimbas meooo")
             res.render('index', { rowsC, rowsB, nomeUser })
         }
     } else {

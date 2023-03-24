@@ -48,12 +48,12 @@
           <div class="link">Cadastro<span class="link--linha"></span></div>
         </a>
         <a href="/admQtd" class="animateLink" onclick="LinkActive()">
-          <div class="link">Alimento<span class="link--linha"></span></div>
+          <div class="link">Quantidade<span class="link--linha"></span></div>
         </a>
       </div>
 
       <div class="navbar--login">
-        <a href="/" onclick="abreFechaModal()">
+        <a href="#" onclick="abreFechaModal()">
           <i class="fas fa-shopping-cart carrinho">
             <span class="notificacao" id="notificacao">0</span>
           </i>
@@ -63,10 +63,15 @@
             Cadastre-se<span class="link--linha"></span>
           </div>
         </a>
-
-        <a href="login">
-          <div class="login">{{ nomeUser }}</div>
-        </a>
+        <div class="user-info login" onclick="toggleDropdown()">
+          <button class="user-dropdown" >{{nomeUser}}</button>
+          <div class="user-dropdown-content">
+            <a href="#">Vendas</a>
+            <a href="#">Pedidos</a>
+            <a href="#">Configurações</a>
+            <a href="#">Logoff</a>
+          </div>
+        </div>
         <div class="toggle-btn" id="_1st-toggle-btn">
           <input type="checkbox" onchange="darkModeToggle()" id="chkDarkMode">
           <span></span>
@@ -130,11 +135,7 @@
               Quantidade atual: {{ quantidade }}
             </p>
           </div>
-          <div class="text">
-            <p>
-              Preço:#{{ preco }}
-            </p>
-          </div>
+          <div class="text">Preço:{{ preco }}</p></div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
           </form>
 
@@ -168,11 +169,7 @@
               Quantidade atual: {{ quantidade }}
             </p>
           </div>
-          <div class="text">
-            <p>
-              Preço: {{ preco }}
-            </p>
-          </div>
+          <div class="text"><p>Preço: {{ preco }}</p></div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
           </form>
 
