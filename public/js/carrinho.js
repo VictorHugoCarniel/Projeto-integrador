@@ -58,7 +58,6 @@ if (typeof window === "object") {
         }
 
       })
-
     }
 
 
@@ -75,7 +74,7 @@ if (typeof window === "object") {
       const h2Nome = pedidoTexto.firstElementChild;
       var nome = h2Nome.textContent;
       pedidos.forEach(pedido => {
-        if (pedido.nome == nome) {
+        if (pedido.nome == nome && pedido.quantidade > 0) {
           pedido.quantidade = pedido.quantidade -= 1;
           atualizaSubTotal();
         }
@@ -84,6 +83,12 @@ if (typeof window === "object") {
   })
 } else {
   // code is running in a non-browser environment
+}
+
+function removeCarrinho(){
+  const novoArray = pedidos.filter(pedido => pedido.quantidade == 0);
+  console.log(novoArray)
+  return novoArray;
 }
 
 
