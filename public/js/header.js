@@ -22,9 +22,9 @@ function isDarkModeSystem() {
 }
 
 
+var login = document.querySelector('.user-info')
+var dropdown = document.querySelector(".user-dropdown-content");
 function toggleDropdown() {
-  var login = document.querySelector('.user-info')
-  var dropdown = document.querySelector(".user-dropdown-content");
   if (dropdown.style.display === "block") {
     dropdown.style.display = "none";
   } else {
@@ -32,3 +32,13 @@ function toggleDropdown() {
   }
   login.classList.toggle("botaozin");
 }
+
+document.addEventListener("click", function (event) {
+  // Verifica se o clique ocorreu fora da toolbar
+  if (!dropdown.parentElement.contains(event.target) && event.target !== login) {
+    if (dropdown.style.display === "block") {
+      dropdown.style.display = "none";
+      login.classList.toggle("botaozin");
+    }
+  }
+});
