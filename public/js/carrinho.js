@@ -1,8 +1,8 @@
 let pedidos = [];
-var aux = 0;
-var auxi = parseInt(aux, 10)
 
 if (typeof window === "object") {
+  
+
   document.addEventListener('click', (e) => {
     const targetEl = e.target;
 
@@ -15,24 +15,13 @@ if (typeof window === "object") {
       const nome = h2nome.textContent;
       const preco = penultimoFilho.textContent;
 
-      const precoFormatado = retornaPreco(preco);
-      const id = Math.random()
-
-
-
-      const pedido = {
-        id: id,
-        nome: nome,
-        preco: precoFormatado,
-        quantidade: 1
-      }
+      const pedido = criarPedido(nome, preco)
 
       pedidos.push(pedido);
-    
+
       atualizaCarrinho(pedidos);
     }
   })
-
 
   document.addEventListener('click', (e) => {
 
@@ -55,8 +44,8 @@ if (typeof window === "object") {
   })
 
   document.addEventListener('click', (e) => {
-
     const targetEl = e.target;
+    var contador = 0;
 
     if (targetEl.classList.contains('decrement')) {
       const quantidadePedido = targetEl.parentNode;
@@ -67,6 +56,7 @@ if (typeof window === "object") {
       pedidos.forEach(pedido => {
         if (pedido.nome == nome && pedido.quantidade > 0) {
           pedido.quantidade = pedido.quantidade -= 1;
+          removeCarrinho();
           atualizaSubTotal();
         }
       })
@@ -76,10 +66,24 @@ if (typeof window === "object") {
   // code is running in a non-browser environment
 }
 
-function removeCarrinho(){
-  const novoArray = pedidos.filter(pedido => pedido.quantidade == 0);
-  console.log(novoArray)
-  return novoArray;
+function criarPedido(nome, preco) {
+  const precoFormatado = retornaPreco(preco);
+  const id = Math.random();
+
+  return {
+    id,
+    nome,
+    preco: precoFormatado,
+    quantidade: 1
+  };
+}
+
+
+function removeCarrinho() {
+  const novoArray = pedidos.filter(pedido => pedido.quantidade != 0);
+  pedidos = novoArray;
+  atualizaCarrinho(pedidos);
+
 }
 
 
@@ -134,7 +138,7 @@ function atualizaCarrinho(pedidos) {
 
 }
 
-function atualizaQuantidade(id){
+function atualizaQuantidade(id) {
 
 }
 
