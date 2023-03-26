@@ -28,14 +28,7 @@ if (typeof window === "object") {
       }
 
       pedidos.push(pedido);
-      
-      pedidos.forEach(pedido => {
-        if (pedido.nome == nome) {
-          console.log("tem dois nomes iguais meo")
-
-        }
-      })
-
+    
       atualizaCarrinho(pedidos);
     }
   })
@@ -59,8 +52,6 @@ if (typeof window === "object") {
 
       })
     }
-
-
   })
 
   document.addEventListener('click', (e) => {
@@ -124,25 +115,26 @@ function atualizaCarrinho(pedidos) {
     tagPedidos.innerHTML += `
                               <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
-                                    <button class='decrement' >-</button>
-                                    <p id="" class="num-contador-pedido" data-contador=></p>
-                                    <button class='increment'>+</button>
+                                    <button class='decrement' onclick="atualizaQuantidade(${pedido.id})">-</button>
+                                    <p class="num-contador-pedido">${pedido.quantidade}</p>
+                                    <button class='increment' onclick="atualizaQuantidade(${pedido.id})">+</button>
                                 </div>
                                 <div class="pedido--item">
-                                      <div class="pedido--img">
-                                            <img src= alt=>
-                                      </div>
                                       <div class="pedido--texto">
                                           <h2>${pedido.nome}</h2>
                                           <p>$${pedido.preco}</p>
                                       </div>
-                                  </div>
+                                </div>
                               </div>
                                 `;
 
     atualizaSubTotal();
     atualizaNotificacao();
   });
+
+}
+
+function atualizaQuantidade(id){
 
 }
 
@@ -232,18 +224,6 @@ function atualizaQtdItensCarrinho(idProduto, tagContador, valorContador) {
 
   updateDisplay(tagContador, pedidos[indexPedidos].quantidade);
 }
-
-function removeCarrinho(idProduto) {
-  for (let indice in pedidos) {
-    let pedido = pedidos[indice];
-    if (pedido.idProduto == idProduto) {
-      pedidos.splice(indice, 1);
-
-      atualizaCarrinho();
-    }
-  }
-}
-
 
 function atualizaNotificacao() {
   let notf = document.querySelector("#notificacao");
