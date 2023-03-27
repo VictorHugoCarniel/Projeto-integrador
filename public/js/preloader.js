@@ -13,8 +13,6 @@ const table = document.querySelector("table");
 setupPagination(table, 15);
 
 
-
-
 function setupPagination(table, rowsPerPage) {
     const tableBody = table.tBodies[0];
     const tableRows = Array.from(tableBody.rows);
@@ -85,6 +83,7 @@ function setupPagination(table, rowsPerPage) {
         // atualiza o texto e o link dos links de página exibidos
         let j = 0;
         for (let i = startPage; i <= endPage; i++) {
+            if (i < 1) continue; // adiciona esta condição para pular índices menores do que 1
             let pageLink = pageLinks[j];
             pageLink.textContent = i;
             pageLink.href = "#";
@@ -96,18 +95,20 @@ function setupPagination(table, rowsPerPage) {
             j++;
         }
 
-        // esconde os links de página excedentes
+
+        // Esconde os links de página excedentes
         for (let i = j; i < maxLinks; i++) {
             pageLinks[i].style.display = "none";
         }
 
-        // exibe todos os links de página caso haja menos links que o número máximo
-        if (j < maxLinks) {
-            pageLinks.forEach(link => {
-                link.style.display = "inline-block";
-            });
+        // Oculta a lista de links de página caso não haja mais páginas a serem exibidas
+        if (startPage === 1 && endPage === totalPages) {
+            document.querySelector(".pagination").style.display = "none";
+        } else {
+            document.querySelector(".pagination").style.display = "flex";
         }
     }
+
 
 
     function setupPaginationLinks() {
@@ -130,6 +131,8 @@ function setupPagination(table, rowsPerPage) {
         });
 
     }
+
+
 
     showPage(currentPage);
     setupPaginationLinks();
