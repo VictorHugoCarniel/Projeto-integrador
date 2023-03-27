@@ -40,6 +40,10 @@ header {
     align-items: center;
 }
 
+.carrinho {
+    margin: 0px 40px;
+}
+
 .link {
     cursor: pointer;
     margin-left: 1rem;
@@ -285,6 +289,7 @@ body {
 
 .user-info {
     position: relative;
+    background: var(--background4);
 }
 
 .user-dropdown {
