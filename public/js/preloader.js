@@ -9,9 +9,18 @@
 
 // }
 
+$(document).ready(function () {
+    $('#filter-button').click(function () {
+        var filter = $('#filter').val().toLowerCase();
+        $('table tbody tr').filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(filter) > -1)
+        });
+    });
+    setupPagination(table, 15);
+});
+
 const table = document.querySelector("table");
 setupPagination(table, 15);
-
 
 function setupPagination(table, rowsPerPage) {
     const tableBody = table.tBodies[0];
@@ -132,10 +141,6 @@ function setupPagination(table, rowsPerPage) {
 
     }
 
-
-
     showPage(currentPage);
     setupPaginationLinks();
 }
-
-// eu gostaria que não aprececem outros indices além dos que não existem, ou seja se tiver só uma pagina, aparecesse só ela
