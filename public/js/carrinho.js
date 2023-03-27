@@ -1,9 +1,10 @@
-let pedidos = [];
+const pedidos = [];
+
 
 if (typeof window === "object") {
   document.addEventListener('click', (e) => {
     const targetEl = e.target;
-
+    
     if (targetEl.classList.contains('btnComprar')) {
       const cardBody = targetEl.parentNode;
       const filhos = cardBody.childNodes;
@@ -12,10 +13,14 @@ if (typeof window === "object") {
       const h2nome = divTitulo.firstElementChild;
       const nome = h2nome.textContent;
       const preco = penultimoFilho.textContent;
-
+      
       const pedido = criarPedido(nome, preco)
 
+
       pedidos.push(pedido);
+
+      console.log('cocozinho', pedidos, 'nome eh', nome);
+
 
       atualizaCarrinho(pedidos);
     }
@@ -65,14 +70,10 @@ if (typeof window === "object") {
   // code is running in a non-browser environment
 }
 
-function atualizaContador(){
-
-}
-
 function criarPedido(nome, preco) {
   const precoFormatado = retornaPreco(preco);
   const id = Math.random();
-
+  
   return {
     id,
     nome,
@@ -246,28 +247,7 @@ function gravaPedidos() {
 
 function enviaPedido() {
   let tagPedidos = document.querySelector("#pedidos");
-  tagPedidos.innerHTML += `
-      <div class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Modal body text goes here.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  console.log = "joasn"
+  console.log('sdfsdfsdfsd')
 }
 
 // function GetCard(cardBody){
@@ -285,4 +265,4 @@ function EnviaId(idProduto) {
   xhttp.send();
 }
 
-module.exports = EnviaId;
+module.exports = pedidos;

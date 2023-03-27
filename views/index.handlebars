@@ -84,7 +84,9 @@
     <div class="pedidos" id="pedidos"></div>
     <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
     <span></span>
-    <button class="btnPedido" onclick="enviaPedido()">Fechar Pedido</button>
+    <form method="post" action="/fechamento">
+    <input type="submit" class="btnPedido" >Fechar Pedido</input>
+    </form>
   </div>
 
   <section class="home" id="home">
@@ -147,7 +149,7 @@
           </div>
           <div class="text"><p>Quantidade atual: {{ quantidade }}</p></div>
           <div class="text"><p>Preço: {{ preco }}</p></div>
-          <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
+          <button type="submit" class="btnComprar">Comprar</button>
           </form>
         </div>
       </div>
