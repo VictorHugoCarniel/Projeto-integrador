@@ -34,7 +34,6 @@ const { json } = require('body-parser');
 const { framework } = require('passport');
 
 const nodemailer = require('nodemailer');
-const mailchimp = require('@mailchimp/mailchimp_marketing');
 const { get } = require('http');
 
 require("dotenv").config();
@@ -115,19 +114,19 @@ app.post("/valida", async (req, res) => {
             ${footer}
         `;
 
-        // var message = {
-        //     from: "noreplay@celke.com.br",
-        //     to: mail,
-        //     subject: "Instrução para recuperar a senha",
-        //     text: "teste",
-        //     html: emailBody
-        // };
+        var message = {
+            from: "noreplay@celke.com.br",
+            to: mail,
+            subject: "Instrução para recuperar a senha",
+            text: "teste",
+            html: emailBody
+        };
 
-        // transport.sendMail(message, function (err) {
-        //     if (err) {
-        //         console.log("Erro: E-mail não enviado!  -  " + buf.toString('hex'))
-        //     }
-        // });
+        transport.sendMail(message, function (err) {
+            if (err) {
+                // console.log("Erro: E-mail não enviado!  -  " + buf.toString('hex'))
+            }
+        });
 
         const sgMail = require('@sendgrid/mail')
         sgMail.setApiKey(process.env.SENDGRID_API_KEY)

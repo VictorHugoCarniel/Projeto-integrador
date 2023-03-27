@@ -23,6 +23,8 @@ function isDarkModeSystem() {
 
 
 var login = document.querySelector('.user-info')
+var seta = document.querySelector('.setinha')
+const icon = document.getElementById('rodolfo');
 var dropdown = document.querySelector(".user-dropdown-content");
 function toggleDropdown() {
   if (dropdown.style.display === "block") {
@@ -31,14 +33,15 @@ function toggleDropdown() {
     dropdown.style.display = "block";
   }
   login.classList.toggle("botaozin");
+  icon.classList.toggle("rotated")
 }
 
 document.addEventListener("click", function (event) {
-  // Verifica se o clique ocorreu fora da toolbar
   if (!dropdown.parentElement.contains(event.target) && event.target !== login) {
     if (dropdown.style.display === "block") {
       dropdown.style.display = "none";
       login.classList.toggle("botaozin");
+      icon.classList.toggle("rotated")
     }
   }
 });
