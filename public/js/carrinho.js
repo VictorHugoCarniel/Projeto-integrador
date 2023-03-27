@@ -1,9 +1,10 @@
-let pedidos = [];
+const pedidos = [];
+
 
 if (typeof window === "object") {
   document.addEventListener('click', (e) => {
     const targetEl = e.target;
-
+    
     if (targetEl.classList.contains('btnComprar')) {
       const cardBody = targetEl.parentNode;
       const filhos = cardBody.childNodes;
@@ -12,10 +13,14 @@ if (typeof window === "object") {
       const h2nome = divTitulo.firstElementChild;
       const nome = h2nome.textContent;
       const preco = penultimoFilho.textContent;
-
+      
       const pedido = criarPedido(nome, preco)
 
+
       pedidos.push(pedido);
+
+      console.log('cocozinho', pedidos, 'nome eh', nome);
+
 
       atualizaCarrinho(pedidos);
     }
@@ -68,7 +73,7 @@ if (typeof window === "object") {
 function criarPedido(nome, preco) {
   const precoFormatado = retornaPreco(preco);
   const id = Math.random();
-
+  
   return {
     id,
     nome,
@@ -260,4 +265,4 @@ function EnviaId(idProduto) {
   xhttp.send();
 }
 
-module.exports = EnviaId;
+module.exports = pedidos;

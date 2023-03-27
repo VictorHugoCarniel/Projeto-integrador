@@ -81,15 +81,16 @@
     </nav>
   </header>
 
-  <div class="modalCarrinho" id="modalCarrinho">
+ <div class="modalCarrinho" id="modalCarrinho">
     <button class="btnFechar" onclick="abreFechaModal()">&times;</button>
-    <i class="fas fa-shopping-cart carrinho-icon" ></i>
+    <i class="fas fa-shopping-cart"></i>
     <div class="pedidos" id="pedidos"></div>
     <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
     <span></span>
-    <button class="btnPedido" onclick="enviaPedido()">Fechar Pedido</button>
+    <form method="post" action="/fechamento">
+    <input type="submit" class="btnPedido" >Fechar Pedido</input>
+    </form>
   </div>
-
   <section class="home" id="home">
     <div class="home--text">
       <span><i class="fas fa-hamburger"></i> Seu melhor ensino e comida juntos é
