@@ -84,6 +84,10 @@ var validaAdmin = false
 
 //Rotas
 
+app.get("/pedidos", async (req, res) => {
+    res.render('pedidos')
+})
+
 app.get("/valida", async (req, res) => {
     if (buf == buf) {
         buf = crypto.randomBytes(3);
