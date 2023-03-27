@@ -1,6 +1,4 @@
 let pedidos = [];
-var aux = 0;
-var auxi = parseInt(aux, 10)
 
 if (typeof window === "object") {
   document.addEventListener('click', (e) => {
@@ -15,34 +13,15 @@ if (typeof window === "object") {
       const nome = h2nome.textContent;
       const preco = penultimoFilho.textContent;
 
-      const precoFormatado = retornaPreco(preco);
-      const id = Math.random()
-
-
-
-      const pedido = {
-        id: id,
-        nome: nome,
-        preco: precoFormatado,
-        quantidade: 1
-      }
+      const pedido = criarPedido(nome, preco)
 
       pedidos.push(pedido);
-      
-      pedidos.forEach(pedido => {
-        if (pedido.nome == nome) {
-          console.log("tem dois nomes iguais meo")
-
-        }
-      })
 
       atualizaCarrinho(pedidos);
     }
   })
 
-
   document.addEventListener('click', (e) => {
-
     const targetEl = e.target;
 
     if (targetEl.classList.contains('increment')) {
@@ -55,17 +34,14 @@ if (typeof window === "object") {
         if (pedido.nome == nome) {
           pedido.quantidade = pedido.quantidade += 1;
           atualizaSubTotal();
+          atualizaQuantidadePedidos();
         }
 
       })
-
     }
-
-
   })
 
   document.addEventListener('click', (e) => {
-
     const targetEl = e.target;
 
     if (targetEl.classList.contains('decrement')) {
@@ -75,17 +51,41 @@ if (typeof window === "object") {
       const h2Nome = pedidoTexto.firstElementChild;
       var nome = h2Nome.textContent;
       pedidos.forEach(pedido => {
-        if (pedido.nome == nome) {
+        if (pedido.nome == nome && pedido.quantidade > 0) {
           pedido.quantidade = pedido.quantidade -= 1;
+          removeCarrinho();
           atualizaSubTotal();
+          atualizaQuantidadePedidos();
         }
       })
     }
+
   })
 } else {
   // code is running in a non-browser environment
 }
 
+function atualizaContador(){
+
+}
+
+function criarPedido(nome, preco) {
+  const precoFormatado = retornaPreco(preco);
+  const id = Math.random();
+
+  return {
+    id,
+    nome,
+    preco: precoFormatado,
+    quantidade: 1
+  };
+}
+
+function removeCarrinho() {
+  const novoArray = pedidos.filter(pedido => pedido.quantidade != 0);
+  pedidos = novoArray;
+  atualizaCarrinho(pedidos);
+}
 
 function atualizaSubTotal() {
   let tagSubTotal = document.querySelector("#subtotal");
@@ -102,36 +102,29 @@ function atualizaSubTotal() {
   }
 }
 
-
 function retornaPreco(preco) {
   var preco = preco.slice(7);
   return preco;
 }
 
-
-
 function atualizaCarrinho(pedidos) {
   let tagPedidos = document.querySelector("#pedidos");
   tagPedidos.innerHTML = "";
-
 
   pedidos.forEach((pedido) => {
     tagPedidos.innerHTML += `
                               <div class="pedido">
                                 <div class="quantidade pedido--quantidade">
-                                    <button class='decrement' >-</button>
-                                    <p id="" class="num-contador-pedido" data-contador=></p>
+                                    <button class='decrement'>-</button>
+                                    <p class="num-contador-pedido">${pedido.quantidade}</p>
                                     <button class='increment'>+</button>
                                 </div>
                                 <div class="pedido--item">
-                                      <div class="pedido--img">
-                                            <img src= alt=>
-                                      </div>
                                       <div class="pedido--texto">
                                           <h2>${pedido.nome}</h2>
                                           <p>$${pedido.preco}</p>
                                       </div>
-                                  </div>
+                                </div>
                               </div>
                                 `;
 
@@ -139,6 +132,19 @@ function atualizaCarrinho(pedidos) {
     atualizaNotificacao();
   });
 
+}
+
+function atualizaQuantidadePedidos() {
+  const numContadorPedidos = document.querySelectorAll('.num-contador-pedido');
+  numContadorPedidos.forEach((contador) => {
+    const nomePedido = contador.parentNode.nextElementSibling.lastElementChild.firstElementChild.textContent;
+    console.log(nomePedido)
+    pedidos.forEach((pedido) => {
+      if (pedido.nome === nomePedido) {
+        contador.textContent = pedido.quantidade;
+      }
+    });
+  });
 }
 
 
@@ -227,18 +233,6 @@ function atualizaQtdItensCarrinho(idProduto, tagContador, valorContador) {
 
   updateDisplay(tagContador, pedidos[indexPedidos].quantidade);
 }
-
-function removeCarrinho(idProduto) {
-  for (let indice in pedidos) {
-    let pedido = pedidos[indice];
-    if (pedido.idProduto == idProduto) {
-      pedidos.splice(indice, 1);
-
-      atualizaCarrinho();
-    }
-  }
-}
-
 
 function atualizaNotificacao() {
   let notf = document.querySelector("#notificacao");
