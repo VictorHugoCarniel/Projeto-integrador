@@ -144,11 +144,13 @@ body {
     display: flex;
     gap: 5px;
     align-items: center;
+    color: var(--fonte1);
 }
 
 .quantidade button {
     padding: 0px 9px;
     border-radius: 20%;
+    color: var(--fonte1);
 }
 
 .quantidade p {
