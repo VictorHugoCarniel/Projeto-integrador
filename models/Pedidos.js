@@ -29,6 +29,9 @@ const Pedidos = db.sequelize.define('pedido', {
         type: db.Sequelize.DATE,
         allowNull: false
     }
+}, {
+  timestamps: false // desativa createdAt e updatedAt
 });
 
+// Pedidos.sync({ force: true })
 module.exports = Pedidos;

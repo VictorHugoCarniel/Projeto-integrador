@@ -33,6 +33,10 @@
   <link rel="stylesheet" href="public/css/404.css" />
 
   <title>Projeto Integrador</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+
 </head>
 
 <body>
@@ -47,7 +51,7 @@
     </div>
     <div class="filter">
       <label for="client-filter">Cliente:</label>
-      <input type="text" id="client-filter">
+      <input type="text" name="filtroCli" id="client-filter">
     </div>
     <div class="filter">
       <label for="price-filter">Preço:</label>
@@ -63,10 +67,11 @@
     </div>
   </div>
 
+  <button class="testee">Chama</button>
 
   <div class="container">
     <div class="table-wrapper">
-      <table>
+      <table class="table-pedidos">
         <thead>
           <tr>
             <th>ID</th>
@@ -81,251 +86,35 @@
           {{#each pedidos}}
           <tr>
             <td>{{this.idPedido}}</td>
-            <td>{{this.idProduto}}</td>
-            <td>{{this.usuario}}</td>
-            <td>{{this.createdat}}</td>
+            <td>{{this.produto}}</td>
+            <td>{{this.cliente}}</td>
+            <td>{{this.preco}}</td>
+            <td>{{this.quantidade}}</td>
+            <td>{{this.data}}</td>
           </tr>
           {{/each}}
         </tbody>
-
-        {{!-- <tbody>
-          <tr>
-            <td>001</td>
-            <td>Frango Xadrez</td>
-            <td>João Silva</td>
-            <td>R$30,00</td>
-            <td>2</td>
-            <td>2023-03-01</td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>Pizza Margherita</td>
-            <td>Maria Santos</td>
-            <td>R$35,00</td>
-            <td>1</td>
-            <td>2023-03-02</td>
-          </tr>
-          <tr>
-            <td>003</td>
-            <td>Lasanha à Bolonhesa</td>
-            <td>Luís Oliveira</td>
-            <td>R$45,00</td>
-            <td>3</td>
-            <td>2023-03-03</td>
-          </tr>
-          <tr>
-            <td>004</td>
-            <td>Bife a Cavalo</td>
-            <td>Luciana Ferreira</td>
-            <td>R$25,00</td>
-            <td>2</td>
-            <td>2023-03-04</td>
-          </tr>
-          <tr>
-            <td>005</td>
-            <td>Macarrão com Queijo</td>
-            <td>Pedro Almeida</td>
-            <td>R$20,00</td>
-            <td>1</td>
-            <td>2023-03-05</td>
-          </tr>
-          <tr>
-            <td>006</td>
-            <td>Salmão Grelhado</td>
-            <td>Andréia Costa</td>
-            <td>R$55,00</td>
-            <td>2</td>
-            <td>2023-03-06</td>
-          </tr>
-          <tr>
-            <td>007</td>
-            <td>Feijoada Completa</td>
-            <td>Juliano Santos</td>
-            <td>R$40,00</td>
-            <td>3</td>
-            <td>2023-03-07</td>
-          </tr>
-          <tr>
-            <td>008</td>
-            <td>Peixe Frito</td>
-            <td>Beatriz Silva</td>
-            <td>R$28,00</td>
-            <td>1</td>
-            <td>2023-03-08</td>
-          </tr>
-          <tr>
-            <td>009</td>
-            <td>Arroz com Feijão</td>
-            <td>José Oliveira</td>
-            <td>R$12,00</td>
-            <td>2</td>
-            <td>2023-03-09</td>
-          </tr>
-          <tr>
-            <td>010</td>
-            <td>Bife à Parmegiana</td>
-            <td>Lucas Souza</td>
-            <td>R$50,00</td>
-            <td>1</td>
-            <td>2023-03-10</td>
-          </tr>
-          <tr>
-            <td>011</td>
-            <td>Frango Assado</td>
-            <td>Isabel Santos</td>
-            <td>R$35,00</td>
-            <td>2</td>
-            <td>2023-03-11</td>
-          </tr>
-          <tr>
-            <td>012</td>
-            <td>Salada de Frutas</td>
-            <td>Leonardo Fernandes</td>
-            <td>R$15,00</td>
-            <td>1</td>
-            <td>2023-03-12</td>
-          </tr>
-          <tr>
-            <td>013</td>
-            <td>Massa com Frutos do Mar</td>
-            <td>Gabriela Alves</td>
-            <td>R$60,00</td>
-            <td>3</td>
-            <td>2023-03-13</td>
-          </tr>
-          <tr>
-            <td>014</td>
-            <td>Ensopado de Carne</td>
-            <td>Mariana Costa</td>
-            <td>R$40,00</td>
-            <td>2</td>
-            <td>2023-03-14</td>
-          </tr>
-          <tr>
-            <td>015</td>
-            <td>Sopa de Legumes</td>
-            <td>Fernando Oliveira</td>
-            <td>R$18,00</td>
-            <td>1</td>
-            <td>2023-03-15</td>
-          </tr>
-          <tr>
-            <td>016</td>
-            <td>Arroz de Camarão</td>
-            <td>Paulo Santos</td>
-            <td>R$50,00</td>
-            <td>2</td>
-            <td>2023-03-16</td>
-          </tr>
-          <tr>
-            <td>018</td>
-            <td>Frango Grelhado</td>
-            <td>Roberto Silva</td>
-            <td>R$30,00</td>
-            <td>2</td>
-            <td>2023-03-18</td>
-          </tr>
-          <tr>
-            <td>019</td>
-            <td>Sushi Variado</td>
-            <td>Aline Oliveira</td>
-            <td>R$60,00</td>
-            <td>3</td>
-            <td>2023-03-19</td>
-          </tr>
-          <tr>
-            <td>020</td>
-            <td>Batata Frita</td>
-            <td>Gustavo Santos</td>
-            <td>R$15,00</td>
-            <td>1</td>
-            <td>2023-03-20</td>
-          </tr>
-          <tr>
-            <td>021</td>
-            <td>Frango à Passarinho</td>
-            <td>Camila Souza</td>
-            <td>R$25,00</td>
-            <td>1</td>
-            <td>2023-03-21</td>
-          </tr>
-          <tr>
-            <td>022</td>
-            <td>Escondidinho de Carne</td>
-            <td>Luciana Oliveira</td>
-            <td>R$45,00</td>
-            <td>2</td>
-            <td>2023-03-22</td>
-          </tr>
-          <tr>
-            <td>023</td>
-            <td>Arroz à Grega</td>
-            <td>Juliana Santos</td>
-            <td>R$20,00</td>
-            <td>1</td>
-            <td>2023-03-23</td>
-          </tr>
-          <tr>
-            <td>024</td>
-            <td>Feijoada Completa</td>
-            <td>André Costa</td>
-            <td>R$50,00</td>
-            <td>3</td>
-            <td>2023-03-24</td>
-          </tr>
-          <tr>
-            <td>025</td>
-            <td>Pizza Hut</td>
-            <td>Jonas</td>
-            <td>R$50,00</td>
-            <td>3</td>
-            <td>2023-03-24</td>
-          </tr>
-          <tr>
-            <td>026</td>
-            <td>Pizza Hut</td>
-            <td>Jonas Joj</td>
-            <td>R$50,00</td>
-            <td>3</td>
-            <td>2023-03-24</td>
-          </tr>
-          <tr>
-            <td>027</td>
-            <td>Pizza Hut</td>
-            <td>Jonas xJns</td>
-            <td>R$50,00</td>
-            <td>3</td>
-            <td>2023-03-24</td>
-          </tr>
-        </tbody> --}}
-        
       </table>
     </div>
   </div>
-  <div class="pagination">
+
+
+
+
+  {{!-- <div class="pagination">
     <a href="#" class="prev">&laquo; Anterior</a>
     <a href="#" class="page active">1</a>
     <a href="#" class="page">2</a>
     <a href="#" class="page">3</a>
     <a href="#" class="next">Próxima &raquo;</a>
-  </div>
+  </div> --}}
 
 </body>
 </div>
-
-<script src="/public/js/btn-mobile.js"></script>
-
-<script src="/public/js/cardapio.js"></script>
-
-<script src="/public/js/carrinho.js"></script>
-
-<script src="/public/js/header.js"></script>
+<script src="../public/js/preloader.js"></script>
 
 <script src="/public/js/404.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script src="../public/js/preloader.js"></script>
 <script>
   var $doc = $("html, body");
   $(".animateLink").click(function () {
@@ -340,3 +129,214 @@
 </script>
 
 </html>
+
+{{!-- <tbody>
+  <tr>
+    <td>001</td>
+    <td>Frango Xadrez</td>
+    <td>João Silva</td>
+    <td>R$30,00</td>
+    <td>2</td>
+    <td>2023-03-01</td>
+  </tr>
+  <tr>
+    <td>002</td>
+    <td>Pizza Margherita</td>
+    <td>Maria Santos</td>
+    <td>R$35,00</td>
+    <td>1</td>
+    <td>2023-03-02</td>
+  </tr>
+  <tr>
+    <td>003</td>
+    <td>Lasanha à Bolonhesa</td>
+    <td>Luís Oliveira</td>
+    <td>R$45,00</td>
+    <td>3</td>
+    <td>2023-03-03</td>
+  </tr>
+  <tr>
+    <td>004</td>
+    <td>Bife a Cavalo</td>
+    <td>Luciana Ferreira</td>
+    <td>R$25,00</td>
+    <td>2</td>
+    <td>2023-03-04</td>
+  </tr>
+  <tr>
+    <td>005</td>
+    <td>Macarrão com Queijo</td>
+    <td>Pedro Almeida</td>
+    <td>R$20,00</td>
+    <td>1</td>
+    <td>2023-03-05</td>
+  </tr>
+  <tr>
+    <td>006</td>
+    <td>Salmão Grelhado</td>
+    <td>Andréia Costa</td>
+    <td>R$55,00</td>
+    <td>2</td>
+    <td>2023-03-06</td>
+  </tr>
+  <tr>
+    <td>007</td>
+    <td>Feijoada Completa</td>
+    <td>Juliano Santos</td>
+    <td>R$40,00</td>
+    <td>3</td>
+    <td>2023-03-07</td>
+  </tr>
+  <tr>
+    <td>008</td>
+    <td>Peixe Frito</td>
+    <td>Beatriz Silva</td>
+    <td>R$28,00</td>
+    <td>1</td>
+    <td>2023-03-08</td>
+  </tr>
+  <tr>
+    <td>009</td>
+    <td>Arroz com Feijão</td>
+    <td>José Oliveira</td>
+    <td>R$12,00</td>
+    <td>2</td>
+    <td>2023-03-09</td>
+  </tr>
+  <tr>
+    <td>010</td>
+    <td>Bife à Parmegiana</td>
+    <td>Lucas Souza</td>
+    <td>R$50,00</td>
+    <td>1</td>
+    <td>2023-03-10</td>
+  </tr>
+  <tr>
+    <td>011</td>
+    <td>Frango Assado</td>
+    <td>Isabel Santos</td>
+    <td>R$35,00</td>
+    <td>2</td>
+    <td>2023-03-11</td>
+  </tr>
+  <tr>
+    <td>012</td>
+    <td>Salada de Frutas</td>
+    <td>Leonardo Fernandes</td>
+    <td>R$15,00</td>
+    <td>1</td>
+    <td>2023-03-12</td>
+  </tr>
+  <tr>
+    <td>013</td>
+    <td>Massa com Frutos do Mar</td>
+    <td>Gabriela Alves</td>
+    <td>R$60,00</td>
+    <td>3</td>
+    <td>2023-03-13</td>
+  </tr>
+  <tr>
+    <td>014</td>
+    <td>Ensopado de Carne</td>
+    <td>Mariana Costa</td>
+    <td>R$40,00</td>
+    <td>2</td>
+    <td>2023-03-14</td>
+  </tr>
+  <tr>
+    <td>015</td>
+    <td>Sopa de Legumes</td>
+    <td>Fernando Oliveira</td>
+    <td>R$18,00</td>
+    <td>1</td>
+    <td>2023-03-15</td>
+  </tr>
+  <tr>
+    <td>016</td>
+    <td>Arroz de Camarão</td>
+    <td>Paulo Santos</td>
+    <td>R$50,00</td>
+    <td>2</td>
+    <td>2023-03-16</td>
+  </tr>
+  <tr>
+    <td>018</td>
+    <td>Frango Grelhado</td>
+    <td>Roberto Silva</td>
+    <td>R$30,00</td>
+    <td>2</td>
+    <td>2023-03-18</td>
+  </tr>
+  <tr>
+    <td>019</td>
+    <td>Sushi Variado</td>
+    <td>Aline Oliveira</td>
+    <td>R$60,00</td>
+    <td>3</td>
+    <td>2023-03-19</td>
+  </tr>
+  <tr>
+    <td>020</td>
+    <td>Batata Frita</td>
+    <td>Gustavo Santos</td>
+    <td>R$15,00</td>
+    <td>1</td>
+    <td>2023-03-20</td>
+  </tr>
+  <tr>
+    <td>021</td>
+    <td>Frango à Passarinho</td>
+    <td>Camila Souza</td>
+    <td>R$25,00</td>
+    <td>1</td>
+    <td>2023-03-21</td>
+  </tr>
+  <tr>
+    <td>022</td>
+    <td>Escondidinho de Carne</td>
+    <td>Luciana Oliveira</td>
+    <td>R$45,00</td>
+    <td>2</td>
+    <td>2023-03-22</td>
+  </tr>
+  <tr>
+    <td>023</td>
+    <td>Arroz à Grega</td>
+    <td>Juliana Santos</td>
+    <td>R$20,00</td>
+    <td>1</td>
+    <td>2023-03-23</td>
+  </tr>
+  <tr>
+    <td>024</td>
+    <td>Feijoada Completa</td>
+    <td>André Costa</td>
+    <td>R$50,00</td>
+    <td>3</td>
+    <td>2023-03-24</td>
+  </tr>
+  <tr>
+    <td>025</td>
+    <td>Pizza Hut</td>
+    <td>Jonas</td>
+    <td>R$50,00</td>
+    <td>3</td>
+    <td>2023-03-24</td>
+  </tr>
+  <tr>
+    <td>026</td>
+    <td>Pizza Hut</td>
+    <td>Jonas Joj</td>
+    <td>R$50,00</td>
+    <td>3</td>
+    <td>2023-03-24</td>
+  </tr>
+  <tr>
+    <td>027</td>
+    <td>Pizza Hut</td>
+    <td>Jonas xJns</td>
+    <td>R$50,00</td>
+    <td>3</td>
+    <td>2023-03-24</td>
+  </tr>
+</tbody> --}}

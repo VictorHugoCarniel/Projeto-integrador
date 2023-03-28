@@ -14,7 +14,7 @@ const multerConfig = require("./config/multer");
 const app = express();
 const path = require('path');
 const handlebars = require('handlebars');
-
+const { Op } = require("sequelize");
 
 const handlebarss = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
@@ -89,10 +89,27 @@ var validaAdmin = false
 
 app.get("/pedidos", async (req, res) => {
 
-    const pedidos = await Pedido.findAll();
-    res.render('pedidos', { pedidos });
 
-    res.render('pedidos')
+
+    const { idPedido, produto, cliente = req.body.filtroCli, preco, quantidade, data } = req.query;
+
+    const filtro = {};
+
+    if (idPedido) filtro.idPedido = idPedido;
+    if (produto) filtro.produto = { [Op.like]: `%${produto}%` };
+    if (cliente) filtro.cliente = { [Op.like]: `%${cliente}%` };
+    if (preco) filtro.preco = preco;
+    if (quantidade) filtro.quantidade = quantidade;
+    if (data) filtro.data = data;
+
+    const pedidos = await Pedido.findAll({ filtro })
+
+    res.render('pedidos', { pedidos });
+});
+
+app.get("/logout", async (req, res) => {
+    req.session.loggedIn = false;
+    res.render('login');
 })
 
 app.get("/valida", async (req, res) => {
@@ -103,7 +120,7 @@ app.get("/valida", async (req, res) => {
 })
 
 app.post("/valida", async (req, res) => {
-    const mail = req.body.mail
+    const mail = req.body.mail;
     const email = await User.findOne({
         where: { email: mail }
     });
@@ -263,7 +280,6 @@ app.post('/auth', async (req, res) => {
 const EnviaId = require('../public/js/carrinho.js');
 const { CodeArtifact } = require('aws-sdk');
 app.get('/home', async (req, res) => {
-    const { Op } = require("sequelize");
 
     if (req.session.loggedIn == true) {
         const Usuario = req.session.user
