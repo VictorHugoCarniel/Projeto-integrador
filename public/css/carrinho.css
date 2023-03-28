@@ -56,6 +56,8 @@
 .btnPedido {
     position: absolute;
     bottom: 30px;
+    display: flex;
+    justify-content: center;
     background: var(--cor1);
     color: var(--background);
     margin-top: 15px;
@@ -63,6 +65,11 @@
     width: 60%;
     border-radius: 10px;
 }
+
+.txtBtnPedido{
+    color: white;
+}
+
 
 .pedidos {
     width: 240px;
