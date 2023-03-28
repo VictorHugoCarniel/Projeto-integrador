@@ -66,57 +66,31 @@ tr:hover {
 
 /* -------------------------------- */
 
-.filter-wrapper {
+.filter-box {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-bottom: 10px;
 }
 
-.filter-wrapper label {
-  margin-right: 10px;
-}
-
-.filter-wrapper input[type="text"] {
-  padding: 5px;
-  border: 1px solid #ddd;
-}
-
-.filter-wrapper button {
-  padding: 5px 10px;
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.filter-wrapper button:hover {
-  background-color: #3e8e41;
-}
-
-.table-wrapper {
-  overflow-x: auto;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 16px;
-  color: #333;
-}
-
-thead {
-  background-color: #f2f2f2;
-  text-align: left;
-}
-
-th {
-  padding: 12px;
+label {
   font-weight: bold;
+  margin-right: 5px;
 }
 
-td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
+input[type="text"] {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  width: 150px;
 }

@@ -1,27 +1,34 @@
-const db = require('./db')
-const Produtos = require ('./produtos')
-const User = require('./User')
+const db = require('./db');
+const Produtos = require('./produtos');
+const User = require('./User');
 
 const Pedidos = db.sequelize.define('pedido', {
     idPedido: {
         type: db.Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        allowNUll: true
+        allowNull: false
     },
-    idProduto: db.Sequelize.INTEGER,
-    id: db.Sequelize.INTEGER
-})
+    produto: {
+        type: db.Sequelize.STRING,
+        allowNull: false
+    },
+    cliente: {
+        type: db.Sequelize.STRING,
+        allowNull: false
+    },
+    preco: {
+        type: db.Sequelize.FLOAT,
+        allowNull: false
+    },
+    quantidade: {
+        type: db.Sequelize.INTEGER,
+        allowNull: false
+    },
+    data: {
+        type: db.Sequelize.DATE,
+        allowNull: false
+    }
+});
 
-// Pedidos.sync({ force: true})
 module.exports = Pedidos;
-
-Pedidos.belongsTo(Produtos, {
-    constraint: true,
-    foreignKey: 'idProduto'
-})
-
-Pedidos.belongsTo(User, {
-    constraint: true,
-    foreignKey: 'id'
-})

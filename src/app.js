@@ -27,6 +27,7 @@ const User = require('../models/User');
 const Produtos = require('../models/Produtos');
 const Estoque = require('../models/Estoque');
 const ImgProds = require('../models/imgProd');
+const Pedido = require('../models/Pedidos');
 const Tipo = require('../models/TipoProduto.js');
 
 const bodyParser = require('body-parser');
@@ -87,6 +88,10 @@ var validaAdmin = false
 //Rotas
 
 app.get("/pedidos", async (req, res) => {
+
+    const pedidos = await Pedido.findAll();
+    res.render('pedidos', { pedidos });
+
     res.render('pedidos')
 })
 
@@ -307,15 +312,14 @@ app.get('/home', async (req, res) => {
     } else {
         res.redirect('/login')
     }
-    for (var i = 0; i < 10; i++) 
-    {
+    for (var i = 0; i < 10; i++) {
         console.log(pedidos, 'saldo')
     }
     // console.log('produto eh', nome)
 });
 
 app.post('/fechamento', (req, res) => {
-    res.send({pedidos})
+    res.send({ pedidos })
 })
 
 app.get('/logout', (req, res) => {

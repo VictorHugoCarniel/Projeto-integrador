@@ -9,15 +9,57 @@
 
 // }
 
-$(document).ready(function () {
-    $('#filter-button').click(function () {
-        var filter = $('#filter').val().toLowerCase();
-        $('table tbody tr').filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(filter) > -1)
-        });
+// $(document).ready(function () {
+//     $('#filter-button').click(function () {
+//         var filter = $('#filter').val().toLowerCase();
+//         $('table tbody tr').filter(function () {
+//             $(this).toggle($(this).text().toLowerCase().indexOf(filter) > -1)
+//         });
+//     });
+//     setupPagination(table, 15);
+// });
+
+$(document).ready(function() {
+    // Armazena a tabela em uma variável
+    var table = $('table');
+  
+    // Adiciona um evento de clique no botão "Filtrar"
+    $('.filter-group button[type="submit"]').click(function(e) {
+      e.preventDefault();
+  
+      // Obtém os valores dos filtros de entrada
+      var filterId = $('#filter-id').val().toLowerCase();
+      var filterProduct = $('#filter-product').val().toLowerCase();
+      var filterClient = $('#filter-client').val().toLowerCase();
+      var filterPrice = $('#filter-price').val().toLowerCase();
+      var filterQuantity = $('#filter-quantity').val().toLowerCase();
+      var filterDate = $('#filter-date').val().toLowerCase();
+  
+      // Filtra os dados da tabela com base nos valores de entrada
+      table.find('tr').not(':first').each(function(index, row) {
+        var rowData = $(row).find('td');
+        var id = rowData.eq(0).text().toLowerCase();
+        var product = rowData.eq(1).text().toLowerCase();
+        var client = rowData.eq(2).text().toLowerCase();
+        var price = rowData.eq(3).text().toLowerCase();
+        var quantity = rowData.eq(4).text().toLowerCase();
+        var date = rowData.eq(5).text().toLowerCase();
+  
+        if (id.indexOf(filterId) > -1 &&
+            product.indexOf(filterProduct) > -1 &&
+            client.indexOf(filterClient) > -1 &&
+            price.indexOf(filterPrice) > -1 &&
+            quantity.indexOf(filterQuantity) > -1 &&
+            date.indexOf(filterDate) > -1) {
+          $(row).show();
+        } else {
+          $(row).hide();
+        }
+      });
     });
     setupPagination(table, 15);
-});
+  });
+  
 
 const table = document.querySelector("table");
 setupPagination(table, 15);
