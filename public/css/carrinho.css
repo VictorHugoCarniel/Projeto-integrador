@@ -85,8 +85,6 @@
     margin-top: 15px;
     width: 200px;
     display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 15px;
     border: 1px solid #c0c0c01e;
     border-radius: 5px;
@@ -95,7 +93,6 @@
 
 .pedido--quantidade {
     align-self: flex-start;
-    order: 1;
     transform: scale(0.9);
 }
 
