@@ -1,4 +1,4 @@
-const pedidos = [];
+var pedidos = [];
 
 
 if (typeof window === "object") {
@@ -16,11 +16,9 @@ if (typeof window === "object") {
       
       const pedido = criarPedido(nome, preco)
 
+      console.log(pedido)
 
       pedidos.push(pedido);
-
-      console.log('cocozinho', pedidos, 'nome eh', nome);
-
 
       atualizaCarrinho(pedidos);
     }
@@ -48,6 +46,7 @@ if (typeof window === "object") {
 
   document.addEventListener('click', (e) => {
     const targetEl = e.target;
+    console.log('sdfsdf')
 
     if (targetEl.classList.contains('decrement')) {
       const quantidadePedido = targetEl.parentNode;

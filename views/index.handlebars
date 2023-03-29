@@ -84,8 +84,8 @@
     <div class="pedidos" id="pedidos"></div>
     <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
     <span></span>
-    <form method="post" action="/fechamento">
-    <input type="submit" class="btnPedido" >Fechar Pedido</input>
+     <form method="post"  class="btnPedido" action="/fechamento">
+          <button type="submit" class="txtBtnPedido">Fechar pedido</button>
     </form>
   </div>
 
@@ -121,10 +121,9 @@
           <img src="{{ imgProd }}">
         </div>
         <div class="cardBody">
-          <div class="titulo">
-            <h2>{{ nome }}</h2>
-          </div>
-          <div class="text"><p>Quantidade atual: {{ quantidade }}</p>
+          <div class="titulo"><h2>{{ nome }}</h2></div>
+          <div class="text">
+            <p>Quantidade atual: {{ quantidade }}</p>
           </div>
           <div class="text"><p>Preço: {{ preco }}</p></div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
@@ -144,10 +143,10 @@
           <img src="{{ imgProd }}">
         </div>
         <div class="cardBody">
-          <div class="titulo">
-            <h2>{{ nome }}</h2>
+          <div class="titulo"><h2>{{ nome }}</h2></div>
+          <div class="text">
+            <p>Quantidade atual: {{ quantidade }}</p>
           </div>
-          <div class="text"><p>Quantidade atual: {{ quantidade }}</p></div>
           <div class="text"><p>Preço: {{ preco }}</p></div>
           <button type="submit" class="btnComprar">Comprar</button>
           </form>
@@ -174,7 +173,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script src="../public/js/preloader.js"></script>
 <script>
   var $doc = $("html, body");
   $(".animateLink").click(function () {
