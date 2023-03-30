@@ -84,8 +84,8 @@
     <div class="pedidos" id="pedidos"></div>
     <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
     <span></span>
-     <form method="post"  class="btnPedido" action="/fechamento">
-          <button type="submit" class="txtBtnPedido">Fechar pedido</button>
+    <form method="post" class="btnPedido" action="/fechamento">
+      <button type="submit" class="txtBtnPedido">Fechar pedido</button>
     </form>
   </div>
 
@@ -121,11 +121,15 @@
           <img src="{{ imgProd }}">
         </div>
         <div class="cardBody">
-          <div class="titulo"><h2>{{ nome }}</h2></div>
+          <div class="titulo">
+            <h2>{{ nome }}</h2>
+          </div>
           <div class="text">
             <p>Quantidade atual: {{ quantidade }}</p>
           </div>
-          <div class="text"><p>Preço: {{ preco }}</p></div>
+          <div class="text">
+            <p>Preço: {{ preco }}</p>
+          </div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
           </form>
         </div>
@@ -143,11 +147,15 @@
           <img src="{{ imgProd }}">
         </div>
         <div class="cardBody">
-          <div class="titulo"><h2>{{ nome }}</h2></div>
+          <div class="titulo">
+            <h2>{{ nome }}</h2>
+          </div>
           <div class="text">
             <p>Quantidade atual: {{ quantidade }}</p>
           </div>
-          <div class="text"><p>Preço: {{ preco }}</p></div>
+          <div class="text">
+            <p>Preço: {{ preco }}</p>
+          </div>
           <button type="submit" class="btnComprar">Comprar</button>
           </form>
         </div>
