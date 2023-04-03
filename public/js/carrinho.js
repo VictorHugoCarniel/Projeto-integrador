@@ -25,6 +25,9 @@ if (typeof window === "object") {
         atualizaCarrinho(pedidos);
         console.log(pedidos)
       }
+  
+  
+      atualizaCarrinho(pedidos);
     }
   })
 
@@ -189,4 +192,5 @@ function atualizaNotificacao() {
 
   notf.innerHTML = pedidos.length;
 }
+
 
