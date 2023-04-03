@@ -22,6 +22,8 @@ if (typeof window === "object") {
       if (!pedidoExistente) {
         const pedido = criarPedido(nome, preco);
         pedidos.push(pedido);
+        atualizaCarrinho(pedidos);
+        console.log(pedidos)
       }
     }
   })
@@ -180,5 +182,11 @@ function addCarrinho(id, nome, preco, imagem) {
     tagCards.classList.add("displayNone")
   }
 
+}
+
+function atualizaNotificacao() {
+  let notf = document.querySelector("#notificacao");
+
+  notf.innerHTML = pedidos.length;
 }
 
