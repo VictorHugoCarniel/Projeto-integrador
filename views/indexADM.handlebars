@@ -131,7 +131,11 @@
           {{!-- <div class="quantidade">
             <input placeholder="Quantidade" class="form-control" min='0' id="total" type="number" name="quantidade">
           </div> --}}
-          <div class="text"><p>Quantidade atual: {{ quantidade }}</p></div>
+          <div class="text">
+            <p>
+              Quantidade atual: {{ quantidade }}
+            </p>
+          </div>
           <div class="text">Preço:{{ preco }}</p></div>
           <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
           </form>
