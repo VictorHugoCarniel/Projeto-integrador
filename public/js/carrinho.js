@@ -9,10 +9,21 @@ if (typeof window === "object") {
       const nome = card.querySelector('.titulo h2').textContent;
       const preco = card.querySelector('.text:last-of-type p').textContent;
       
-      const pedido = criarPedido(nome, preco);
+      let pedidoExistente = false;
+
+      for (let i = 0; i < pedidos.length; i++) {
+        if (pedidos[i].nome === nome) {
+          pedidoExistente = true;
+          pedidos[i].quantidade++;
+          break;
+        }
+      }
   
-      pedidos.push(pedido);
-      console.log(pedidos)
+      if (!pedidoExistente) {
+        const pedido = criarPedido(nome, preco);
+        pedidos.push(pedido);
+      }
+  
   
       atualizaCarrinho(pedidos);
     }
@@ -36,42 +47,7 @@ if (typeof window === "object") {
     }
   })
 
-  // document.addEventListener('click', (e) => {
-  //   const targetEl = e.target;
 
-  //   if (targetEl.classList.contains('increment')) {
-  //     const quantidadePedido = targetEl.parentNode;
-  //     const nome = quantidadePedido.nextElementSibling.lastElementChild.firstElementChild.textContent;
-  //     console.log(nome)
-
-  //     pedidos.forEach(pedido => {
-  //       if (pedido.nome == nome) {
-  //         pedido.quantidade = pedido.quantidade += 1;
-  //         atualizaSubTotal();
-  //         atualizaQuantidadePedidos();
-  //       }
-  //     })
-  //   }
-  // })
-
-  // document.addEventListener('click', (e) => {
-  //   const targetEl = e.target;
-
-  //   if (targetEl.classList.contains('decrement')) {
-  //     const quantidadePedido = targetEl.parentNode;
-  //     const nome = quantidadePedido.nextElementSibling.lastElementChild.firstElementChild.textContent;
-
-  //     pedidos.forEach(pedido => {
-  //       if (pedido.nome == nome && pedido.quantidade > 0) {
-  //         pedido.quantidade = pedido.quantidade -= 1;
-  //         removeCarrinho();
-  //         atualizaSubTotal();
-  //         atualizaQuantidadePedidos();
-  //       }
-  //     })
-  //   }
-
-  // })
 } else {
   // code is running in a non-browser environment
 }
