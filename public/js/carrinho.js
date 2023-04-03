@@ -3,12 +3,12 @@ var pedidos = [];
 if (typeof window === "object") {
   document.addEventListener('click', (e) => {
     const targetEl = e.target;
-    
+
     if (targetEl.classList.contains('btnComprar')) {
       const card = targetEl.closest('.card');
       const nome = card.querySelector('.titulo h2').textContent;
       const preco = card.querySelector('.text:last-of-type p').textContent;
-      
+
       let pedidoExistente = false;
 
       for (let i = 0; i < pedidos.length; i++) {
@@ -18,13 +18,11 @@ if (typeof window === "object") {
           break;
         }
       }
-  
+
       if (!pedidoExistente) {
         const pedido = criarPedido(nome, preco);
         pedidos.push(pedido);
       }
-      
-      atualizaCarrinho(pedidos);
     }
   })
 
@@ -32,30 +30,27 @@ if (typeof window === "object") {
     const targetEl = e.target;
 
     if (targetEl.classList.contains('increment') || targetEl.classList.contains('decrement')) {
-      const pedido= targetEl.closest('.pedido');
+      const pedido = targetEl.closest('.pedido');
       const nome = pedido.querySelector('.pedido--texto').firstElementChild.textContent;
       const operador = targetEl.classList.contains('increment') ? 1 : -1;
-  
+
       pedidos.forEach(pedido => {
         if (pedido.nome == nome) {
           pedido.quantidade += operador;
           atualizaSubTotal();
           removeCarrinho();
         }
-      });
+      })
     }
   })
-
-
 } else {
   // code is running in a non-browser environment
 }
 
-
 function criarPedido(nome, preco) {
   const precoFormatado = retornaPreco(preco);
   const id = Math.random();
-  
+
   return {
     id,
     nome,
@@ -76,6 +71,7 @@ function atualizaSubTotal() {
 
   pedidos.forEach((pedido) => {
     subtotal += pedido.preco * pedido.quantidade;
+    console.log(subtotal)
   });
 
   if (subtotal >= 0) {
@@ -87,8 +83,7 @@ function atualizaSubTotal() {
 
 function retornaPreco(preco) {
   var preco = preco.slice(7);
-  var aux = parseFloat(preco)
-  return aux.toFixed(2);
+  return preco;
 }
 
 function atualizaCarrinho(pedidos) {
@@ -122,6 +117,7 @@ function atualizaQuantidadePedidos() {
   const numContadorPedidos = document.querySelectorAll('.num-contador-pedido');
   numContadorPedidos.forEach((contador) => {
     const nomePedido = contador.parentNode.nextElementSibling.lastElementChild.firstElementChild.textContent;
+    console.log(nomePedido)
     pedidos.forEach((pedido) => {
       if (pedido.nome === nomePedido) {
         contador.textContent = pedido.quantidade;
@@ -130,11 +126,59 @@ function atualizaQuantidadePedidos() {
   });
 }
 
+
+//#region Tarefas Iniciais
+
+function carregaPedidos() {
+  let pedidosStorage = JSON.parse(localStorage.getItem("pedidosCarrinho"));
+
+  if (!pedidosStorage) {
+    return;
+  } else {
+    for (let item of pedidosStorage) {
+      pedidos.push(item);
+    }
+    atualizaCarrinho();
+  }
+}
+
 //#endregion
 
+//#region Eventos
 
-function atualizaNotificacao() {
-  let notf = document.querySelector("#notificacao");
+function addCarrinho(id, nome, preco, imagem) {
+  let { valorContador } = dadosContador(id);
+  let tagUnidades;
 
-  notf.innerHTML = pedidos.length;
+  let idProduto = "b" + id;
+
+  for (let i = 0; i < valorContador; i++) {
+    let pedidoExiste = buscaProduto(idProduto);
+
+    if (!pedidoExiste) {
+      pedidos.push({
+        idProduto,
+        nome,
+        preco,
+        imagem,
+        quantidade: valorContador,
+      });
+      atualizaCarrinho();
+      break;
+    } else {
+      atualizaContador(idProduto);
+      break;
+    }
+  }
+  tagUnidades = document.querySelector("#unidades");
+  tagCards = document.querySelector(".card")
+
+  let UnidadesRestantes = estoqueUnidades(valorContador, idProduto);
+
+  if (UnidadesRestantes == 0) {
+    console.log("aa")
+    tagCards.classList.add("displayNone")
+  }
+
 }
+
