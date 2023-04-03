@@ -5,13 +5,9 @@ if (typeof window === "object") {
     const targetEl = e.target;
 
     if (targetEl.classList.contains('btnComprar')) {
-      const cardBody = targetEl.parentNode;
-      const filhos = cardBody.childNodes;
-      const penultimoFilho = filhos[filhos.length - 4];
-      const divTitulo = cardBody.firstElementChild;
-      const h2nome = divTitulo.firstElementChild;
-      const nome = h2nome.textContent;
-      const preco = penultimoFilho.textContent;
+      const card = targetEl.closest('.card');
+      const nome = card.querySelector('.titulo h2').textContent;
+      const preco = card.querySelector('.text:last-of-type p').textContent;
 
       const pedido = criarPedido(nome, preco)
 
@@ -24,43 +20,21 @@ if (typeof window === "object") {
   document.addEventListener('click', (e) => {
     const targetEl = e.target;
 
-    if (targetEl.classList.contains('increment')) {
-      const quantidadePedido = targetEl.parentNode;
-      const pedidoItem = quantidadePedido.nextElementSibling;
-      const pedidoTexto = pedidoItem.lastElementChild;
-      const h2Nome = pedidoTexto.firstElementChild;
-      var nome = h2Nome.textContent;
+    if (targetEl.classList.contains('increment') || targetEl.classList.contains('decrement')) {
+      const pedido = targetEl.closest('.pedido');
+      const nome = pedido.querySelector('.pedido--texto').firstElementChild.textContent;
+      const operador = targetEl.classList.contains('increment') ? 1 : -1;
+
       pedidos.forEach(pedido => {
         if (pedido.nome == nome) {
-          pedido.quantidade = pedido.quantidade += 1;
+          pedido.quantidade += operador;
           atualizaSubTotal();
-          atualizaQuantidadePedidos();
-        }
-
-      })
-    }
-  })
-
-  document.addEventListener('click', (e) => {
-    const targetEl = e.target;
-
-    if (targetEl.classList.contains('decrement')) {
-      const quantidadePedido = targetEl.parentNode;
-      const pedidoItem = quantidadePedido.nextElementSibling;
-      const pedidoTexto = pedidoItem.lastElementChild;
-      const h2Nome = pedidoTexto.firstElementChild;
-      var nome = h2Nome.textContent;
-      pedidos.forEach(pedido => {
-        if (pedido.nome == nome && pedido.quantidade > 0) {
-          pedido.quantidade = pedido.quantidade -= 1;
           removeCarrinho();
-          atualizaSubTotal();
-          atualizaQuantidadePedidos();
         }
       })
     }
-
   })
+
 } else {
   // code is running in a non-browser environment
 }
@@ -89,6 +63,7 @@ function atualizaSubTotal() {
 
   pedidos.forEach((pedido) => {
     subtotal += pedido.preco * pedido.quantidade;
+    console.log(subtotal)
   });
 
   if (subtotal >= 0) {
