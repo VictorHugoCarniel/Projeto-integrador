@@ -334,8 +334,10 @@ app.get('/home', async (req, res) => {
     // console.log('produto eh', nome)
 });
 
+const PedidosApp = require('../public/js/carrinho')
+
 app.post('/fechamento', (req, res) => {
-    res.send({ pedidos })
+    res.send({ PedidosApp })
 })
 
 app.get('/logout', (req, res) => {
@@ -523,6 +525,7 @@ app.get('/produtos', async (req, res) => {
     res.render('produtos', { rowsC, rowsB })
 })
 
+
 // User
 app.get('/user:id', async (req, res) => {
     console.log('cu Usuario')
@@ -534,6 +537,7 @@ app.get('/user:id', async (req, res) => {
     })
     res.render('user')
 })
+
 
 // Deixa essa rota no final ↴
 

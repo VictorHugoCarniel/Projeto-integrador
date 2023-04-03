@@ -3,12 +3,12 @@ var pedidos = [];
 if (typeof window === "object") {
   document.addEventListener('click', (e) => {
     const targetEl = e.target;
-    
+
     if (targetEl.classList.contains('btnComprar')) {
       const card = targetEl.closest('.card');
       const nome = card.querySelector('.titulo h2').textContent;
       const preco = card.querySelector('.text:last-of-type p').textContent;
-      
+
       let pedidoExistente = false;
 
       for (let i = 0; i < pedidos.length; i++) {
@@ -18,14 +18,17 @@ if (typeof window === "object") {
           break;
         }
       }
-  
+
       if (!pedidoExistente) {
         const pedido = criarPedido(nome, preco);
         pedidos.push(pedido);
       }
-  
-  
+
+
       atualizaCarrinho(pedidos);
+      console.log(pedidos);
+      const PedidosApp = pedidos;
+      module.exports = PedidosApp; 
     }
   })
 
@@ -33,10 +36,10 @@ if (typeof window === "object") {
     const targetEl = e.target;
 
     if (targetEl.classList.contains('increment') || targetEl.classList.contains('decrement')) {
-      const pedido= targetEl.closest('.pedido');
+      const pedido = targetEl.closest('.pedido');
       const nome = pedido.querySelector('.pedido--texto').firstElementChild.textContent;
       const operador = targetEl.classList.contains('increment') ? 1 : -1;
-  
+
       pedidos.forEach(pedido => {
         if (pedido.nome == nome) {
           pedido.quantidade += operador;
@@ -55,7 +58,7 @@ if (typeof window === "object") {
 function criarPedido(nome, preco) {
   const precoFormatado = retornaPreco(preco);
   const id = Math.random();
-  
+
   return {
     id,
     nome,
@@ -138,3 +141,6 @@ function atualizaNotificacao() {
 
   notf.innerHTML = pedidos.length;
 }
+
+
+
