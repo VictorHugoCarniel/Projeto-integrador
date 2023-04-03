@@ -40,7 +40,7 @@ require("dotenv").config();
 
 app.use(flash());
 
-
+var pedidos = require('../public/js/carrinho')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

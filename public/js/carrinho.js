@@ -1,4 +1,4 @@
-let pedidos = [];
+var pedidos = [];
 
 if (typeof window === "object") {
   document.addEventListener('click', (e) => {
@@ -260,4 +260,4 @@ function EnviaId(idProduto) {
   xhttp.send();
 }
 
-module.exports = EnviaId;
+module.exports = pedidos;
