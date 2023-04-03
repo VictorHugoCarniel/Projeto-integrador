@@ -15,6 +15,8 @@ if (typeof window === "object") {
         if (pedidos[i].nome === nome) {
           pedidoExistente = true;
           pedidos[i].quantidade++;
+          atualizaSubTotal();
+          atualizaQuantidadePedidos();
           break;
         }
       }
@@ -23,11 +25,8 @@ if (typeof window === "object") {
         const pedido = criarPedido(nome, preco);
         pedidos.push(pedido);
         atualizaCarrinho(pedidos);
-        console.log(pedidos)
       }
-  
-  
-      atualizaCarrinho(pedidos);
+      
     }
   })
 
