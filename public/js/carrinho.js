@@ -23,8 +23,7 @@ if (typeof window === "object") {
         const pedido = criarPedido(nome, preco);
         pedidos.push(pedido);
       }
-  
-  
+      
       atualizaCarrinho(pedidos);
     }
   })
@@ -51,6 +50,7 @@ if (typeof window === "object") {
 } else {
   // code is running in a non-browser environment
 }
+
 
 function criarPedido(nome, preco) {
   const precoFormatado = retornaPreco(preco);
