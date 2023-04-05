@@ -66,6 +66,7 @@ function criarPedido(nome, preco) {
 function removeCarrinho() {
   const novoArray = pedidos.filter(pedido => pedido.quantidade != 0);
   pedidos = novoArray;
+  atualizaNotificacao();
   atualizaCarrinho(pedidos);
 }
 
@@ -131,60 +132,6 @@ function atualizaQuantidadePedidos() {
 }
 
 
-//#region Tarefas Iniciais
-
-function carregaPedidos() {
-  let pedidosStorage = JSON.parse(localStorage.getItem("pedidosCarrinho"));
-
-  if (!pedidosStorage) {
-    return;
-  } else {
-    for (let item of pedidosStorage) {
-      pedidos.push(item);
-    }
-    atualizaCarrinho();
-  }
-}
-
-//#endregion
-
-//#region Eventos
-
-function addCarrinho(id, nome, preco, imagem) {
-  let { valorContador } = dadosContador(id);
-  let tagUnidades;
-
-  let idProduto = "b" + id;
-
-  for (let i = 0; i < valorContador; i++) {
-    let pedidoExiste = buscaProduto(idProduto);
-
-    if (!pedidoExiste) {
-      pedidos.push({
-        idProduto,
-        nome,
-        preco,
-        imagem,
-        quantidade: valorContador,
-      });
-      atualizaCarrinho();
-      break;
-    } else {
-      atualizaContador(idProduto);
-      break;
-    }
-  }
-  tagUnidades = document.querySelector("#unidades");
-  tagCards = document.querySelector(".card")
-
-  let UnidadesRestantes = estoqueUnidades(valorContador, idProduto);
-
-  if (UnidadesRestantes == 0) {
-    console.log("aa")
-    tagCards.classList.add("displayNone")
-  }
-
-}
 
 function atualizaNotificacao() {
   let notf = document.querySelector("#notificacao");

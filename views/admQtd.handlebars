@@ -50,10 +50,10 @@
         <a href="/home" class="animateLink" onclick="LinkActive()">
           <div class="link">Home<span class="link--linha"></span></div>
         </a>
-        <a href="/lanches" class="animateLink" onclick="LinkActive()">
+        <a href="/administrador" class="animateLink" onclick="LinkActive()">
           <div class="link">Cadastro<span class="link--linha"></span></div>
         </a>
-        <a href="/administrador" class="animateLink" onclick="LinkActive()">
+        <a href="/admQtd" class="animateLink" onclick="LinkActive()">
           <div class="link active">Quantidade<span class="link--linha"></span></div>
         </a>
       </div>
@@ -103,9 +103,7 @@
             <form method="post" action="/zera-quantidade/{{ idProduto }}">
               <button type="submit" class="btnComprar">Zerar</button>
             </form>
-            <form method="post" action="/dec-quantidade/ {{idProduto}}">
-              <button type="submit" class="btnComprar">Vendeu</button>
-            </form>
+
           </div>
         </div>
         {{/each}}
@@ -145,9 +143,6 @@
             </form>
             <form method="post" action="/zera-quantidade/{{ idProduto }}">
               <button type="submit" class="btnComprar">Zerar</button>
-            </form>
-            <form method="post" action="/dec-quantidade/ {{idProduto}}">
-              <button type="submit" class="btnComprar">Vendeu</button>
             </form>
           </div>
         </div>

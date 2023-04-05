@@ -59,13 +59,8 @@
             <span class="notificacao" id="notificacao">0</span>
           </i>
         </a>
-        <a href="cadastro">
-          <div class="link cadastro">
-            Cadastre-se<span class="link--linha"></span>
-          </div>
-        </a>
         <div class="user-info login" onclick="toggleDropdown()">
-          <button class="user-dropdown" >{{nomeUser}} <i id="rodolfo" class="bi bi-caret-down-fill setinha"></i></button>
+          <button class="user-dropdown">{{nomeUser}} <i id="rodolfo" class="bi bi-caret-down-fill setinha"></i></button>
           <div class="user-dropdown-content">
             <a href="#"><i class="bi bi-cart"></i></i>Vendas</a>
             <a href="/pedidos"><i class="bi bi-bag-check"></i>Pedidos</a>
@@ -81,14 +76,14 @@
     </nav>
   </header>
 
- <div class="modalCarrinho" id="modalCarrinho">
+  <div class="modalCarrinho" id="modalCarrinho">
     <button class="btnFechar" onclick="abreFechaModal()">&times;</button>
     <i class="fas fa-shopping-cart"></i>
     <div class="pedidos" id="pedidos"></div>
     <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
     <span></span>
     <form method="post" action="/fechamento">
-    <input type="submit" class="btnPedido" >Fechar Pedido</input>
+      <input type="submit" class="btnPedido">Fechar Pedido</input>
     </form>
   </div>
   <section class="home" id="home">
@@ -134,9 +129,8 @@
               Quantidade atual: {{ quantidade }}
             </p>
           </div>
-          <div class="text">Preço:{{ preco }}</p></div>
-          <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
-          </form>
+          <div class="text">Preço:{{ preco }}</p>
+          </div>
 
         </div>
       </div>
@@ -148,13 +142,10 @@
         <h3>Bebidas</h3>
         <span></span>
       </div>
-
       {{#each rowsB}}
       <div class="card">
         <div class="cardImg">
-
           <img src="{{ imgProd }}">
-
         </div>
         <div class="cardBody">
           <div class="titulo">
@@ -168,10 +159,9 @@
               Quantidade atual: {{ quantidade }}
             </p>
           </div>
-          <div class="text"><p>Preço: {{ preco }}</p></div>
-          <button type="submit" class="btnComprar" >Comprar</button>
-          </form>
-
+          <div class="text">
+            <p>Preço: {{ preco }}</p>
+          </div>
         </div>
       </div>
       {{/each}}
@@ -206,8 +196,5 @@
     return false;
   });
 </script>
-
-
-
 
 </html>
