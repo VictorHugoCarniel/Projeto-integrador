@@ -1,4 +1,5 @@
-debugger
+
+
 var pedidos = [];
 
 if (typeof window === "object") {
@@ -53,7 +54,6 @@ if (typeof window === "object") {
 }
 
 function criarPedido(nome, preco) {
-  debugger
   const precoFormatado = retornaPreco(preco);
   const id = Math.random();
 
@@ -85,6 +85,7 @@ function atualizaSubTotal() {
   } else {
     tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ 0.00`;
   }
+  salvarPedidosNoLocalStorage();
 }
 
 function retornaPreco(preco) {
@@ -115,6 +116,8 @@ function atualizaCarrinho(pedidos) {
 
     atualizaSubTotal();
     atualizaNotificacao();
+    
+
   });
 
 }
@@ -196,7 +199,8 @@ function atualizaNotificacao() {
 function adicionarPedido(pedido) {
   pedidos.push(pedido);
 }
-// module.exports = {
-//   pedidos,
-//   adicionarPedido
-// };
+
+function salvarPedidosNoLocalStorage() {
+  const pedidosJson = JSON.stringify(pedidos);
+  localStorage.setItem('pedidos', pedidosJson);
+}

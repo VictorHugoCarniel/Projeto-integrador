@@ -6,6 +6,7 @@ const { where } = require('sequelize');
 const { reset } = require('nodemon');[]
 const ejs = require('ejs');
 // const ejs = require('ejs');
+const storage1 = require('node-persist');
 const express = require('express');
 const session = require('express-session');
 const morgan = require('morgan');
@@ -20,7 +21,11 @@ const handlebarss = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
 const fs = require('fs');
 const flash = require('connect-flash');
-const localStorage = require('localStorage');
+
+const { create } = require('node-persist');
+const storagee = create();
+
+
 
 //Models
 const User = require('../models/User');
@@ -331,16 +336,32 @@ app.get('/home', async (req, res) => {
     }
 });
 
-const { pedidos, adicionarPedido } = require('../public/js/carrinho')
 
-app.get('/fechamento', (req, res) => {
-    res.send(pedidos);
+// Inicializa o armazenamento
+
+// Define a rota
+app.get('/fechamento', async (req, res) => {
+    await storagee.init({
+        dir: './my-storage',
+        stringify: JSON.stringify,
+        parse: JSON.parse,
+        encoding: 'utf8',
+        logging: false,
+        ttl: false,
+        expiredInterval: 2 * 60 * 1000,
+        forgiveParseErrors: false
+    });
+    
+    const meuItem = await storagee.getItem('pedidos');
+    console.log(meuItem);
+    res.send(meuItem);
 });
+
+
 
 app.get('/logout', (req, res) => {
     res.redirect('/login')
 })
-
 // cadastro
 app.post('/add-usuario', async (req, res) => {
     console.log('teste')
