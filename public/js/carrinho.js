@@ -1,3 +1,4 @@
+debugger
 var pedidos = [];
 
 if (typeof window === "object") {
@@ -7,7 +8,7 @@ if (typeof window === "object") {
     if (targetEl.classList.contains('btnComprar')) {
       const card = targetEl.closest('.card');
       const nome = card.querySelector('.titulo h2').textContent;
-      const preco = card.querySelector('.text:last-of-type p').textContent;
+      const preco = card.querySelector('.text:last-of-type p').textContent; 
 
       let pedidoExistente = false;
 
@@ -26,8 +27,8 @@ if (typeof window === "object") {
         pedidos.push(pedido);
         atualizaCarrinho(pedidos);
       }
-      
     }
+    
   })
 
   document.addEventListener('click', (e) => {
@@ -52,6 +53,7 @@ if (typeof window === "object") {
 }
 
 function criarPedido(nome, preco) {
+  debugger
   const precoFormatado = retornaPreco(preco);
   const id = Math.random();
 
@@ -191,5 +193,10 @@ function atualizaNotificacao() {
 
   notf.innerHTML = pedidos.length;
 }
-
-
+function adicionarPedido(pedido) {
+  pedidos.push(pedido);
+}
+// module.exports = {
+//   pedidos,
+//   adicionarPedido
+// };

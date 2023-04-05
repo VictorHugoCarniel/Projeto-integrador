@@ -41,8 +41,9 @@ require("dotenv").config();
 
 app.use(flash());
 
-const pedidos = require('../public/js/carrinho');
+
 const nome = require('../public/js/carrinho');
+
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -328,17 +329,13 @@ app.get('/home', async (req, res) => {
     } else {
         res.redirect('/login')
     }
-    for (var i = 0; i < 10; i++) {
-        console.log(pedidos, 'saldo')
-    }
-    // console.log('produto eh', nome)
 });
 
-const PedidosApp = require('../public/js/carrinho')
+const { pedidos, adicionarPedido } = require('../public/js/carrinho')
 
-app.post('/fechamento', (req, res) => {
-    res.send({ PedidosApp })
-})
+app.get('/fechamento', (req, res) => {
+    res.send(pedidos);
+});
 
 app.get('/logout', (req, res) => {
     res.redirect('/login')
