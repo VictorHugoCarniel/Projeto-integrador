@@ -139,6 +139,7 @@ html {
   margin: 0 auto;
   border-radius: 40px;
   transform: scale(.4);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 input[type="checkbox"] {
@@ -243,6 +244,21 @@ input[type="checkbox"] {
   transition: all 0.3s ease-in-out;
 }
 
-.dropdown option:hover{
+.dropdown option:hover {
   background-color: #ddd;
+}
+
+/* Config */
+
+.modalConfig {
+  display: none;
+}
+
+.modalConfig.active {
+  position: fixed;
+  z-index: 9999999;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
 }
