@@ -103,6 +103,7 @@ header {
 
 .carrinho {
     padding: 10px;
+    margin-right: 20px;
     border-radius: 5px;
     position: relative;
     color: var(--fonte1);
@@ -316,7 +317,6 @@ body {
 
     .navbar .cadastro {
         padding: .7rem .6rem;
-        margin: 0 20px;
     }
 
     .navbar--btnMobile {
