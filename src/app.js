@@ -49,8 +49,6 @@ app.use(flash());
 
 const nome = require('../public/js/carrinho');
 
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
@@ -348,10 +346,8 @@ app.get('/home', async (req, res) => {
 // Define a rota
 app.post('/fechamento', async (req, res) => {    
    var itensCarrinho = req.body.itensCarrinho
-   console.log(itensCarrinho)
-   res.send(itensCarrinho)
+   res.render('notaFiscal',  {data: { itensCarrinho }});
 });
-
 
 app.get('/logout', (req, res) => {
     res.redirect('/login')

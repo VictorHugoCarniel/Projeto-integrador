@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nota Fiscal - Cantina Senac</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilos CSS para a nota fiscal */
+        .nota-fiscal {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-color: #fff;
+        }
+
+        .nota-fiscal table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .nota-fiscal th,
+        .nota-fiscal td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .nota-fiscal th {
+            background-color: #f2f2f2;
+        }
+
+        .nota-fiscal th:first-child,
+        .nota-fiscal td:first-child {
+            width: 10%;
+        }
+
+        .nota-fiscal th:nth-child(2),
+        .nota-fiscal td:nth-child(2) {
+            width: 45%;
+        }
+
+        .nota-fiscal th:nth-child(3),
+        .nota-fiscal td:nth-child(3),
+        .nota-fiscal th:nth-child(4),
+        .nota-fiscal td:nth-child(4),
+        .nota-fiscal th:nth-child(5),
+        .nota-fiscal td:nth-child(5) {
+            width: 15%;
+        }
+
+        .nota-fiscal tfoot td {
+            text-align: right;
+        }
+
+        .nota-fiscal tfoot td:first-child {
+            font-weight: bold;
+        }
+
+        .nota-fiscal .informacoes-adicionais {
+            margin-top: 20px;
+        }
+
+        .nota-fiscal .informacoes-adicionais p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .nota-fiscal .informacoes-adicionais p strong {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nota-fiscal">
+
+        <h1>Nota Fiscal</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+
+                <!-- Loop através do array de pedidos -->
+                <script src="../public/js/notafiscal.js" data-itens-carrinho="{{data.itensCarrinho}}">
+                </script>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
