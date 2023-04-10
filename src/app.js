@@ -93,6 +93,10 @@ var validaAdmin = false
 
 //Rotas
 
+app.get('/config', async (req, res) => {
+    res.render('configUser')
+});
+
 app.get("/pedidos", async (req, res) => {
 
 
@@ -112,11 +116,6 @@ app.get("/pedidos", async (req, res) => {
 
     res.render('pedidos', { pedidos });
 });
-
-app.get("/logout", async (req, res) => {
-    req.session.loggedIn = false;
-    res.render('login');
-})
 
 app.get("/valida", async (req, res) => {
     if (buf == buf) {
@@ -249,6 +248,13 @@ app.get('/', (req, res) => {
 app.get('/testee', async (req, res) => {
     rows = await User.findAll({})
     res.render('teste', { rows })
+});
+
+// Logout
+app.get('/logout', (req, res) => {
+    //Desloga o usuario
+    req.session.loggedIn = false;
+    res.redirect('/login')
 });
 
 // Login

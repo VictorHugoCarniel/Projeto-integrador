@@ -103,7 +103,6 @@ header {
 
 .carrinho {
     padding: 10px;
-    margin-right: 30px;
     border-radius: 5px;
     position: relative;
     color: var(--fonte1);
@@ -156,7 +155,7 @@ header {
         flex-direction: column;
         text-align: center;
         padding-top: 20px;
-        background: #fafafdcb;
+        background: var(--background4);
         backdrop-filter: blur(7px);
         -webkit-backdrop-filter: blur(5px);
         transition: .2s ease;
@@ -175,6 +174,10 @@ header {
     .navbar--login {
         padding: 15px 0 10px 0;
         border-top: 1px solid #c5c5c5bd;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .navbar .link {
