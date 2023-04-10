@@ -143,11 +143,23 @@ function atualizaNotificacao() {
 
   notf.innerHTML = pedidos.length;
 }
-function adicionarPedido(pedido) {
-  pedidos.push(pedido);
-}
 
 function salvarPedidosNoLocalStorage() {
   const pedidosJson = JSON.stringify(pedidos);
   localStorage.setItem('pedidos', pedidosJson);
+}
+
+function EnviarPedido(){
+  alert('seu pedido foi enviado')
+
+  var tamArray = pedidos.length
+  console.log(tamArray)
+
+  for(var i = 0; i < tamArray; i++){
+    pedidos.pop()
+  }
+
+  atualizaCarrinho(pedidos);
+  atualizaSubTotal();
+  atualizaNotificacao();
 }
