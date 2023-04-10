@@ -1,3 +1,7 @@
+#itens-carrinho {
+    display: none;
+}
+
 .modalCarrinho {
     display: flex;
     justify-content: center;

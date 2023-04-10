@@ -86,7 +86,10 @@
     <div class="pedidos" id="pedidos"></div>
     <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
     <span></span>
-    <button type="submit" onclick="EnviarPedido()" class="btnPedido">Fechar pedido</button>
+    <form method="POST" class="btnPedido" action="/fechamento">
+      <textarea name="itensCarrinho" id="itens-carrinho"></textarea>
+      <button type="submit" class="txtBtnPedido">Fechar pedido</button>
+    </form>
 
   </div>
 

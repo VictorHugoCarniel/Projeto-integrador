@@ -25,8 +25,6 @@ const flash = require('connect-flash');
 const { create } = require('node-persist');
 const storagee = create();
 
-
-
 //Models
 const User = require('../models/User');
 const Produtos = require('../models/Produtos');
@@ -96,9 +94,6 @@ app.get('/config', async (req, res) => {
 });
 
 app.get("/pedidos", async (req, res) => {
-
-
-
     const { idPedido, produto, cliente = req.body.filtroCli, preco, quantidade, data } = req.query;
 
     const filtro = {};
