@@ -265,13 +265,10 @@
     <div class="pedidos" id="pedidos"></div>
     <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
     <span></span>
-    <<<<<<< HEAD <form method="post" action="/fechamento">
-      <input type="submit" class="btnPedido">Fechar Pedido</input>
-      =======
-      <form method="post" class="btnPedido" action="">
-        <button type="submit" class="txtBtnPedido">Fechar pedido</button>
-        >>>>>>> 613641d7c30633347a966596bc8026413bc6bc53
-      </form>
+    <form method="POST" class="btnPedido" action="/fechamento">
+      <textarea name="itensCarrinho" id="itens-carrinho"></textarea>
+      <button type="submit" class="txtBtnPedido">Fechar pedido</button>
+    </form>
   </div>
 
   <section class="home" id="home">

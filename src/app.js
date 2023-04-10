@@ -346,23 +346,11 @@ app.get('/home', async (req, res) => {
 // Inicializa o armazenamento
 
 // Define a rota
-app.get('/fechamento', async (req, res) => {
-    await storagee.init({
-        dir: './my-storage',
-        stringify: JSON.stringify,
-        parse: JSON.parse,
-        encoding: 'utf8',
-        logging: false,
-        ttl: false,
-        expiredInterval: 2 * 60 * 1000,
-        forgiveParseErrors: false
-    });
-    
-    const meuItem = await storagee.getItem('pedidos');
-    console.log(meuItem);
-    res.send(meuItem);
+app.post('/fechamento', async (req, res) => {    
+   var itensCarrinho = req.body.itensCarrinho
+   console.log(itensCarrinho)
+   res.send(itensCarrinho)
 });
-
 
 
 app.get('/logout', (req, res) => {
