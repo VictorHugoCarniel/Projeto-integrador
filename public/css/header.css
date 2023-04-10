@@ -290,8 +290,7 @@ body {
     .navbar.active {
         top: 100%;
         background: var(--background4);
-        backdrop-filter: blur(7px);
-        -webkit-backdrop-filter: blur(5px);
+        opacity: 0.9;
     }
 
     .navbar--links {
