@@ -6,6 +6,7 @@ const { where } = require('sequelize');
 const { reset } = require('nodemon');[]
 const ejs = require('ejs');
 // const ejs = require('ejs');
+const storage1 = require('node-persist');
 const express = require('express');
 const session = require('express-session');
 const morgan = require('morgan');
@@ -20,7 +21,11 @@ const handlebarss = require("express3-handlebars").create(); // engine
 const crypto = require('crypto');
 const fs = require('fs');
 const flash = require('connect-flash');
-const localStorage = require('localStorage');
+
+const { create } = require('node-persist');
+const storagee = create();
+
+
 
 //Models
 const User = require('../models/User');
@@ -41,8 +46,9 @@ require("dotenv").config();
 
 app.use(flash());
 
-const pedidos = require('../public/js/carrinho');
+
 const nome = require('../public/js/carrinho');
+
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -87,6 +93,10 @@ var validaAdmin = false
 
 //Rotas
 
+app.get('/config', async (req, res) => {
+    res.render('configUser')
+});
+
 app.get("/pedidos", async (req, res) => {
 
 
@@ -106,11 +116,6 @@ app.get("/pedidos", async (req, res) => {
 
     res.render('pedidos', { pedidos });
 });
-
-app.get("/logout", async (req, res) => {
-    req.session.loggedIn = false;
-    res.render('login');
-})
 
 app.get("/valida", async (req, res) => {
     if (buf == buf) {
@@ -245,6 +250,13 @@ app.get('/testee', async (req, res) => {
     res.render('teste', { rows })
 });
 
+// Logout
+app.get('/logout', (req, res) => {
+    //Desloga o usuario
+    req.session.loggedIn = false;
+    res.redirect('/login')
+});
+
 // Login
 app.get('/login', (req, res) => {
     res.render('login')
@@ -328,22 +340,34 @@ app.get('/home', async (req, res) => {
     } else {
         res.redirect('/login')
     }
-    for (var i = 0; i < 10; i++) {
-        console.log(pedidos, 'saldo')
-    }
-    // console.log('produto eh', nome)
 });
 
-const PedidosApp = require('../public/js/carrinho')
 
-app.post('/fechamento', (req, res) => {
-    res.send({ PedidosApp })
-})
+// Inicializa o armazenamento
+
+// Define a rota
+app.get('/fechamento', async (req, res) => {
+    await storagee.init({
+        dir: './my-storage',
+        stringify: JSON.stringify,
+        parse: JSON.parse,
+        encoding: 'utf8',
+        logging: false,
+        ttl: false,
+        expiredInterval: 2 * 60 * 1000,
+        forgiveParseErrors: false
+    });
+    
+    const meuItem = await storagee.getItem('pedidos');
+    console.log(meuItem);
+    res.send(meuItem);
+});
+
+
 
 app.get('/logout', (req, res) => {
     res.redirect('/login')
 })
-
 // cadastro
 app.post('/add-usuario', async (req, res) => {
     console.log('teste')

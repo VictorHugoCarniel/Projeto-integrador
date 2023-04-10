@@ -1,3 +1,5 @@
+
+
 var pedidos = [];
 
 if (typeof window === "object") {
@@ -7,7 +9,7 @@ if (typeof window === "object") {
     if (targetEl.classList.contains('btnComprar')) {
       const card = targetEl.closest('.card');
       const nome = card.querySelector('.titulo h2').textContent;
-      const preco = card.querySelector('.text:last-of-type p').textContent;
+      const preco = card.querySelector('.text:last-of-type p').textContent; 
 
       let pedidoExistente = false;
 
@@ -26,8 +28,8 @@ if (typeof window === "object") {
         pedidos.push(pedido);
         atualizaCarrinho(pedidos);
       }
-      
     }
+    
   })
 
   document.addEventListener('click', (e) => {
@@ -84,6 +86,7 @@ function atualizaSubTotal() {
   } else {
     tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ 0.00`;
   }
+  salvarPedidosNoLocalStorage();
 }
 
 function retornaPreco(preco) {
@@ -114,6 +117,8 @@ function atualizaCarrinho(pedidos) {
 
     atualizaSubTotal();
     atualizaNotificacao();
+    
+
   });
 
 }
@@ -138,5 +143,11 @@ function atualizaNotificacao() {
 
   notf.innerHTML = pedidos.length;
 }
+function adicionarPedido(pedido) {
+  pedidos.push(pedido);
+}
 
-
+function salvarPedidosNoLocalStorage() {
+  const pedidosJson = JSON.stringify(pedidos);
+  localStorage.setItem('pedidos', pedidosJson);
+}

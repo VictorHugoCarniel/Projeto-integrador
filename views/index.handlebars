@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="A confeitaria do Senac proporciona o melhor para o seu bem-estar e alimentação" />
   <link rel="stylesheet" href="public/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
   <!-- favicon -->
   <link rel="shortcut icon" sizes="32x32" href="/public/images/senaclogo-removebg-preview.png">
@@ -30,7 +31,7 @@
   <title>Projeto Integrador</title>
 </head>
 
-<body onload="">
+<body onload="carregaDiaSemana(), carregaPedidos()">
   <header>
     <a href="https://www.senac.br" target="_blank">
       <div class="logo"><i class="fas fa-utensils"></i></div>
@@ -43,9 +44,14 @@
         <a href="/home" class="animateLink" onclick="LinkActive()">
           <div class="link active">Home<span class="link--linha"></span></div>
         </a>
-        <a href="#cardapio" class="animateLink" onclick="LinkActive()">
-          <div class="link">Cardápio<span class="link--linha"></span></div>
+        <a href="/administrador" class="animateLink" onclick="LinkActive()">
+          <div class="link">Cadastro<span class="link--linha"></span></div>
         </a>
+
+        <a href="/admQtd" class="animateLink" onclick="LinkActive()">
+          <div class="link">Quantidade<span class="link--linha"></span></div>
+        </a>
+
       </div>
 
       <div class="navbar--login">
@@ -54,13 +60,16 @@
             <span class="notificacao" id="notificacao">0</span>
           </i>
         </a>
+        <a href="cadastro">
+          <div class="link cadastro">
+            Cadastre-se<span class="link--linha"></span>
+          </div>
+        </a>
         <div class="user-info login" onclick="toggleDropdown()">
-          <button class="user-dropdown">{{nomeUser}}</button>
+          <button class="user-dropdown">{{nomeUser}} <i id="rodolfo" class="bi bi-caret-down-fill setinha"></i></button>
           <div class="user-dropdown-content">
-            <a href="#">Vendas</a>
-            <a href="#">Pedidos</a>
-            <a href="#">Configurações</a>
-            <a href="#">Logoff</a>
+            <a href="/config"><i class="bi bi-gear modal" id="config"></i>Configurações</a>
+            <a href="/logout"><i class="bi bi-power"></i></button>Logout</a>
           </div>
         </div>
         <div class="toggle-btn" id="_1st-toggle-btn">
@@ -77,7 +86,7 @@
     <div class="pedidos" id="pedidos"></div>
     <div class="subtotal" id="subtotal"><strong>Subtotal:</strong> R$ 0</div>
     <span></span>
-    <form method="post" class="btnPedido" action="/fechamento">
+    <form class="btnPedido" action="/fechamento" method="get">
       <button type="submit" class="txtBtnPedido">Fechar pedido</button>
     </form>
   </div>
@@ -123,7 +132,7 @@
           <div class="text">
             <p>Preço: {{ preco }}</p>
           </div>
-          <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
+          <button type="submit" class="btnComprar">Comprar</button>
           </form>
         </div>
       </div>
@@ -162,11 +171,189 @@
     <p>Instagram: @senacparana</p>
     <p>Endereço: Av. Tupi, 385 - Bortot, Pato Branco - PR, 85504-000</p>
   </footer>
+
+  <div class="modalConfig">
+    <section class="py-5 my-5 config">
+      <div class="container">
+        <h1 class="mb-5">Configurações</h1>
+        <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+          <div class="profile-tab-nav border-right">
+            <div class="p-4">
+              <div class="img-circle text-center mb-3">
+                <img src="/public/images/default-blue.png" alt="Image" class="shadow">
+              </div>
+              <h4 class="text-center">Nome do User</h4>
+            </div>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
+                aria-controls="account" aria-selected="true">
+                <i class="fa fa-home text-center mr-1"></i>
+                Conta
+              </a>
+              <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
+                aria-controls="password" aria-selected="false">
+                <i class="fa fa-key text-center mr-1"></i>
+                Senha
+              </a>
+              <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
+                aria-controls="security" aria-selected="false">
+                <i class="fa fa-user text-center mr-1"></i>
+                Segurança
+              </a>
+              <a class="nav-link" id="application-tab" data-toggle="pill" href="#application" role="tab"
+                aria-controls="application" aria-selected="false">
+                <i class="fa fa-tv text-center mr-1"></i>
+                App
+              </a>
+              <a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab"
+                aria-controls="notification" aria-selected="false">
+                <i class="fa fa-bell text-center mr-1"></i>
+                Notification
+              </a>
+            </div>
+
+          </div>
+          <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+              <h3 class="mb-4">Account Settings</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" value="Kiran">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" value="Acharya">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" value="kiranacharya287@gmail.com">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Phone number</label>
+                    <input type="text" class="form-control" value="+91 9876543215">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Company</label>
+                    <input type="text" class="form-control" value="Kiran Workspace">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Designation</label>
+                    <input type="text" class="form-control" value="UI Developer">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary">Update</button>
+                <button class="btn btn-light">Cancel</button>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+              <h3 class="mb-4">Password Settings</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Old password</label>
+                    <input type="password" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>New password</label>
+                    <input type="password" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Confirm new password</label>
+                    <input type="password" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary">Update</button>
+                <button class="btn btn-light">Cancel</button>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+              <h3 class="mb-4">Security Settings</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Login</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Two-factor auth</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="recovery">
+                      <label class="form-check-label" for="recovery">
+                        Recovery
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary">Update</button>
+                <button class="btn btn-light">Cancel</button>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
+              <h3 class="mb-4">Application Settings</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="app-check">
+                      <label class="form-check-label" for="app-check">
+                        App check
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                      <label class="form-check-label" for="defaultCheck2">
+                        Lorem ipsum dolor sit.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary">Update</button>
+                <button class="btn btn-light">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
 </body>
 
 <script src="/public/js/btn-mobile.js"></script>
-
-<script src="/public/js/cardapio.js"></script>
 
 <script src="/public/js/carrinho.js"></script>
 
