@@ -98,7 +98,7 @@ header {
 
 .login:hover {
     color: var(--hover);
-    background-color: var(--background2);
+
 }
 
 .carrinho {
@@ -289,6 +289,7 @@ body {
 
 .user-info {
     position: relative;
+    background-color: var(--background3);
 }
 
 .user-dropdown {
@@ -308,16 +309,20 @@ body {
     display: none;
     position: absolute;
     animation: header-anim 0.3s;
-    background: var(--background2);
+    background-color: var(--background3);
     border-radius: 0px 0px 10px 10px;
-    border-top: 1px solid var(--background3);
+    border-top: 1px solid var(--background4);
+}
+
+.user-dropdown-content a:hover{
+    background-color: var(--background4);
 }
 
 .user-dropdown-content a {
     display: block;
     padding: 10px 13px;
     text-decoration: none;
-    color: var(--hover);
+    color: var(--fonte1);
     font-size: 12px;
 }
 
@@ -326,13 +331,10 @@ body {
     padding-right: 5px;
 }
 
-.user-dropdown-content a:hover {
-    background-color: var(--background3);
-}
 
 .botaozin {
     border-radius: 5px 5px 0px 0px !important;
-    background: var(--background2);
+   
 }
 
 .user-dropdown-content>a:last-child {
