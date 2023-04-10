@@ -21,9 +21,9 @@
 
   <link rel="stylesheet" href="public/css/home.css" />
 
-  <link rel="stylesheet" href="../public/css/cardapio.css" />
+  <link rel="stylesheet" href="../public/css/carrinho.css" />
 
-  <link rel="stylesheet" href="public/css/carrinho.css" />
+  <link rel="stylesheet" href="../public/css/cardapio.css" />
 
   <link rel="stylesheet" href="public/css/sobre.css" />
 
@@ -267,7 +267,7 @@
     <span></span>
     <form method="POST" class="btnPedido" action="/fechamento">
       <textarea name="itensCarrinho" id="itens-carrinho"></textarea>
-      <button type="submit" class="txtBtnPedido">Fechar pedido</button>
+      <button type="submit"  class="txtBtnPedido">Fechar pedido</button>
     </form>
   </div>
 
@@ -312,14 +312,8 @@
           <div class="text">
             <p>Preço: {{ preco }}</p>
           </div>
-
-          <div class="text">Preço:{{ preco }}</p>
-          </div>
-
-
-          <button type="submit" class="btnComprar" onclick="EnviaId({{idProduto}})">Comprar</button>
+          <button type="submit" class="btnComprar">Comprar</button>
           </form>
-
         </div>
       </div>
       {{/each}}
