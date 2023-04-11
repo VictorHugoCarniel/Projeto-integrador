@@ -109,7 +109,7 @@ function atualizaCarrinho(pedidos) {
                                 <div class="pedido--item">
                                       <div class="pedido--texto">
                                           <h2>${pedido.nome}</h2>
-                                          <p>$${pedido.preco}</p>
+                                          <p>R$ ${pedido.preco}</p>
                                       </div>
                                 </div>
                               </div>
