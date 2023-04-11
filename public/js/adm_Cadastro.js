@@ -48,5 +48,4 @@ btn.addEventListener("click", function (e) {
     else if (ConfirmSenha.length == 0) {
         alert('O campo confirmar senha deve estar preenchido')
     }
-
 })

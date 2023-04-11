@@ -171,12 +171,10 @@ app.post("/valida", async (req, res) => {
             .catch((error) => {
                 console.error(error)
             })
-
-        console.log('ok funfou')
         lostmail = mail
         res.redirect('/validar')
     } else {
-        console.log("Email não existe em nosso banco de dados")
+        console.log("Este e-mail não existe em nosso banco de dados")
     }
 
 })
@@ -196,10 +194,9 @@ app.post("/validar", async (req, res) => {
     console.log(buf.toString('hex'))
 
     if (code == buf.toString('hex')) {
-        console.log("ate ai tudo bem")
         res.redirect('/redefinirSenha')
     } else {
-        console.log("mermao deu ruim")
+        console.log("valida")
     }
 })
 
@@ -216,7 +213,6 @@ app.post('/redefinirSenha', async (req, res) => {
         where: { email: lostmail }
     });
     if (usuario) {
-        console.log('user')
         User.update(
             { senha: criptografar(Senha) },
             {
@@ -288,7 +284,7 @@ app.get('/home', async (req, res) => {
 
     if (req.session.loggedIn == true) {
         const Usuario = req.session.user
-        // console.log(Usuario)
+
         const usuario = await User.findOne({
             where: {
                 email: Usuario,
@@ -324,10 +320,10 @@ app.get('/home', async (req, res) => {
 
         if (usuario) {
             validaAdmin = true
-            console.log(user.nome, "catapimbas meooo")
+            console.log(user.nome)
             res.render('indexADM', { rowsC, rowsB, nomeUser })
         } else {
-            console.log(user.nome, "catapimbas meooo")
+            console.log(user.nome)
             res.render('index', { rowsC, rowsB, nomeUser })
         }
     } else {
@@ -386,21 +382,17 @@ app.get('/logout', (req, res) => {
 })
 // cadastro
 app.post('/add-usuario', async (req, res) => {
-    console.log('teste')
     const usuario = await User.findOne({
         where: { email: req.body.email }
     });
     if (usuario) {
-        console.log('teste2')
         req.session.message = {
             type: "danger",
             intro: "Hey,",
             message: "Um susuário com este e-mail já existe! Faça o formulário novamente"
         }
-        console.log('teste3')
         res.redirect("/cadastro");
     } else {
-        console.log('teste else')
         await User.create({
             nome: req.body.nome,
             sobrenome: req.body.sobrenome,
@@ -410,7 +402,6 @@ app.post('/add-usuario', async (req, res) => {
             senha: criptografar(req.body.senha),
             idTipoUsuario: req.body.idTipoUsuario = 2
         })
-        console.log('teste 90')
         res.redirect('/login')
     }
 })
@@ -430,7 +421,6 @@ app.get('/administrador', async (req, res) => {
 });
 
 app.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
-    console.log('img')
     const { originalname: name, size, filename: key } = req.file;
 
     const post = await ImProds.create({
@@ -470,7 +460,6 @@ app.post('/add-alimentos', upload.single('imagem'), async (req, res) => {
         quantidade: req.body.quantidade = 0
     })
 
-    console.log("deu certo")
     res.redirect('/administrador')
 })
 
@@ -535,7 +524,6 @@ app.post('/zera-quantidade/:id', async (req, res) => {
     const id_parametro = req.params.id;
 
     if (quantidade <= quantidade <= 1) {
-        console.log("zera");
         let quantidade = 0;
         Produtos.update(
             { quantidade: quantidade },
@@ -547,7 +535,7 @@ app.post('/zera-quantidade/:id', async (req, res) => {
         );
         res.redirect('/admQtd')
     } else if (quantidade = 0) {
-        console.log("quantidade eh igual a 0")
+        console.log("quantidade do produoto ja é igual a 0")
     }
 
 })
@@ -568,7 +556,6 @@ app.get('/produtos', async (req, res) => {
 
 // User
 app.get('/user:id', async (req, res) => {
-    console.log('cu Usuario')
     const id = req.params.id;
     var rowsC = await User.findAll({
         where: {
