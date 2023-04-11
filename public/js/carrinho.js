@@ -86,14 +86,11 @@ function atualizaSubTotal() {
     tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ ${subtotal.toFixed(2)}`;
   } else {
     tagSubTotal.innerHTML = `<strong>Subtotal:</strong> R$ 0.00`;
-  }
-  // itensCarrinho.value = ""
-  // itensCarrinho.value = JSON.stringify(pedidos);
-  // salvarPedidosNoLocalStorage();
+  } 
 }
 
 function retornaPreco(preco) {
-  var preco = preco.slice(7);
+  var preco = preco.slice(3);
   return preco;
 }
 
