@@ -10,8 +10,8 @@ const Pedidos = db.sequelize.define('pedido', {
     produto: db.Sequelize.STRING,
     cliente: db.Sequelize.STRING,
     preco: db.Sequelize.DOUBLE,
-    peso: db.Sequelize.DOUBLE,
-    quantidade: db.Sequelize.INTEGER
+    quantidade: db.Sequelize.INTEGER,
+    Data: db.Sequelize.STRING
 
 })
 
