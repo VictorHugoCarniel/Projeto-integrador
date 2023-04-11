@@ -345,6 +345,20 @@ function contarChaves(str) {
 }
 // Inicializa o armazenamento
 
+function dataNow() {
+    // Criar uma nova instância do objeto Date
+    var dataAtual = new Date();
+
+    // Obter o dia, mês e ano atuais
+    var dia = dataAtual.getDate();
+    var mes = dataAtual.getMonth() + 1; // Adicione 1 ao índice do mês, pois o valor retornado pelo método começa em 0
+    var ano = dataAtual.getFullYear();
+
+    var dataFormatada = dia.toString().padStart(2, '0') + '/' + mes.toString().padStart(2, '0') + '/' + ano.toString();
+    return dataFormatada;
+}
+
+
 // Define a rota
 app.post('/fechamento', async (req, res) => {
     const itensCarrinho = req.body.itensCarrinho;
