@@ -40,34 +40,16 @@
 </head>
 
 <body>
-  <div class="filter-box">
-    <div class="filter">
-      <label for="id-filter">ID:</label>
-      <input type="text" id="id-filter">
-    </div>
-    <div class="filter">
-      <label for="product-filter">Produto:</label>
-      <input type="text" id="product-filter">
-    </div>
-    <div class="filter">
-      <label for="client-filter">Cliente:</label>
-      <input type="text" name="filtroCli" id="client-filter">
-    </div>
-    <div class="filter">
-      <label for="price-filter">Preço:</label>
-      <input type="text" id="price-filter">
-    </div>
-    <div class="filter">
-      <label for="quantity-filter">Quantidade:</label>
-      <input type="text" id="quantity-filter">
-    </div>
-    <div class="filter">
-      <label for="date-filter">Data:</label>
-      <input type="text" id="date-filter">
-    </div>
-  </div>
 
-  <button class="testee">Chama</button>
+  <div class="container">
+    <input type="text" id="filtro-id" placeholder="Filtrar por ID">
+    <input type="text" id="filtro-produto" placeholder="Filtrar por Produto">
+    <input type="text" id="filtro-cliente" placeholder="Filtrar por Cliente">
+    <input type="text" id="filtro-preco" placeholder="Filtrar por Preço">
+    <input type="text" id="filtro-quantidade" placeholder="Filtrar por Quantidade">
+    <input type="text" id="filtro-data" placeholder="Filtrar por Data">
+    <button class="button-22" onclick="filtrar()">Filtrar</button>
+  </div>
 
   <div class="container">
     <div class="table-wrapper">
@@ -90,461 +72,55 @@
             <td>{{cliente}}</td>
             <td>{{preco}}</td>
             <td>{{quantidade}}</td>
-            <td>{{data}}</td>
+            <td>{{Data}}</td>
           </tr>
           {{/each}}
-          
-          {{!-- <tr>
-            <td>001</td>
-            <td>Frango Xadrez</td>
-            <td>João Silva</td>
-            <td>R$30,00</td>
-            <td>2</td>
-            <td>2023-03-01</td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>Pizza Margherita</td>
-            <td>Maria Santos</td>
-            <td>R$35,00</td>
-            <td>1</td>
-            <td>2023-03-02</td>
-          </tr>
-          <tr>
-            <td>003</td>
-            <td>Lasanha à Bolonhesa</td>
-            <td>Luís Oliveira</td>
-            <td>R$45,00</td>
-            <td>3</td>
-            <td>2023-03-03</td>
-          </tr>
-          <tr>
-            <td>004</td>
-            <td>Bife a Cavalo</td>
-            <td>Luciana Ferreira</td>
-            <td>R$25,00</td>
-            <td>2</td>
-            <td>2023-03-04</td>
-          </tr>
-          <tr>
-            <td>005</td>
-            <td>Macarrão com Queijo</td>
-            <td>Pedro Almeida</td>
-            <td>R$20,00</td>
-            <td>1</td>
-            <td>2023-03-05</td>
-          </tr>
-          <tr>
-            <td>006</td>
-            <td>Salmão Grelhado</td>
-            <td>Andréia Costa</td>
-            <td>R$55,00</td>
-            <td>2</td>
-            <td>2023-03-06</td>
-          </tr>
-          <tr>
-            <td>007</td>
-            <td>Feijoada Completa</td>
-            <td>Juliano Santos</td>
-            <td>R$40,00</td>
-            <td>3</td>
-            <td>2023-03-07</td>
-          </tr>
-          <tr>
-            <td>008</td>
-            <td>Peixe Frito</td>
-            <td>Beatriz Silva</td>
-            <td>R$28,00</td>
-            <td>1</td>
-            <td>2023-03-08</td>
-          </tr>
-          <tr>
-            <td>009</td>
-            <td>Arroz com Feijão</td>
-            <td>José Oliveira</td>
-            <td>R$12,00</td>
-            <td>2</td>
-            <td>2023-03-09</td>
-          </tr>
-          <tr>
-            <td>010</td>
-            <td>Bife à Parmegiana</td>
-            <td>Lucas Souza</td>
-            <td>R$50,00</td>
-            <td>1</td>
-            <td>2023-03-10</td>
-          </tr>
-          <tr>
-            <td>011</td>
-            <td>Frango Assado</td>
-            <td>Isabel Santos</td>
-            <td>R$35,00</td>
-            <td>2</td>
-            <td>2023-03-11</td>
-          </tr>
-          <tr>
-            <td>012</td>
-            <td>Salada de Frutas</td>
-            <td>Leonardo Fernandes</td>
-            <td>R$15,00</td>
-            <td>1</td>
-            <td>2023-03-12</td>
-          </tr>
-          <tr>
-            <td>013</td>
-            <td>Massa com Frutos do Mar</td>
-            <td>Gabriela Alves</td>
-            <td>R$60,00</td>
-            <td>3</td>
-            <td>2023-03-13</td>
-          </tr>
-          <tr>
-            <td>014</td>
-            <td>Ensopado de Carne</td>
-            <td>Mariana Costa</td>
-            <td>R$40,00</td>
-            <td>2</td>
-            <td>2023-03-14</td>
-          </tr>
-          <tr>
-            <td>015</td>
-            <td>Sopa de Legumes</td>
-            <td>Fernando Oliveira</td>
-            <td>R$18,00</td>
-            <td>1</td>
-            <td>2023-03-15</td>
-          </tr>
-          <tr>
-            <td>016</td>
-            <td>Arroz de Camarão</td>
-            <td>Paulo Santos</td>
-            <td>R$50,00</td>
-            <td>2</td>
-            <td>2023-03-16</td>
-          </tr>
-          <tr>
-            <td>018</td>
-            <td>Frango Grelhado</td>
-            <td>Roberto Silva</td>
-            <td>R$30,00</td>
-            <td>2</td>
-            <td>2023-03-18</td>
-          </tr>
-          <tr>
-            <td>019</td>
-            <td>Sushi Variado</td>
-            <td>Aline Oliveira</td>
-            <td>R$60,00</td>
-            <td>3</td>
-            <td>2023-03-19</td>
-          </tr>
-          <tr>
-            <td>020</td>
-            <td>Batata Frita</td>
-            <td>Gustavo Santos</td>
-            <td>R$15,00</td>
-            <td>1</td>
-            <td>2023-03-20</td>
-          </tr>
-          <tr>
-            <td>021</td>
-            <td>Frango à Passarinho</td>
-            <td>Camila Souza</td>
-            <td>R$25,00</td>
-            <td>1</td>
-            <td>2023-03-21</td>
-          </tr>
-          <tr>
-            <td>022</td>
-            <td>Escondidinho de Carne</td>
-            <td>Luciana Oliveira</td>
-            <td>R$45,00</td>
-            <td>2</td>
-            <td>2023-03-22</td>
-          </tr>
-          <tr>
-            <td>023</td>
-            <td>Arroz à Grega</td>
-            <td>Juliana Santos</td>
-            <td>R$20,00</td>
-            <td>1</td>
-            <td>2023-03-23</td>
-          </tr>
-          <tr>
-            <td>024</td>
-            <td>Feijoada Completa</td>
-            <td>André Costa</td>
-            <td>R$50,00</td>
-            <td>3</td>
-            <td>2023-03-24</td>
-          </tr>
-          <tr>
-            <td>025</td>
-            <td>Pizza Hut</td>
-            <td>Jonas</td>
-            <td>R$50,00</td>
-            <td>3</td>
-            <td>2023-03-24</td>
-          </tr>
-          <tr>
-            <td>026</td>
-            <td>Pizza Hut</td>
-            <td>Jonas Joj</td>
-            <td>R$50,00</td>
-            <td>3</td>
-            <td>2023-03-24</td>
-          </tr>
-          <tr>
-            <td>027</td>
-            <td>Pizza Hut</td>
-            <td>Jonas xJns</td>
-            <td>R$50,00</td>
-            <td>3</td>
-            <td>2023-03-24</td>
-          </tr> --}}
-
         </tbody>
       </table>
     </div>
   </div>
 
-
-  <div class="pagination">
-    <a href="#" class="prev">&laquo; Anterior</a>
-    <a href="#" class="page active">1</a>
-    <a href="#" class="page">2</a>
-    <a href="#" class="page">3</a>
-    <a href="#" class="next">Próxima &raquo;</a>
-  </div>
-
 </body>
 </div>
-{{!-- <script src="../public/js/preloader.js"></script> --}}
+
+<script>
+  function filtrar() {
+    var inputId, inputProduto, inputCliente, inputPreco, inputQuantidade, inputData, tabela, tr, tdId, tdProduto, tdCliente, tdPreco, tdQuantidade, tdData, i, valorId, valorProduto, valorCliente, valorPreco, valorQuantidade, valorData;
+    inputId = document.getElementById("filtro-id");
+    inputProduto = document.getElementById("filtro-produto");
+    inputCliente = document.getElementById("filtro-cliente");
+    inputPreco = document.getElementById("filtro-preco");
+    inputQuantidade = document.getElementById("filtro-quantidade");
+    inputData = document.getElementById("filtro-data");
+    tabela = document.getElementsByTagName("table")[0];
+    tr = tabela.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) {
+      tdId = tr[i].getElementsByTagName("td")[0];
+      tdProduto = tr[i].getElementsByTagName("td")[1];
+      tdCliente = tr[i].getElementsByTagName("td")[2];
+      tdPreco = tr[i].getElementsByTagName("td")[3];
+      tdQuantidade = tr[i].getElementsByTagName("td")[4];
+      tdData = tr[i].getElementsByTagName("td")[5];
+      if (tdId || tdProduto || tdCliente || tdPreco || tdQuantidade || tdData) {
+        valorId = tdId.textContent || tdId.innerText;
+        valorProduto = tdProduto.textContent || tdProduto.innerText;
+        valorCliente = tdCliente.textContent || tdCliente.innerText;
+        valorPreco = tdPreco.textContent || tdPreco.innerText;
+        valorQuantidade = tdQuantidade.textContent || tdQuantidade.innerText;
+        valorData = tdData.textContent || tdData.innerText;
+        if (valorId.toUpperCase().indexOf(inputId.value.toUpperCase()) > -1 && valorProduto.toUpperCase().indexOf(inputProduto.value.toUpperCase()) > -1 && valorCliente.toUpperCase().indexOf(inputCliente.value.toUpperCase()) > -1 && valorPreco.toUpperCase().indexOf(inputPreco.value.toUpperCase()) > -1 && valorQuantidade.toUpperCase().indexOf(inputQuantidade.value.toUpperCase()) > -1 && valorData.toUpperCase().indexOf(inputData.value.toUpperCase()) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+</script>
 
 <script src="/public/js/404.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-  var $doc = $("html, body");
-  $(".animateLink").click(function () {
-    $doc.animate(
-      {
-        scrollTop: $($.attr(this, "href")).offset().top,
-      },
-      500
-    );
-    return false;
-  });
-</script>
+
 
 </html>
-
-{{!-- <tbody>
-  <tr>
-    <td>001</td>
-    <td>Frango Xadrez</td>
-    <td>João Silva</td>
-    <td>R$30,00</td>
-    <td>2</td>
-    <td>2023-03-01</td>
-  </tr>
-  <tr>
-    <td>002</td>
-    <td>Pizza Margherita</td>
-    <td>Maria Santos</td>
-    <td>R$35,00</td>
-    <td>1</td>
-    <td>2023-03-02</td>
-  </tr>
-  <tr>
-    <td>003</td>
-    <td>Lasanha à Bolonhesa</td>
-    <td>Luís Oliveira</td>
-    <td>R$45,00</td>
-    <td>3</td>
-    <td>2023-03-03</td>
-  </tr>
-  <tr>
-    <td>004</td>
-    <td>Bife a Cavalo</td>
-    <td>Luciana Ferreira</td>
-    <td>R$25,00</td>
-    <td>2</td>
-    <td>2023-03-04</td>
-  </tr>
-  <tr>
-    <td>005</td>
-    <td>Macarrão com Queijo</td>
-    <td>Pedro Almeida</td>
-    <td>R$20,00</td>
-    <td>1</td>
-    <td>2023-03-05</td>
-  </tr>
-  <tr>
-    <td>006</td>
-    <td>Salmão Grelhado</td>
-    <td>Andréia Costa</td>
-    <td>R$55,00</td>
-    <td>2</td>
-    <td>2023-03-06</td>
-  </tr>
-  <tr>
-    <td>007</td>
-    <td>Feijoada Completa</td>
-    <td>Juliano Santos</td>
-    <td>R$40,00</td>
-    <td>3</td>
-    <td>2023-03-07</td>
-  </tr>
-  <tr>
-    <td>008</td>
-    <td>Peixe Frito</td>
-    <td>Beatriz Silva</td>
-    <td>R$28,00</td>
-    <td>1</td>
-    <td>2023-03-08</td>
-  </tr>
-  <tr>
-    <td>009</td>
-    <td>Arroz com Feijão</td>
-    <td>José Oliveira</td>
-    <td>R$12,00</td>
-    <td>2</td>
-    <td>2023-03-09</td>
-  </tr>
-  <tr>
-    <td>010</td>
-    <td>Bife à Parmegiana</td>
-    <td>Lucas Souza</td>
-    <td>R$50,00</td>
-    <td>1</td>
-    <td>2023-03-10</td>
-  </tr>
-  <tr>
-    <td>011</td>
-    <td>Frango Assado</td>
-    <td>Isabel Santos</td>
-    <td>R$35,00</td>
-    <td>2</td>
-    <td>2023-03-11</td>
-  </tr>
-  <tr>
-    <td>012</td>
-    <td>Salada de Frutas</td>
-    <td>Leonardo Fernandes</td>
-    <td>R$15,00</td>
-    <td>1</td>
-    <td>2023-03-12</td>
-  </tr>
-  <tr>
-    <td>013</td>
-    <td>Massa com Frutos do Mar</td>
-    <td>Gabriela Alves</td>
-    <td>R$60,00</td>
-    <td>3</td>
-    <td>2023-03-13</td>
-  </tr>
-  <tr>
-    <td>014</td>
-    <td>Ensopado de Carne</td>
-    <td>Mariana Costa</td>
-    <td>R$40,00</td>
-    <td>2</td>
-    <td>2023-03-14</td>
-  </tr>
-  <tr>
-    <td>015</td>
-    <td>Sopa de Legumes</td>
-    <td>Fernando Oliveira</td>
-    <td>R$18,00</td>
-    <td>1</td>
-    <td>2023-03-15</td>
-  </tr>
-  <tr>
-    <td>016</td>
-    <td>Arroz de Camarão</td>
-    <td>Paulo Santos</td>
-    <td>R$50,00</td>
-    <td>2</td>
-    <td>2023-03-16</td>
-  </tr>
-  <tr>
-    <td>018</td>
-    <td>Frango Grelhado</td>
-    <td>Roberto Silva</td>
-    <td>R$30,00</td>
-    <td>2</td>
-    <td>2023-03-18</td>
-  </tr>
-  <tr>
-    <td>019</td>
-    <td>Sushi Variado</td>
-    <td>Aline Oliveira</td>
-    <td>R$60,00</td>
-    <td>3</td>
-    <td>2023-03-19</td>
-  </tr>
-  <tr>
-    <td>020</td>
-    <td>Batata Frita</td>
-    <td>Gustavo Santos</td>
-    <td>R$15,00</td>
-    <td>1</td>
-    <td>2023-03-20</td>
-  </tr>
-  <tr>
-    <td>021</td>
-    <td>Frango à Passarinho</td>
-    <td>Camila Souza</td>
-    <td>R$25,00</td>
-    <td>1</td>
-    <td>2023-03-21</td>
-  </tr>
-  <tr>
-    <td>022</td>
-    <td>Escondidinho de Carne</td>
-    <td>Luciana Oliveira</td>
-    <td>R$45,00</td>
-    <td>2</td>
-    <td>2023-03-22</td>
-  </tr>
-  <tr>
-    <td>023</td>
-    <td>Arroz à Grega</td>
-    <td>Juliana Santos</td>
-    <td>R$20,00</td>
-    <td>1</td>
-    <td>2023-03-23</td>
-  </tr>
-  <tr>
-    <td>024</td>
-    <td>Feijoada Completa</td>
-    <td>André Costa</td>
-    <td>R$50,00</td>
-    <td>3</td>
-    <td>2023-03-24</td>
-  </tr>
-  <tr>
-    <td>025</td>
-    <td>Pizza Hut</td>
-    <td>Jonas</td>
-    <td>R$50,00</td>
-    <td>3</td>
-    <td>2023-03-24</td>
-  </tr>
-  <tr>
-    <td>026</td>
-    <td>Pizza Hut</td>
-    <td>Jonas Joj</td>
-    <td>R$50,00</td>
-    <td>3</td>
-    <td>2023-03-24</td>
-  </tr>
-  <tr>
-    <td>027</td>
-    <td>Pizza Hut</td>
-    <td>Jonas xJns</td>
-    <td>R$50,00</td>
-    <td>3</td>
-    <td>2023-03-24</td>
-  </tr>
-</tbody> --}}

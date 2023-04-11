@@ -1,101 +1,62 @@
 .container {
-  padding: 0px;
-  width: 60%;
-  border: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.table-wrapper {
-  overflow-x: auto;
+input[type="text"], button {
+  margin-right: 10px;
 }
 
 table {
-  border-collapse: collapse;
   width: 100%;
-  font-size: 16px;
-  color: #333;
+  border-collapse: collapse;
 }
 
-thead {
-  background-color: #f2f2f2;
+thead th {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
   text-align: left;
 }
 
-th {
-  padding: 12px;
-  font-weight: bold;
-  background-color: #ddd;
-}
-
-td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-
-tr:nth-child(odd) {
-  background-color: #ececec;
-  /* cor de fundo da linha ímpar */
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination a {
-  color: #333;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  border: 1px solid #ddd;
-  margin: 0 5px;
-}
-
-.pagination a.prev,
-.pagination a.next {
-  background-color: #f2f2f2;
-}
-
-.pagination a.page.active {
-  background-color: #333;
-  color: #fff;
-}
-
-.pagination a:hover:not(.active) {
-  background-color: #ddd;
-}
-
-/* -------------------------------- */
-
-.filter-box {
-  background-color: #f4f4f4;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+tbody td {
   padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-.filter {
+
+.button-22 {
+  align-items: center;
+  appearance: button;
+  background-color: #0276FF;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin-bottom: 10px;
+  flex-shrink: 0;
+  font-family: "RM Neue",sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  padding: 10px 21px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-label {
-  font-weight: bold;
-  margin-right: 5px;
+.button-22:active {
+  background-color: #006AE8;
 }
 
-input[type="text"] {
-  border: none;
-  border-radius: 5px;
-  padding: 5px;
-  width: 150px;
+.button-22:hover {
+  background-color: #1C84FF;
 }

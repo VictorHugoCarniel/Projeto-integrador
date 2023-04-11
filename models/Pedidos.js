@@ -19,6 +19,6 @@ const Pedidos = db.sequelize.define('pedido', {
 
 
 
-//Pedidos.sync({ force: true })
+Pedidos.sync({ force: true })
 
 module.exports = Pedidos;
