@@ -343,14 +343,14 @@ function contarChaves(str) {
 
 function dataNow() {
     // Criar uma nova instância do objeto Date
-    var dataAtual = new Date();
+    let dataAtual = new Date();
 
     // Obter o dia, mês e ano atuais
-    var dia = dataAtual.getDate();
-    var mes = dataAtual.getMonth() + 1; // Adicione 1 ao índice do mês, pois o valor retornado pelo método começa em 0
-    var ano = dataAtual.getFullYear();
+    let dia = dataAtual.getDate();
+    let mes = dataAtual.getMonth() + 1; // Adicione 1 ao índice do mês, pois o valor retornado pelo método começa em 0
+    let ano = dataAtual.getFullYear();
 
-    var dataFormatada = dia.toString().padStart(2, '0') + '/' + mes.toString().padStart(2, '0') + '/' + ano.toString();
+    let dataFormatada = dia.toString().padStart(2, '0') + '/' + mes.toString().padStart(2, '0') + '/' + ano.toString();
     return dataFormatada;
 }
 
@@ -368,7 +368,7 @@ app.post('/fechamento', async (req, res) => {
                 preco: item.preco,
                 quantidade: item.quantidade,
                 cliente: req.session.user,
-                Data: Date.now()
+                Data: dataNow()
             });
         }
         res.render('notaFiscal', { data: { itensCarrinho } });

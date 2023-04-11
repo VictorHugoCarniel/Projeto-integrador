@@ -6,7 +6,7 @@ for (var i = 0; i < pedidos.length; i++) {
     var subtotal = pedido.preco * pedido.quantidade;
     total += subtotal;
     document.write("<tr>");
-    document.write("<td>" + pedido.id + "</td>");
+    document.write("<td>" + (i+1) + "</td>");
     document.write("<td>" + pedido.nome + "</td>");
     document.write("<td>R$" + pedido.preco + "</td>");
     document.write("<td>" + pedido.quantidade + "</td>");

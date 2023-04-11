@@ -4,12 +4,19 @@
 <head>
     <title>Nota Fiscal - Cantina Senac</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
         }
 
         /* Estilos CSS para a nota fiscal */
         .nota-fiscal {
+            width: 40%;
             border: 1px solid #ccc;
             padding: 20px;
             max-width: 800px;
@@ -78,33 +85,85 @@
             width: 150px;
             margin-right: 10px;
         }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        .button-22 {
+            align-items: center;
+            appearance: button;
+            background-color: #0276FF;
+            border-radius: 8px;
+            border-style: none;
+            box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            flex-shrink: 0;
+            font-size: 100%;
+            line-height: 1.15;
+            margin: 0;
+            padding: 10px 21px;
+            text-align: center;
+            text-transform: none;
+            transition: color .13s ease-in-out, background .13s ease-in-out, opacity .13s ease-in-out, box-shadow .13s ease-in-out;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-22:active {
+            background-color: #006AE8;
+        }
+
+        .button-22:hover {
+            background-color: #1C84FF;
+        }
+
+        .botao {
+            float: right;
+        }
     </style>
 </head>
 
 <body>
-    <div class="nota-fiscal">
+    <div class="container">
+        <div class="nota-fiscal">
 
-        <h1>Nota Fiscal</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                
+            <h1>Nota Fiscal</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                <!-- Loop através do array de pedidos -->
-                <script src="../public/js/notafiscal.js" data-itens-carrinho="{{data.itensCarrinho}}">
-                </script>
-            </tbody>
-        </table>
+
+                    <!-- Loop através do array de pedidos -->
+                    <script src="../public/js/notafiscal.js" data-itens-carrinho="{{data.itensCarrinho}}">
+                    </script>
+                </tbody>
+            </table>
+
+            <a href="/home" class="botao"><button class="button-22" role="button">Voltar ao Menu</button></a>
+
+        </div>
     </div>
-    
 </body>
 
 </html>
