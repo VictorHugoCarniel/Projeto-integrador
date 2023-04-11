@@ -350,29 +350,29 @@ app.post('/fechamento', async (req, res) => {
    var itensCarrinho = req.body.itensCarrinho
     console.log(itensCarrinho)
    
-    for (let i = 0; i < itensCarrinho.length; i++) {
-        const item = itensCarrinho[i];
-        await Pedido.create({
-          produto: item.nome,
-          preco: parseFloat(item.preco),
-          quantidade: item.quantidade,
-          cliente: req.session.user
-        });
-      }
+    // for (let i = 0; i < itensCarrinho.length; i++) {
+    //     const item = itensCarrinho[i];
+    //     await Pedido.create({
+    //       produto: item.nome,
+    //       preco: parseFloat(item.preco),
+    //       quantidade: item.quantidade,
+    //       cliente: req.session.user
+    //     });
+    //   }
    res.render('notaFiscal',  {data: { itensCarrinho }});
 
 });
 app.post('/confirmaPedido', async (req, res) => { 
-    const arr = itensCarrinhofora.split(', ');
-    for (var i = 0; i < arr.length; i++) {
-        const item = JSON.parse(arr[i].replace(/'/g, '"'));
-        await Pedido.create({
-          produto: item.nome,
-          preco: item.preco,
-          quantidade: item.quantidade,
-          cliente: req.session.user
-        });
-      }
+    // const arr = itensCarrinhofora.split(', ');
+    // for (var i = 0; i < arr.length; i++) {
+    //     const item = JSON.parse(arr[i].replace(/'/g, '"'));
+    //     await Pedido.create({
+    //       produto: item.nome,
+    //       preco: item.preco,
+    //       quantidade: item.quantidade,
+    //       cliente: req.session.user
+    //     });
+    //   }
     
 });
 
